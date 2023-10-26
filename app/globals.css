@@ -25,3 +25,11 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.footer{
+  background-color: #E7AB79;
+}
+
+nav{
+  background-color: #E7AB79;
+}
