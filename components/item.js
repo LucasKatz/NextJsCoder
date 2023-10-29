@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 
 const Item = ({ id, img, name, price }) => {
@@ -7,7 +8,7 @@ const Item = ({ id, img, name, price }) => {
 
         <div className="cardContainer">
             <div className="imageCard">
-                <img src="#" alt="" />
+                <img src="" alt="" />
             </div>
             <div className="detailsCard">
                 <h5>{name}</h5>

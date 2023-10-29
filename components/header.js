@@ -29,7 +29,7 @@ export default function Navbar() {
     <button className="nav-link mr-4">Home</button>
   </Link>
   <button onClick={toggleProducts} className="nav-link mr-4">
-    Products
+    <Link href="products">Products </Link>
   </button>
   {isProductsOpen && (
     <div className="absolute top-full left-0 mt-2 space-y-2 bg-white border border-gray-300 rounded-md w-48">
