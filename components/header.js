@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FaUser, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
-import Button from './button';
+import { usePathname } from 'next/navigation';
 
 const links = [ 
   {
@@ -33,6 +33,8 @@ export default function Navbar() {
     setProductsOpen(!isProductsOpen);
   };
 
+  const pathname = usePathname()
+
   return (
     <nav className="flex items-center justify-between p-4 w-full text-purple-900">
 
@@ -50,7 +52,8 @@ export default function Navbar() {
   <div className="hidden md:flex items-center justify-center flex-1 w-1/2">
 {
 links.map(link => (
-  <Link key={link.label} href={link.href} className="btn-nav">
+  <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "purple-underline" : ""}`}
+  >
     {link.label}
   </Link>
 ))
