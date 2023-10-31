@@ -52,8 +52,7 @@ export default function Navbar() {
   <div className="hidden md:flex items-center justify-center flex-1 w-1/2">
 {
 links.map(link => (
-  <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "purple-underline" : ""}`}
-  >
+  <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "font-extrabold" : ""}`}>
     {link.label}
   </Link>
 ))

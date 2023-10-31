@@ -41,12 +41,7 @@ body {
     margin-right: 1rem;
   }
 
-  .purple-underline {
-    text-decoration: underline;
-    text-decoration-color: purple;
-    text-underline-offset: 2px; 
-    text-decoration-thickness: 2px;
-  }
+
   
 }
 
