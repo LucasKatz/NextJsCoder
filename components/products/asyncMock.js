@@ -1,4 +1,4 @@
-export const products = [
+export const MockProducts = [
     {
         title: `Colours`,
         description: `Flashcard to teach colours vocabulary`,
