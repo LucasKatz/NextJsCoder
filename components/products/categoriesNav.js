@@ -27,7 +27,7 @@ const links = [
 ]
 
 
-export default function CategoriesMenu() {
+const CategoriesMenu = () => {
 
 const pathname = usePathname()
 
@@ -47,3 +47,5 @@ links.map(link => (
 
 )  
 }
+
+export default CategoriesMenu

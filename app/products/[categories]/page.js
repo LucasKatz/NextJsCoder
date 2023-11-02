@@ -2,9 +2,10 @@ import ProductsList from "@/components/products/itemList"
 import CategoriesMenu from "@/components/products/categoriesNav"
 
 export async function generateMetadata({params, searchParams}, parent) {
+    console.log(params)
 
     return {
-        title: `CoderApp - ${params.categoria}`,
+        title: `Night Owl - ${params.categories}`,
     }
 }
 
@@ -17,7 +18,7 @@ const Productos = ({params}) => {
 
             <div className="flex gap-10">
                 <CategoriesMenu />
-                <ProductsList categories={category}/>
+                <ProductsList category={category}/>
             </div>
         </main>
     )
