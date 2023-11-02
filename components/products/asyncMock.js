@@ -42,7 +42,7 @@ export const products = [
         Contar con un mini split es adecuar tus necesidades de climatización al diseño y disponibilidad de tus espacios. Es un equipo compacto que se coloca en cualquier rincón de tu hogar con facilidad.
         Reducción de humedad
         El deshumidificador absorbe el agua del aire y disminuye la molesta humedad, creando un ambiente confortable y de calidad.`,
-        inStock: 100,
+        //inStock: 100,
         price: 354999,
         slug: 'aire-acondicionado-likon-mini-split-friocalor-3000-frigorias-blanco',
         image: 'aire-acondicionado-likon-mini-split-friocalor-3000-frigorias-blanco.webp',
@@ -58,7 +58,7 @@ export const products = [
         
         Programá de acuerdo a tus necesidades
         Cuando las personas descansan su temperatura corporal baja gradualmente. Por eso, este aire cuenta con la función sleep, que hace que la temperatura del ambiente aumente a medida que pasa el tiempo. No tendrás que levantarte a apagarlo y podrás disfrutar de un sueño placentero.`,
-        inStock: 100,
+        //inStock: 100,
         price: 442599,
         slug: 'aire-acondicionado-bgh-silent-air-split-friocalor-3000-frigorias-blanco',
         image: 'aire-acondicionado-bgh-silent-air-split-friocalor-3000-frigorias-blanco.webp',
@@ -72,7 +72,7 @@ export const products = [
         Con su función de grill los alimentos quedarán dorados, crocantes y ricos. Las pizzas, quesadillas y tartas parecerán recién hechas.
         Que no se te pase
         El timer programable te va a ayudar a graduar los minutos indicados. Además, con el termostato ajustable vas a poder manejar el calor adecuado y lograr el punto justo.`,
-        inStock: 100,
+        //inStock: 100,
         price: 59399,
         slug: 'horno-de-mesa-electrico-bgh-bhe40m19-40l-negro',
         image: 'horno-de-mesa-electrico-bgh-bhe40m19-40l-negro.webp',
@@ -84,7 +84,7 @@ export const products = [
         Si tu cocina es pequeña, el horno de mesa es la mejor solución. Vas a disfrutar de las mismas ventajas que con uno convencional y ganarás practicidad y comodidad.
         Tus recetas más sabrosas
         Lográ una cocción pareja en tus elaboraciones con su sistema por convección, que permite ahorrar tiempo y energía.`,
-        inStock: 100,
+        //inStock: 100,
         price: 65999,
         slug: 'horno-de-mesa-electrico-peabody-pe-he4550-45l-gris',
         image: 'horno-de-mesa-electrico-peabody-pe-he4550-45l-gris.webp',
@@ -93,7 +93,7 @@ export const products = [
     {
         title: `Atma Hga3022 Horno Grill 30 Litros 1500w Timer 60 Min`,
         description: `Disfruta de deliciosas comidas caseras con el horno Atma HGA3022PI, un horno eléctrico de mesa con grill y una capacidad de 30 litros, ideal para cocinar una amplia variedad de platos. Con sus 1500W de potencia, podrás preparar tus recetas favoritas de manera rápida y eficiente. El temporizador de 60 minutos te permite controlar el tiempo de cocción, asegurando resultados perfectos en cada uso. Además, su diseño compacto y elegante se adapta perfectamente a cualquier espacio de tu cocina, mientras que su material de fácil limpieza te permite mantenerlo siempre impecable. Sus dimensiones de 498 mm de ancho, 365 mm de profundidad y 328 mm de altura lo hacen práctico y fácil de ubicar. No esperes más para disfrutar de la comodidad y versatilidad que este horno Atma te ofrece en tu hogar.`,
-        inStock: 100,
+        //inStock: 100,
         price: 53879,
         slug: 'atma-hga3022-horno-grill-30-litros-1500w',
         image: 'atma-hga3022-horno-grill-30-litros-1500w.webp',
