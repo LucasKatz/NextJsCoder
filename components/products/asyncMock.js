@@ -6,7 +6,7 @@ export const MockProducts = [
         price: 2500,
         slug: 'color-flashcard',
         image: 'colors.jpeg',
-        category: 'vocabulary'
+        categories: 'vocabulary'
     },
     {
         title: `Feelings`,
@@ -15,7 +15,7 @@ export const MockProducts = [
         price: 2300,
         slug: 'feelings-flashcard',
         image: 'feelings.jpeg',
-        category: 'routine'
+        categories: 'routines'
     },
     {
         title: `Monster`,
@@ -24,7 +24,7 @@ export const MockProducts = [
         price: 1850,
         slug: 'monster-flashcard',
         image: 'monster.jpeg',
-        category: 'stories'
+        categories: 'stories'
     },
     {
         title: `Welcome`,
@@ -33,7 +33,7 @@ export const MockProducts = [
         price: 1500,
         slug: 'welcome-sign',
         image: 'welcome.jpeg',
-        category: 'deco'
+        categories: 'deco'
     },
     {
         title: `Aire acondicionado Likon mini split frío/calor 3000 frigorías blanco 220V LKS35WCCR`,
@@ -46,7 +46,7 @@ export const MockProducts = [
         price: 354999,
         slug: 'aire-acondicionado-likon-mini-split-friocalor-3000-frigorias-blanco',
         image: 'aire-acondicionado-likon-mini-split-friocalor-3000-frigorias-blanco.webp',
-        category: 'aires'
+        categories: 'aires'
     },
     {
         title: `Aire acondicionado BGH Silent Air split frío/calor 3000 frigorías blanco 220V BS35WCCR`,
@@ -62,7 +62,7 @@ export const MockProducts = [
         price: 442599,
         slug: 'aire-acondicionado-bgh-silent-air-split-friocalor-3000-frigorias-blanco',
         image: 'aire-acondicionado-bgh-silent-air-split-friocalor-3000-frigorias-blanco.webp',
-        category: 'aires'
+        categories: 'aires'
     },
     {
         title: `Horno de mesa eléctrico BGH BHE40M19 40L negro 220V-240V`,
@@ -76,7 +76,7 @@ export const MockProducts = [
         price: 59399,
         slug: 'horno-de-mesa-electrico-bgh-bhe40m19-40l-negro',
         image: 'horno-de-mesa-electrico-bgh-bhe40m19-40l-negro.webp',
-        category: 'hornos'
+        categories: 'hornos'
     },
     {
         title: `Horno de mesa eléctrico Peabody PE-HE4550 45L gris 220V`,
@@ -88,7 +88,7 @@ export const MockProducts = [
         price: 65999,
         slug: 'horno-de-mesa-electrico-peabody-pe-he4550-45l-gris',
         image: 'horno-de-mesa-electrico-peabody-pe-he4550-45l-gris.webp',
-        category: 'hornos'
+        categories: 'hornos'
     },
     {
         title: `Atma Hga3022 Horno Grill 30 Litros 1500w Timer 60 Min`,
@@ -97,7 +97,7 @@ export const MockProducts = [
         price: 53879,
         slug: 'atma-hga3022-horno-grill-30-litros-1500w',
         image: 'atma-hga3022-horno-grill-30-litros-1500w.webp',
-        category: 'hornos'
+        categories: 'hornos'
     },
 ]
 

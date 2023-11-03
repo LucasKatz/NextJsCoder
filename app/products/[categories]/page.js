@@ -10,7 +10,7 @@ export async function generateMetadata({params, searchParams}, parent) {
 }
 
 const Productos = ({params}) => {
-    const { category } = params
+    const { categories } = params
 
     return (
         <main className="container m-auto">
@@ -18,7 +18,7 @@ const Productos = ({params}) => {
 
             <div className="flex gap-10">
                 <CategoriesMenu />
-                <ProductsList category={category}/>
+                <ProductsList categories={categories}/>
             </div>
         </main>
     )
