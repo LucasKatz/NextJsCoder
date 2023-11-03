@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import Boton from "./Boton"
+import Button from "./button"
 
 const Counter = () => {
     const [counter, setCounter] = useState(0)
@@ -10,9 +10,9 @@ const Counter = () => {
 
     return (
         <div className="flex justify-center items-center gap-3">
-            <Boton onClick={decrease}>-</Boton>
+            <Button onClick={decrease}>-</Button>
             <p>{counter}</p>
-            <Boton onClick={increase}>+</Boton>
+            <Button onClick={increase}>+</Button>
         </div>
     )
 }

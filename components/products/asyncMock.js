@@ -4,7 +4,7 @@ export const MockProducts = [
         description: `Flashcard to teach colours vocabulary`,
         //inStock: 100,
         price: 2500,
-        slug: 'color-flashcard',
+        slug: 'colorflashcard',
         image: 'colors.jpeg',
         categories: 'vocabulary'
     },
@@ -13,7 +13,7 @@ export const MockProducts = [
         description: `Flashcard to teach feelings vocabulary`,
         //inStock: 100,
         price: 2300,
-        slug: 'feelings-flashcard',
+        slug: 'feelingsflashcard',
         image: 'feelings.jpeg',
         categories: 'routines'
     },
@@ -22,7 +22,7 @@ export const MockProducts = [
         description: `Monster Flashcard`,
         //inStock: 100,
         price: 1850,
-        slug: 'monster-flashcard',
+        slug: 'monsterflashcard',
         image: 'monster.jpeg',
         categories: 'stories'
     },

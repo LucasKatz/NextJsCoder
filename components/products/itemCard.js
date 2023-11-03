@@ -21,7 +21,8 @@ const ProductCard = ({item}) => {
                 <h5>${item.price}</h5>
             </div>
             <div className="linkContainer">
-                <Link  href={`/products/detail/${item.slug}`}>Ver detalle</Link>
+            <Link href={`/products/detail/${item.slug}`}>Ver detalle</Link>
+
             </div>
         </div>
     
