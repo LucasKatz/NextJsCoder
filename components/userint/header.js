@@ -39,9 +39,9 @@ export default function Navbar() {
     <nav className="flex items-center justify-between p-4 w-full text-purple-900">
 
   <div className="flex items-center gap-2 p-4 w-1/4">
-    <Link href="#">
+    <Link href="/">
       <Image
-        src="/logo.webp"
+        src="/images/logo.webp"
         alt="Logo"
         width={100}
         height={40}

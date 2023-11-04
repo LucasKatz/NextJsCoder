@@ -13,7 +13,7 @@ const ProductDetail = ({ slug }) => {
             <section className="flex gap-6">
                 <div className="relative basis-1/2">
                     <Image
-                        src={`/imgs/products/${item.image}`}
+                        src={`/images/products/${item.image}`}
                         alt={item.title}
                         width={860}
                         height={860}
@@ -24,11 +24,9 @@ const ProductDetail = ({ slug }) => {
                     <p className="text-4xl">$ {item.price}</p>
 
                     <Counter item={item}/>
-                </div>
-            </section>
-            <section className="mt-12">
-                <h3 className="text-xl font-semibold border-b border-gray-200 pb-4 my-4">Description</h3>
+                    <h3 className="text-xl font-semibold border-b border-gray-200 pb-4 my-4">Description</h3>
                 <p className="text-gray-600">{item.description}</p>
+                </div>
             </section>
         </div>
     )
