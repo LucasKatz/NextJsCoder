@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation';
 
 const links = [ 
     {
-        label:"todos",
+        label:"All",
         href:"/products/todos"
     },
     {
-    label:"Vocbulary",
+    label:"Vocabulary",
     href:"/products/vocabulary"
     },
     {

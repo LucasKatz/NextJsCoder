@@ -9,6 +9,132 @@ export const MockProducts = [
         categories: 'vocabulary'
     },
     {
+        title: `Colours Icons`,
+        description: `Flashcard to teach colours vocabulary`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'colorflashcard',
+        image: 'color2.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Professions`,
+        description: `Flashcard to teach professions vocabulary`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'professionsFlashcard',
+        image: 'professions.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Clothes`,
+        description: `Flashcard to teach clothes vocabulary`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'clothesflashcard',
+        image: 'clothes.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `School Objects`,
+        description: `Flashcard to teach School Objects vocabulary`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'SchoolObjectsflashcard',
+        image: 'SchoolObjects.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Actions`,
+        description: `Flashcard to teach Actions vocabulary`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'Actionsflashcard',
+        image: 'Actions.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Actions 2`,
+        description: `Flashcard to teach Actions vocabulary`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'Actionsflashcard',
+        image: 'Actions2.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Irregular Verbs`,
+        description: `Flashcard to teach Actions vocabulary`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'Irregular-Verbs-Banner',
+        image: 'Irregular.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Pets`,
+        description: `Flashcard to teach Pets vocabulary`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'Petsflashcard',
+        image: 'Pets.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Farm Animals`,
+        description: `Flashcard to teach Farm Animals vocabulary`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'FarmAnimalsflashcard',
+        image: 'FarmAnimals.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Numbers`,
+        description: `Flashcard to teach Numbers`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'Numbersflashcard',
+        image: 'Numbers.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `NumbersBis`,
+        description: `Flashcard to teach Numbers`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'Numbersflashcard',
+        image: 'Numbers.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Numbers 1-10`,
+        description: `Flashcard to teach Numbers 1-10`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'Numbers 1-10',
+        image: 'number110.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Numbers 1-10 Banner`,
+        description: `Banner to teach Numbers 1-10`,
+        //inStock: 100,
+        price: 2500,
+        slug: 'Numbers 1-10',
+        image: 'numbers110Bis.jpeg',
+        categories: 'vocabulary'
+    },
+    {
+        title: `Feelings Emojis`,
+        description: `Flashcard to teach feelings vocabulary`,
+        //inStock: 100,
+        price: 2300,
+        slug: 'feelingsEmojisflashcard',
+        image: 'feelingsEmojis.jpeg',
+        categories: 'routines'
+    },
+    {
         title: `Feelings`,
         description: `Flashcard to teach feelings vocabulary`,
         //inStock: 100,
@@ -18,87 +144,204 @@ export const MockProducts = [
         categories: 'routines'
     },
     {
-        title: `Monster`,
-        description: `Monster Flashcard`,
+        title: `Feelings Labels`,
+        description: `Flashcard to teach feelings vocabulary`,
+        //inStock: 100,
+        price: 2300,
+        slug: 'feelingsflashcard',
+        image: 'feelingsLabels.jpeg',
+        categories: 'routines'
+    },
+    {
+        title: `The Weather Cards`,
+        description: `Flashcard to teach weather vocabulary`,
+        //inStock: 100,
+        price: 2300,
+        slug: 'weatherflashcard',
+        image: 'weather.jpeg',
+        categories: 'routines'
+    },
+    {
+        title: `The Weather`,
+        description: `Flashcard to teach weather vocabulary`,
+        //inStock: 100,
+        price: 2300,
+        slug: 'weatherAndWordsflashcard',
+        image: 'weatherWords.jpeg',
+        categories: 'routines'
+    },
+    {
+        title: `Seasons`,
+        description: `Flashcard to teach seasons vocabulary`,
+        //inStock: 100,
+        price: 2300,
+        slug: 'seasonsflashcard',
+        image: 'seasons.jpeg',
+        categories: 'routines'
+    },
+    {
+        title: `Days of the Week`,
+        description: `Flashcard to teach the Days of the Week`,
+        //inStock: 100,
+        price: 2300,
+        slug: 'weekflashcard',
+        image: 'week.jpeg',
+        categories: 'routines'
+    },
+    {
+        title: `Months`,
+        description: `Flashcard to teach the Months of the Year`,
+        //inStock: 100,
+        price: 2300,
+        slug: 'monthsflashcard',
+        image: 'months.jpeg',
+        categories: 'routines'
+    },
+    {
+        title: `The Date`,
+        description: `Flashcard to teach Dates`,
+        //inStock: 100,
+        price: 2300,
+        slug: 'datesflashcard',
+        image: 'date.jpeg',
+        categories: 'routines'
+    },
+    {
+        title: `Calendars`,
+        description: `Calendar`,
+        //inStock: 100,
+        price: 2300,
+        slug: 'Calendar',
+        image: 'calendar.jpeg',
+        categories: 'routines'
+    },
+    {
+        title: `Welcome `,
+        description: `Welcome Banners`,
         //inStock: 100,
         price: 1850,
-        slug: 'monsterflashcard',
-        image: 'monster.jpeg',
+        slug: 'welcomeBanner',
+        image: 'welcome.jpeg',
+        categories: 'deco'
+    },   
+    {
+        title: `Students `,
+        description: `Students Flashcards`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'StudentFlashcard',
+        image: 'students.jpeg',
+        categories: 'deco'
+    },  
+    {
+        title: `Schedule `,
+        description: `Schedule Signs`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'Schedule Signs',
+        image: 'schedule.jpeg',
+        categories: 'deco'
+    },  
+    {
+        title: `Classroom Language Phrases`,
+        description: `Classroom Language Flashcard`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'ClassroomPhrasesflashcard',
+        image: 'ClassroomPhrases.jpeg',
+        categories: 'deco'
+    },
+    {
+        title: `Classroom Language`,
+        description: `Classroom Actions Flashcard`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'Classroomflashcard',
+        image: 'Classroom.jpeg',
+        categories: 'deco'
+    },
+    {
+        title: `Birthdays`,
+        description: `Birthdays Banners`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'BirthdayBanner',
+        image: 'bday.jpeg',
+        categories: 'deco'
+    },
+    {
+        title: `Alphabet`,
+        description: `Alphabet Banners`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'AlphabetBanner',
+        image: 'alphabet.jpeg',
+        categories: 'deco'
+    },
+    {
+        title: `Personal`,
+        description: `Personalized Material`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'Others',
+        image: 'Others.jpeg',
+        categories: 'deco'
+    },
+    {
+        title: `Letters`,
+        description: `Letters Flashcards`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'Letters-Flashcards',
+        image: 'Letters.jpeg',
+        categories: 'deco'
+    },
+    {
+        title: `Alphabet with Pictures`,
+        description: `Alphabet Banners`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'AlphabetPictures',
+        image: 'alphabetPictures.jpeg',
+        categories: 'deco'
+    },
+    {
+        title: `Pete The Cat`,
+        description: `Story Flashcard`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'catflashcard',
+        image: 'cat.jpeg',
         categories: 'stories'
     },
     {
-        title: `Welcome`,
+        title: `Brown Bear`,
+        description: `Story Flashcard`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'monsterflashcard',
+        image: 'bear.jpeg',
+        categories: 'stories'
+    },
+    {
+        title: `The Very Hungry Caterpillar`,
+        description: `Story Flashcard`,
+        //inStock: 100,
+        price: 1850,
+        slug: 'caterpillarFlashcard',
+        image: 'caterpillar.jpeg',
+        categories: 'stories'
+    },
+    {
+        title: `Welcome Sign`,
         description: `Welcome Sign`,
         //inStock: 100,
         price: 1500,
         slug: 'welcome-sign',
-        image: 'welcome.jpeg',
+        image: 'welcomeSign.jpeg',
         categories: 'deco'
     },
-    {
-        title: `Aire acondicionado Likon mini split frío/calor 3000 frigorías blanco 220V LKS35WCCR`,
-        description: `Climatizar tus espacios a lo largo del año es sin duda algo importante para tu comodidad y la de tus seres queridos. Contar con un aire acondicionado con función frío/calor es la mejor decisión. Con este aire Likon conseguí una mejor relación costo-beneficio.
-        Diseño adecuado a tus espacios
-        Contar con un mini split es adecuar tus necesidades de climatización al diseño y disponibilidad de tus espacios. Es un equipo compacto que se coloca en cualquier rincón de tu hogar con facilidad.
-        Reducción de humedad
-        El deshumidificador absorbe el agua del aire y disminuye la molesta humedad, creando un ambiente confortable y de calidad.`,
-        //inStock: 100,
-        price: 354999,
-        slug: 'aire-acondicionado-likon-mini-split-friocalor-3000-frigorias-blanco',
-        image: 'aire-acondicionado-likon-mini-split-friocalor-3000-frigorias-blanco.webp',
-        categories: 'aires'
-    },
-    {
-        title: `Aire acondicionado BGH Silent Air split frío/calor 3000 frigorías blanco 220V BS35WCCR`,
-        description: `Diseño adecuado a tus espacios
-        El tipo de aire split es de bajo consumo energético, de fácil mantenimiento y sumamente silencioso ya que cuenta con una unidad exterior.
-        
-        Reducción de humedad
-        El deshumidificador absorbe el agua del aire y disminuye la molesta humedad, creando un ambiente confortable y de calidad.
-        
-        Programá de acuerdo a tus necesidades
-        Cuando las personas descansan su temperatura corporal baja gradualmente. Por eso, este aire cuenta con la función sleep, que hace que la temperatura del ambiente aumente a medida que pasa el tiempo. No tendrás que levantarte a apagarlo y podrás disfrutar de un sueño placentero.`,
-        //inStock: 100,
-        price: 442599,
-        slug: 'aire-acondicionado-bgh-silent-air-split-friocalor-3000-frigorias-blanco',
-        image: 'aire-acondicionado-bgh-silent-air-split-friocalor-3000-frigorias-blanco.webp',
-        categories: 'aires'
-    },
-    {
-        title: `Horno de mesa eléctrico BGH BHE40M19 40L negro 220V-240V`,
-        description: `Espacio reducido, cocción óptima
-        Si tu cocina es pequeña, el horno de mesa es la mejor solución. Vas a disfrutar de las mismas ventajas que con uno convencional y ganarás practicidad y comodidad.
-        Mantené el sabor
-        Con su función de grill los alimentos quedarán dorados, crocantes y ricos. Las pizzas, quesadillas y tartas parecerán recién hechas.
-        Que no se te pase
-        El timer programable te va a ayudar a graduar los minutos indicados. Además, con el termostato ajustable vas a poder manejar el calor adecuado y lograr el punto justo.`,
-        //inStock: 100,
-        price: 59399,
-        slug: 'horno-de-mesa-electrico-bgh-bhe40m19-40l-negro',
-        image: 'horno-de-mesa-electrico-bgh-bhe40m19-40l-negro.webp',
-        categories: 'hornos'
-    },
-    {
-        title: `Horno de mesa eléctrico Peabody PE-HE4550 45L gris 220V`,
-        description: `Espacio reducido, cocción óptima
-        Si tu cocina es pequeña, el horno de mesa es la mejor solución. Vas a disfrutar de las mismas ventajas que con uno convencional y ganarás practicidad y comodidad.
-        Tus recetas más sabrosas
-        Lográ una cocción pareja en tus elaboraciones con su sistema por convección, que permite ahorrar tiempo y energía.`,
-        //inStock: 100,
-        price: 65999,
-        slug: 'horno-de-mesa-electrico-peabody-pe-he4550-45l-gris',
-        image: 'horno-de-mesa-electrico-peabody-pe-he4550-45l-gris.webp',
-        categories: 'hornos'
-    },
-    {
-        title: `Atma Hga3022 Horno Grill 30 Litros 1500w Timer 60 Min`,
-        description: `Disfruta de deliciosas comidas caseras con el horno Atma HGA3022PI, un horno eléctrico de mesa con grill y una capacidad de 30 litros, ideal para cocinar una amplia variedad de platos. Con sus 1500W de potencia, podrás preparar tus recetas favoritas de manera rápida y eficiente. El temporizador de 60 minutos te permite controlar el tiempo de cocción, asegurando resultados perfectos en cada uso. Además, su diseño compacto y elegante se adapta perfectamente a cualquier espacio de tu cocina, mientras que su material de fácil limpieza te permite mantenerlo siempre impecable. Sus dimensiones de 498 mm de ancho, 365 mm de profundidad y 328 mm de altura lo hacen práctico y fácil de ubicar. No esperes más para disfrutar de la comodidad y versatilidad que este horno Atma te ofrece en tu hogar.`,
-        //inStock: 100,
-        price: 53879,
-        slug: 'atma-hga3022-horno-grill-30-litros-1500w',
-        image: 'atma-hga3022-horno-grill-30-litros-1500w.webp',
-        categories: 'hornos'
-    },
+    
 ]
 
 export const getProducts = () => {

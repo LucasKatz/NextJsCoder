@@ -27,24 +27,20 @@ const links = [
 
 
 export default function Navbar() {
-  const [isProductsOpen, setProductsOpen] = useState(false);
 
-  const toggleProducts = () => {
-    setProductsOpen(!isProductsOpen);
-  };
 
   const pathname = usePathname()
 
   return (
-    <nav className="flex items-center justify-between p-4 w-full text-purple-900">
+    <nav className="flex items-center justify-between p-4 w-full text-purple-900 bg-white">
 
   <div className="flex items-center gap-2 p-4 w-1/4">
     <Link href="/">
       <Image
-        src="/images/logo.webp"
+        src="/images/logo.jpeg"
         alt="Logo"
-        width={100}
-        height={40}
+        width={50}
+        height={70}
       />
     </Link>
   </div>
@@ -61,10 +57,10 @@ links.map(link => (
 
   <div className="flex items-center justify-end space-x-4 p-4 w-1/4">
     <Link href="/cart">
-     <FaShoppingCart className='text-3xl'/>
+      <FaShoppingCart className='text-3xl'/>
     </Link>
     <Link href="/login">
-    <FaUser className='text-3xl'/>
+      <FaUser className='text-3xl'/>
     </Link>
   </div>
 </nav>
