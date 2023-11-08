@@ -1,5 +1,5 @@
 "use client"
-
+import Button from "@/components/userint/button";
 import Swal from "sweetalert2";
 import { useState, createContext } from "react"
 
@@ -20,6 +20,7 @@ const ClientForm = ({completoDatos}) => {
     const [email, setEmail] = useState("");
     const [checkEmail, setCheckEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [message, setMessage] = useState("");
 
 
 
@@ -64,24 +65,76 @@ const submit = (e) => {
 
 
     return (
-        <form className="formulario">
-
-            <div className="form" >
-                <input  value={name} onChange={(e) => setName(e.target.value)} type="text" pattern="[a-zA-Z ]{1,35}"   className="form-input"   placeholder="Nombre" required />
-                <input  value={surname} onChange={(e) => setSurname(e.target.value)} type="text"   className="form-input"   placeholder="Apellido" required/>
-                <input value={address}onChange={(e) => setAddress(e.target.value)}type="text"   className="form-input"   placeholder="Dirección"required />
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email"  className="form-input"   placeholder="Email" required/>
-                <input value={checkEmail} onChange={(e) => setCheckEmail(e.target.value)} type="Confirme Email"  className="form-input"   placeholder="Email" required/>
-                <input value={phone}onChange={(e) => setPhone(e.target.value)} type="number" className="form-input"   placeholder="Teléfono"required />
 
 
-            <div >
-            <button  className="botonSubmit" onClick = {submit}> Submit Data</button>
-            </div>
-            
-            </div>
+<div className="bg-orange-300   mx-auto py-5">
+    <h1 className="text-center py-5  w-full text-purple-900 font-extrabold">Get in touch with us!</h1>
+  <div className="form flex flex-col items-center">
+    <input
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      type="text"
+      pattern="[a-zA-Z ]{1,35}"
+      className="form-input mb-4 w-2/3"
+      placeholder="Nombre"
+      required
+    />
+    <input
+      value={surname}
+      onChange={(e) => setSurname(e.target.value)}
+      type="text"
+      className="form-input mb-4 w-2/3"
+      placeholder="Apellido"
+      required
+    />
+    <input
+      value={address}
+      onChange={(e) => setAddress(e.target.value)}
+      type="text"
+      className="form-input mb-4 w-2/3"
+      placeholder="Dirección"
+      required
+    />
+    <input
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      type="email"
+      className="form-input mb-4 w-2/3"
+      placeholder="Email"
+      required
+    />
+    <input
+      value={checkEmail}
+      onChange={(e) => setCheckEmail(e.target.value)}
+      type="email"
+      className="form-input mb-4 w-2/3"
+      placeholder="Confirme Email"
+      required
+    />
+    <input
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+      type="number"
+      className="form-input mb-4 w-2/3"
+      placeholder="Teléfono"
+      required
+    />
+    <input
+      value={message}
+      onChange={(e) => setMessage(e.target.value)}
+      type="text"
+      className="form-input w-2/3 mb-4 h-44px"
+      placeholder="Mensaje"
+      required
+    />
+    <Button>
+      Submit
+    </Button>
+  </div>
+</div>
+
+
         
-            </form>
 )
 }
 
