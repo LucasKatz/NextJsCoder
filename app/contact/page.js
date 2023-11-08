@@ -67,16 +67,16 @@ const submit = (e) => {
     return (
 
 
-<div className="bg-orange-300   mx-auto py-5">
+<div className="bg-orange-300   mx-auto py-5 h-fit">
     <h1 className="text-center py-5  w-full text-purple-900 font-extrabold">Get in touch with us!</h1>
-  <div className="form flex flex-col items-center">
+  <div className="form flex flex-col items-center h-fit">
     <input
       value={name}
       onChange={(e) => setName(e.target.value)}
       type="text"
       pattern="[a-zA-Z ]{1,35}"
       className="form-input mb-4 w-2/3"
-      placeholder="Nombre"
+      placeholder="Name"
       required
     />
     <input
@@ -84,15 +84,7 @@ const submit = (e) => {
       onChange={(e) => setSurname(e.target.value)}
       type="text"
       className="form-input mb-4 w-2/3"
-      placeholder="Apellido"
-      required
-    />
-    <input
-      value={address}
-      onChange={(e) => setAddress(e.target.value)}
-      type="text"
-      className="form-input mb-4 w-2/3"
-      placeholder="Dirección"
+      placeholder="Surname"
       required
     />
     <input
@@ -116,15 +108,15 @@ const submit = (e) => {
       onChange={(e) => setPhone(e.target.value)}
       type="number"
       className="form-input mb-4 w-2/3"
-      placeholder="Teléfono"
+      placeholder="Phone Number"
       required
     />
     <input
       value={message}
       onChange={(e) => setMessage(e.target.value)}
       type="text"
-      className="form-input w-2/3 mb-4 h-44px"
-      placeholder="Mensaje"
+      className="form-input w-2/3 mb-4 h-24 "
+      placeholder="Message"
       required
     />
     <Button>
