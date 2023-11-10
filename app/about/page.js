@@ -1,8 +1,26 @@
-export default function About() {
+import Image from "next/image";
 
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-between ">
-        <h1>Aqui se renderiza el About Us</h1>
-      </main>
-    )
-  }
+export default function About() {
+  return (
+    <>
+      <h1 className="text-center my-7  text-purple-900 font-extrabold text-2xl">About Night Owl Resources</h1>
+    <main className="flex min-h-screen flex-row items-center justify-between">
+    
+      <div className="flex w-1/2 p-auto mr-5">
+      <Image
+            alt={""}
+            src={`/images/about.webp`}
+            width={"860"}
+            height={"1240"}
+            className="mx-2"
+        />
+      </div>
+      <div className="flex w-1/2 text-purple-800 text-3xl">
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </main>
+    </>
+  );
+}

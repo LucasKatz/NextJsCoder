@@ -68,7 +68,7 @@ const submit = (e) => {
 
 
 <div className="bg-orange-300   mx-auto py-5 h-fit">
-    <h1 className="text-center py-5  w-full text-purple-900 font-extrabold">Get in touch with us!</h1>
+    <h1 className="text-center py-5 text-2xl w-full text-purple-900 font-extrabold">Get in touch with us!</h1>
   <div className="form flex flex-col items-center h-fit">
     <input
       value={name}
