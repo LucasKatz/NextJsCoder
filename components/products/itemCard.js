@@ -14,12 +14,12 @@ const ProductCard = ({item}) => {
                     src={`/images/products/${item.image}`}
                     width={270}
                     height={270}
-                    className="mx-auto my-5" // Centra la imagen horizontal y agrega margen superior e inferior
+                    className="mx-auto my-5" 
                 />
-                <div className="price text-center"> {/* Centra el título */}
+                <div className="price text-center"> 
                     <h3>{item.title}</h3>
                 </div>
-                <div className="linkContainer flex justify-center"> {/* Centra el botón */}
+                <div className="linkContainer flex justify-center"> 
                     <Button href={`/products/detail/${item.slug}`}>Ver detalle</Button>
                 </div>
             </Link>
