@@ -1,11 +1,11 @@
 import Button from "@/components/userint/button"
 
-export default function signup() {
+export default function SignUp() {
 
     return (
-      <>
+    <>
 <main className="flex min-h-screen flex-row items-center justify-between">
-    <div className="flex w-1/2 p-auto mr-5">
+
         <form
             id="signupForm"
             method="GET"
@@ -79,47 +79,7 @@ export default function signup() {
                 </Button>
             </div>
         </form>
-    </div>
-    <div className="flex w-1/2 p-auto mr-5">
-    <form
-            id="signupForm"
-            method="GET"
-            className="speaker-form bg-gray-100 border border-gray-300 rounded-md max-w-md mx-auto p-4"
-        >
-            <div className="form-row mb-4">
-                <h1 className="text-center py-5 text-purple-900 font-extrabold">Log In</h1>
-                <div className="mb-4">
-                    <label className="font-bold" htmlFor="email">
-                        Email:
-                    </label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="joe@example.com"
-                        className="w-full border border-gray-300 rounded p-1"/>
-                </div>
-                <div className="mb-4">
-                    <label className="font-bold" htmlFor="password">
-                        Password:
-                    </label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        className="w-full border border-gray-300 rounded p-1"/>
-                </div>
-            </div>
-            <div className="form-row mb-4 flex justify-center">
-                <Button
-                    id="ingreso"
-                    type="button"
-                    className="signup bg-gray-800 text-white border-none px-4 py-2 cursor-pointer rounded">
-                    Sign In
-                </Button>
-            </div>
-        </form>
-    </div>
+ 
 </main>
 
 </>
