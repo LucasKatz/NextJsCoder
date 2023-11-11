@@ -14,10 +14,9 @@ const Productos = ({params}) => {
 
     return (
         <main className="container m-auto">
-            <h2 className="text-2xl my-10 border-b pb-4 text-center text-purple-900 font-extrabold">Products</h2>
+            <h2 className="text-2xl my-10 pb-4 text-center text-purple-900 font-extrabold">Products</h2>
 
             <div className="flex gap-10">
-
                 <ProductsList categories={categories}/>
             </div>
         </main>
