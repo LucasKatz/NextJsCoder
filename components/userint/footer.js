@@ -4,10 +4,10 @@ import { FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="footer text-purple-900 bg-white">
-    <div className="container mx-auto py-3  bg-white ">
+    <footer className="text-purple-900 bg-white">
+    <div className="container mx-auto py-3 w-full">
       <div className="flex justify-between">
-        {/* Sección Izquierda */}
+        {/* Left Section */}
         <div className="w-1/3 p-4">
           <h3 className="text-2xl font-semibold text-center">About Us</h3>
           <p className="mt-4">
@@ -15,7 +15,7 @@ const Footer = () => {
           </p>
         </div>
   
-        {/* Sección Central */}
+        {/* Middle Section */}
         <div className="w-1/3 flex items-center justify-center">
           <Link href="/">
           <Image
@@ -27,7 +27,7 @@ const Footer = () => {
           </Link>
         </div>
   
-        {/* Sección Derecha */}
+        {/* Right Section */}
         <div className="w-1/3 p-4">
           <h3 className="text-2xl font-semibold text-center">Friendly Reminder</h3>
           <p className="mt-4">
