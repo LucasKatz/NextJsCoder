@@ -1,9 +1,127 @@
+import Button from "@/components/userint/button"
 
 export default function signup() {
 
     return (
-      <main className="flex min-h-screen flex-col items-center justify-between ">
-       <h1>Aqui se renderiza el Signup</h1>
-      </main>
+      <>
+<main className="flex min-h-screen flex-row items-center justify-between">
+    <div className="flex w-1/2 p-auto mr-5">
+        <form
+            id="signupForm"
+            method="GET"
+            className="speaker-form bg-gray-100 border border-gray-300 rounded-md max-w-md mx-auto p-4"
+        >
+            <div className="form-row mb-4">
+                <h1 className="text-center py-5 text-purple-900 font-extrabold">Sign Up</h1>
+                <div className="mb-4">
+                    <label className="font-bold" htmlFor="first_name">
+                        Name:
+                    </label>
+                    <input
+                        id="first_name"
+                        name="first_name"
+                        type="text"
+                        className="w-full border border-gray-300 rounded p-1"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="font-bold" htmlFor="last_name">
+                        Surname:
+                    </label>
+                    <input
+                        id="last_name"
+                        name="last_name"
+                        type="text"
+                        className="w-full border border-gray-300 rounded p-1"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="font-bold" htmlFor="email">
+                        Email:
+                    </label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="joe@example.com"
+                        className="w-full border border-gray-300 rounded p-1"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="font-bold" htmlFor="age">
+                        Age:
+                    </label>
+                    <input
+                        id="age"
+                        name="age"
+                        type="text"
+                        className="w-full border border-gray-300 rounded p-1"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="font-bold" htmlFor="password">
+                        Password:
+                    </label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        className="w-full border border-gray-300 rounded p-1"
+                    />
+                </div>
+            </div>
+            <div className="form-row mb-4 flex justify-center">
+                <Button
+                    id="signup"
+                    type="button"
+                    className="signup bg-red-600 text-white border-none px-4 py-2 cursor-pointer rounded mr-2">
+                    Register
+                </Button>
+            </div>
+        </form>
+    </div>
+    <div className="flex w-1/2 p-auto mr-5">
+    <form
+            id="signupForm"
+            method="GET"
+            className="speaker-form bg-gray-100 border border-gray-300 rounded-md max-w-md mx-auto p-4"
+        >
+            <div className="form-row mb-4">
+                <h1 className="text-center py-5 text-purple-900 font-extrabold">Log In</h1>
+                <div className="mb-4">
+                    <label className="font-bold" htmlFor="email">
+                        Email:
+                    </label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="joe@example.com"
+                        className="w-full border border-gray-300 rounded p-1"/>
+                </div>
+                <div className="mb-4">
+                    <label className="font-bold" htmlFor="password">
+                        Password:
+                    </label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        className="w-full border border-gray-300 rounded p-1"/>
+                </div>
+            </div>
+            <div className="form-row mb-4 flex justify-center">
+                <Button
+                    id="ingreso"
+                    type="button"
+                    className="signup bg-gray-800 text-white border-none px-4 py-2 cursor-pointer rounded">
+                    Sign In
+                </Button>
+            </div>
+        </form>
+    </div>
+</main>
+
+</>
     )
   }
