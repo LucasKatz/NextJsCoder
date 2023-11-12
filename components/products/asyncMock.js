@@ -1,7 +1,7 @@
 export const MockProducts = [
     {
         title: `Colours`,
-        description: `Flashcard to teach colours vocabulary`,
+        description: `12 individual stains + 3 paintbrushes Size 12x9 cm`,
         //inStock: 100,
         price: 2500,
         slug: 'colorflashcard',
@@ -95,11 +95,11 @@ export const MockProducts = [
         //inStock: 100,
         price: 2500,
         slug: 'Numbersflashcard',
-        image: 'Numbers.jpeg',
+        image: 'numbers110bis.jpeg',
         categories: 'vocabulary'
     },
     {
-        title: `NumbersBis`,
+        title: `Dates`,
         description: `Flashcard to teach Numbers`,
         //inStock: 100,
         price: 2500,

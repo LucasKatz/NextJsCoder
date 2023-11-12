@@ -5,8 +5,8 @@ import Image from "next/image"
 
 const AdminProductCard = ({item}) => {
     return (
-<div className="w-80 h-60 bg-orange-300 p-2 rounded-md m-auto py-7">
-    <div className="flex flex-col justify-center items-center">
+<div className="w-80 h-75 bg-orange-300 p-12 rounded-md">
+    <div className="flex flex-col justify-center items-center m-auto">
         <Image
             alt={item.title}
             src={`/images/products/${item.image}`}
@@ -14,9 +14,9 @@ const AdminProductCard = ({item}) => {
             height={90}
             className="mx-2"
         />
-        <h3 className="text-lg font-bold">{item.title}</h3>
-        <p className="text-sm">${item.price}</p>
-        <p className="text-sm">{item.description}</p>
+        <h3 className="text-lg font-bold text-center">{item.title}</h3>
+        <p className="text-sm text-center">${item.price}</p>
+        <p className="text-sm text-center">{item.description}</p>
     
     </div>
     <div className="mt-2 flex justify-center">

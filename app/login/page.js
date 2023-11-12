@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Login() {
 
     return (
-      <>
+    <>
 <main className="flex min-h-screen flex-row items-center justify-between">
 
     <form
@@ -35,8 +35,11 @@ export default function Login() {
                         className="w-full border border-gray-300 rounded p-1"/>
                 </div>
             </div>
-            <div className="form-row mb-4 flex items-center justify-center">
-                <p className="mr-2">Don&apos;t have an account?</p>
+            <div className="m-auto text-center">
+                <Link href={"/admin"} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Login</Link>
+            </div>
+            <div className="form-row mb-4 flex items-center justify-center my-5">
+                <p className="mr-2 font-semibold p-2">Don&apos;t have an account?</p>
                 <Link href={"/signup"} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Sign Up</Link>
             </div>
             <div className="m-auto text-center">

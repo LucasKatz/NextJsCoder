@@ -1,7 +1,7 @@
 import { MockProducts } from "./asyncMock"
 import Image from "next/image"
 import Counter from "../userint/counter"
-
+import Link from "next/link"
 
 
 
@@ -17,25 +17,24 @@ const ProductDetail = ({ slug }) => {
                         alt={item.title}
                         width={560}
                         height={560}
-                        className="rounded-md"/>
+                        className="rounded-lg py-14"/>
                 </div>
                 <div className="basis-1/2 m-auto text-center p-5">
-                    <h2 className="text-2xl font-semibold  pb-4 mb-4">{item.title}</h2>
-                    <p className="text-4xl">Price: $ {item.price}</p>
+                    <h2 className="text-2xl font-semibold  pb-4 mb-4  text-purple-900">{item.title}</h2>
+                    <p className="text-2xl text-purple-900">Price: $ {item.price}</p>
 
-                    <h3 className="text-xl font-semibold   pb-4 my-4">Description</h3>
-                    <p className="text-gray-600">{item.description}</p>
+                    <h3 className="text-2xl font-semibold   pb-4 my-7 text-purple-900">Description</h3>
+                    <p className="font-semibold text-purple-900">{item.description}</p>
 
-                    <Counter item={item}/>
                     <div className="my-5 text-center">
-                        <div>
-                            <button className="text-2xl bg-purple-900 text-white rounded-md">Add to Cart</button>
+                        <div className="flex items-center">
+                            <Counter item={item} />
+                            <button className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12">Add to Cart</button>
                         </div>
-                        <div className="my-5">
-                            <button className="text-2xl bg-purple-900 text-white rounded-md">Back to Catalogue</button>
+                        <div className="my-8">
+                            <Link href="/products/todos" className="text-l bg-purple-900 text-white my-5 rounded-md p-5">Back to Catalogue</Link>
                         </div>
                     </div>
-
                 </div>
             </section>
         </div>

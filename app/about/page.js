@@ -12,7 +12,7 @@ export default function About() {
             src={`/images/about.webp`}
             width={"860"}
             height={"1240"}
-            className="mx-2"
+            className="mx-2 p-8"
         />
       </div>
       <div className="flex w-1/2 text-purple-800 text-3xl">

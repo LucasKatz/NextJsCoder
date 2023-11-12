@@ -7,7 +7,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-  backgroundImage: theme => ({
+  backgroundImage: ({
         'giphy-background': "url('https://media.giphy.com/media/FlodpfQUBSp20/giphy.gif')",
       }),
     },
