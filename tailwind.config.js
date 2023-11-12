@@ -11,6 +11,7 @@ module.exports = {
         'giphy-background': "url('https://media.giphy.com/media/FlodpfQUBSp20/giphy.gif')",
       }),
     },
+    
   },
   plugins: [],
 }

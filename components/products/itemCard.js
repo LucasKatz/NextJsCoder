@@ -15,7 +15,7 @@ const ProductCard = ({item}) => {
                 height={270}
                 className="mx-auto my-5 rounded-md"/>
               <div> 
-                <h3 className="text-center ">{item.title}</h3>
+                <h3 className="text-center font-bold ">{item.title}</h3>
               </div>
               <div className="linkContainer mt-3"> 
                 <button href={`/products/detail/${item.slug}`} className="font-semibold text-purple-900">
