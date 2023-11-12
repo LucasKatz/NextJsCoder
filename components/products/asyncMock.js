@@ -257,7 +257,7 @@ export const MockProducts = [
         //inStock: 100,
         price: 1850,
         slug: 'Classroomflashcard',
-        image: 'Classroom.jpeg',
+        image: 'Classroom.jpg',
         categories: 'deco'
     },
     {
