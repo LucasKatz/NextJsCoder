@@ -185,7 +185,7 @@ export const MockProducts = [
         //inStock: 100,
         price: 2300,
         slug: 'weekflashcard',
-        image: 'week.jpeg',
+        image: 'week.jpg',
         categories: 'routines'
     },
     {
@@ -285,7 +285,7 @@ export const MockProducts = [
         price: 1850,
         slug: 'Others',
         image: 'Others.jpeg',
-        categories: 'deco'
+        categories: 'onDemand'
     },
     {
         title: `Letters`,

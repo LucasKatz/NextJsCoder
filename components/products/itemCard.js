@@ -5,16 +5,15 @@ import Button from "../userint/button"
 
 const ProductCard = ({item}) => {
     return (
-        <div className="contenedorLista my-5">
-          <div className="bg-orange-300 p-5 rounded-md text-center">
+        <div className="contenedorLista my-5 ">
+          <div className="bg-orange-300 p-5  text-center rounded-lg">
             <Link href={`/products/detail/${item.slug}`}>
               <Image
                 alt={item.title}
                 src={`/images/products/${item.image}`}
                 width={270}
                 height={270}
-                className="mx-auto my-5"
-              />
+                className="mx-auto my-5 rounded-md"/>
               <div className="price"> 
                 <h3 className="text-center">{item.title}</h3>
               </div>
