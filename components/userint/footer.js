@@ -9,9 +9,9 @@ const Footer = () => {
       <div className="flex justify-between">
         {/* Left Section */}
         <div className="w-1/3 p-4">
-          <h3 className="text-2xl font-semibold text-center">About Us</h3>
+          <h3 className="text-2xl font-semibold text-center font-lobster">About Us</h3>
           <p className="mt-4">
-            Nuestra Empresa desde hace más de 12 años se dedica a la comercialización de los más diversos productos destinados a Iluminación decorativa, profesional y comercial. 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
           </p>
         </div>
   
@@ -29,7 +29,7 @@ const Footer = () => {
   
         {/* Right Section */}
         <div className="w-1/3 p-4">
-          <h3 className="text-2xl font-semibold text-center">Friendly Reminder</h3>
+          <h3 className="text-2xl font-semibold text-center font-lobster">Friendly Reminder</h3>
           <p className="mt-4">
             Remember to follow us on Instagram so you can see how you can use all the material!
           </p>

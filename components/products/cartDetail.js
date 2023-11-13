@@ -14,15 +14,15 @@ const CartDetail = () => {
                 width={270}
                 height={270}
                 className="mx-auto my-5 rounded-md"/>
-            <h3 className="text-white text-center font-semibold">{product.title}</h3>
-            <p className="text-white text-center font-semibold">{product.description}</p>
-            <p className="text-white text-center font-semibold">Price: ${product.price}</p>
+            <h3 className="text-text-color-5 text-center font-semibold">{product.title}</h3>
+            <p className="text-text-color-5 text-center font-semibold">{product.description}</p>
+            <p className="text-text-color-5 text-center font-semibold">Price: ${product.price}</p>
         </li>
         ))}
       </ul>
-        <h2 className="text-white font-semibold">Total a Pagar:$</h2>
-        <h2 className="text-white font-semibold">Metodo de Envio </h2>
-        <h2 className="text-white font-semibold">Metodo de Pago</h2>
+        <h2 className="text-text-color-5 font-semibold">Total a Pagar:$</h2>
+        <h2 className="text-text-color-5 font-semibold">Metodo de Envio </h2>
+        <h2 className="text-text-color-5 font-semibold">Metodo de Pago</h2>
 
     </div>
   );

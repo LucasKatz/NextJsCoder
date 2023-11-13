@@ -6,7 +6,7 @@ import Button from "../userint/button"
 const ProductCard = ({item}) => {
     return (
         <div className="contenedorLista my-5 ">
-          <div className="bg-orange-300 p-5  text-center rounded-lg">
+          <div className="bg-bg-color-5 p-5  text-center rounded-lg">
             <Link href={`/products/detail/${item.slug}`}>
               <Image
                 alt={item.title}

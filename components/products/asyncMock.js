@@ -1,7 +1,7 @@
 export const MockProducts = [
     {
         title: `Colours`,
-        description: `12 individual stains + 3 paintbrushes Size 12x9 cm`,
+        description: `Flashcard to teach colours vocabulary`,
         //inStock: 100,
         price: 2500,
         slug: 'colorflashcard',

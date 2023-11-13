@@ -39,7 +39,7 @@ const CategoriesMenu = () => {
     <div className="relative">
       <button
         onClick={toggleMenu}
-        className="btn-nav text-purple-900 bg-white"
+        className="btn-nav text-purple-900 bg-white ml-5 my-5 rounded-md"
       >
         Menu
       </button>

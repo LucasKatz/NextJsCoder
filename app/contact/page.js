@@ -68,8 +68,8 @@ const submit = (e) => {
 
 
 <div className=" mx-auto py-5 h-fit">
-    <h1 className="text-center py-5 text-2xl w-full text-purple-900 font-extrabold">Get in touch with us!</h1>
-  <div className="form flex flex-col items-center h-fit bg-orange-300  w-1/2 m-auto p-5 rounded-md">
+    <h1 className="text-center py-5 text-2xl w-full text-text-color-5 font-extrabold">Get in touch with us!</h1>
+  <div className="form flex flex-col items-center h-fit bg-bg-color-5  w-1/2 m-auto p-5 rounded-md">
     <input
       value={name}
       onChange={(e) => setName(e.target.value)}

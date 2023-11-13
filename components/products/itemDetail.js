@@ -10,7 +10,7 @@ const ProductDetail = ({ slug }) => {
 
     return (
         <div className="max-w-4xl m-auto ">
-            <section className="flex gap-6 my-5  bg-orange-300 rounded-md">
+            <section className="flex gap-6 my-5  bg-bg-color-5 rounded-md">
                 <div className=" p-5 items-center align-middle">
                     <Image
                         src={`/images/products/${item.image}`}

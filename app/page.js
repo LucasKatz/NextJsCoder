@@ -16,9 +16,15 @@ export default function Home() {
         height={470}
       />
       </section>
-      <section className=" bg-white m-auto w-1/2 mr-5 font-semibold">   
-      <p className="text-purple-900">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-      </section>
+      <div className="m-auto">
+      <section className="bg-bg-color-5 m-auto w-[300px] h-[300px] mr-5 font-semibold rounded-full flex items-center justify-center">
+  <p className="text-text-color-1 text-center text-4xl font-lobster">
+    Night Owl Resources, making out of classrooms a more enjoyable place
+  </p>
+</section>
+</div>
+
+
     </main>
     </>
   )

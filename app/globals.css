@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -47,4 +51,8 @@ body {
 
 nav{
   background-color: #E7AB79;
+}
+
+#Moon {
+  font-family: 'Great Vibes', cursive;
 }

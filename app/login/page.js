@@ -12,7 +12,7 @@ export default function Login() {
             className="speaker-form bg-gray-100 border border-gray-300 rounded-md max-w-md mx-auto p-4"
         >
             <div className="form-row mb-4">
-                <h1 className="text-center py-5 text-purple-900 font-extrabold">Log In</h1>
+                <h1 className="text-center py-5 text-text-color-5 font-extrabold">Log In</h1>
                 <div className="mb-4">
                     <label className="font-bold" htmlFor="email">
                         Email:

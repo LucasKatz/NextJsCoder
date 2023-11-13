@@ -20,8 +20,8 @@ const AdminDetail = () => {
         <tbody>
           {MockProducts.map((product) => (
             <tr key={product.slug}>
-              <td className="text-center text-white">{product.title}</td>
-              <td className="text-center text-white">${product.price}</td>
+              <td className="text-center text-text-color-5">{product.title}</td>
+              <td className="text-center text-text-color-5">${product.price}</td>
               <td className="text-center">
                 <Image
                     src={`/images/products/${product.image}`}
@@ -33,12 +33,12 @@ const AdminDetail = () => {
               </td>
               <td className="text-center text-white">{product.description}</td>
               <td className="text-center">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+                <button className="bg-blue-500 text-text-color-5 px-4 py-2 rounded-md">
                   <FaEdit /> Edit
                 </button>
               </td>
               <td className="text-center">
-                <button className="bg-red-500 text-white px-4 py-2 rounded-md">
+                <button className="bg-red-500 text-text-color-5 px-4 py-2 rounded-md">
                   <FaTrash /> Delete
                 </button>
               </td>
