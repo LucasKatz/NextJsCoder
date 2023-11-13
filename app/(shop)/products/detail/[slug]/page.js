@@ -1,12 +1,14 @@
 import ProductDetail from "@/components/products/itemDetail"
 
-export async function generateMetadata({params, searchParams}, parent) {
-    console.log(params)
+
+export async function generateMetadata({ params, searchParams }, parent) {
+    console.log(params);
 
     return {
-        title: `Night Owl -${params.slug}`,
+        title: `Night Owl - Products - ${params.slug}`,
     }
 }
+
 
 
 const DetailPage = ({params}) => {

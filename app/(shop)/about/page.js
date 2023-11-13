@@ -1,5 +1,13 @@
 import Image from "next/image";
 
+export async function generateMetadata({params, searchParams}, parent) {
+  console.log(params)
+
+  return {
+      title: `Night Owl - About Us`,
+  }
+}
+
 export default function About() {
   return (
     <>

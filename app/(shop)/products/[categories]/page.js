@@ -5,7 +5,7 @@ export async function generateMetadata({params, searchParams}, parent) {
     console.log(params)
 
     return {
-        title: `Night Owl - ${params.categories}`,
+        title: `Night Owl - Products- ${params.categories}`,
     }
 }
 

@@ -1,6 +1,12 @@
-import AdminDetail from "@/components/adminComponents/adminDetail";
-import Link from "next/link";
-import Button from "@/components/userint/button";
+import AdminDetail from "./adminDetail";
+
+export async function generateMetadata({params, searchParams}, parent) {
+    console.log(params)
+  
+    return {
+        title: `Night Owl - Admin Panel`,
+    }
+  }
 
 const AdminProducts = ({ params }) => {
     const categories = params?.categories ?? "todos";

@@ -1,7 +1,13 @@
 import Image from "next/image"
 
 
+export async function generateMetadata({params, searchParams}, parent) {
+  console.log(params)
 
+  return {
+      title: `Night Owl - Home`,
+  }
+}
 
 export default function Home() {
 
@@ -18,7 +24,7 @@ export default function Home() {
       </section>
       <div className="m-auto">
       <section className="bg-bg-color-5 m-auto w-[300px] h-[300px] mr-5 font-semibold rounded-full flex items-center justify-center">
-  <p className="text-text-color-1 text-center text-4xl font-lobster">
+  <p className="text-text-color-1 text-center text-3xl font-lobster">
     Night Owl Resources, making out of classrooms a more enjoyable place
   </p>
 </section>

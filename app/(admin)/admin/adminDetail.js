@@ -1,20 +1,23 @@
-import { MockProducts } from "../products/asyncMock";
+import { MockProducts } from "../../../components/products/asyncMock";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import Image from "next/image";
+import Link from "next/link";
+
 
 const AdminDetail = () => {
   return (
+    <>
     <div className="p-5">
-      <h2>Cart Detail</h2>
-      <table className="table-fixed w-full">
+      <h2 className="text-center text-text-color-5 text-3xl font-semibold py-5">Admin Panel</h2>
+      <table className="table-fixed w-full ">
         <thead>
           <tr>
-            <th className="w-1/6">TITLE</th>
-            <th className="w-1/6">PRICE</th>
-            <th className="w-1/6">IMAGE</th>
-            <th className="w-1/6">DESCRIPTION</th>
-            <th className="w-1/6">EDIT</th>
-            <th className="w-1/6">DELETE</th>
+            <th className="w-1/6 text-text-color-5">TITLE</th>
+            <th className="w-1/6 text-text-color-5">PRICE</th>
+            <th className="w-1/6 text-text-color-5">IMAGE</th>
+            <th className="w-1/6 text-text-color-5">DESCRIPTION</th>
+            <th className="w-1/6 text-text-color-5">EDIT</th>
+            <th className="w-1/6 text-text-color-5">DELETE</th>
           </tr>
         </thead>
         <tbody>
@@ -47,6 +50,13 @@ const AdminDetail = () => {
         </tbody>
       </table>
     </div>
+                <div className="flex flex-row items-center justify-center my-5">
+            <Link href={"/login"}
+                    className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
+                    Logout
+                </Link >
+            </div>
+            </>
   );
 };
 

@@ -1,4 +1,12 @@
-import Button from "@/components/userint/button"
+import Link from "next/link"
+
+export async function generateMetadata({params, searchParams}, parent) {
+    console.log(params)
+  
+    return {
+        title: `Night Owl - SignUp`,
+    }
+  }
 
 export default function SignUp() {
 
@@ -71,12 +79,19 @@ export default function SignUp() {
                 </div>
             </div>
             <div className="form-row mb-4 flex justify-center">
-                <Button
+                <button
                     id="signup"
                     type="button"
-                    className="signup bg-red-600 text-white border-none px-4 py-2 cursor-pointer rounded mr-2">
+                    className="bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
                     Register
-                </Button>
+                </button>
+            </div>
+            <div className="flex flex-row items-center justify-center">
+                <p className="font-semibold">Already have an account?</p>
+            <Link href={"/login"}
+                    className=" ml-2 bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
+                    Login
+                </Link >
             </div>
         </form>
  
