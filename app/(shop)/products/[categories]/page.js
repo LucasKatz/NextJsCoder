@@ -9,8 +9,13 @@ export async function generateMetadata({params, searchParams}, parent) {
     }
 }
 
-const Productos = ({params}) => {
+const Productos = async({params}) => {
     const { categories } = params
+    
+    const response = await fetch(`http://localhost:3000/api/productos/${categories}`, {
+        
+    })
+    const items = await response.json()
 
     return (
         <main className="container m-auto">
