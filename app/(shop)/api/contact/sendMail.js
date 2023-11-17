@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         from: email,
         to: 'destinatario@example.com',
         subject: 'Night Owl Resources Contact Form',
-        text: JSON.stringify(emailContent),
+        text: JSON.stringify(emailContent,null, 2),
     };
 
     try {

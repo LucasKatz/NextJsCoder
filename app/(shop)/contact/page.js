@@ -43,7 +43,7 @@ const ClientForm = ({ completoDatos }) => {
     } else {
       try {
         
-        const response = await fetch('/api/contact/sendMail', {
+        const response = await fetch('/app/api/shop/contact/sendMail', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
