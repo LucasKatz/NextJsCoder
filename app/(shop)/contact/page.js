@@ -1,74 +1,96 @@
 "use client"
 import Button from "@/components/userint/button";
 import Swal from "sweetalert2";
-import { useState, createContext } from "react"
+import { useState } from "react"
 
 
 
-export const FormData = createContext({
+
+
+{/*export const FormData = createContext({
     name:"",
     surname:"",
     address:"",
     phone:"",
     email:""
-})
+})*/}
 
 
-const ClientForm = ({completoDatos}) => {
-    
-    const [name, setName] = useState("");
-    const [surname, setSurname] = useState("");
-    const [address, setAddress] = useState("");
-    const [email, setEmail] = useState("");
-    const [checkEmail, setCheckEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [message, setMessage] = useState("");
+const ClientForm = ({ completoDatos }) => {
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+  const [checkEmail, setCheckEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
 
-
-
-
-const submit = (e) => {
-    e.preventDefault ();
-    if (!name || !email || !phone || !address)
-        {
-            Swal.fire({
-                title: "Completa tus datos",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!name || !email || !phone) {
+      Swal.fire({
+        title: 'Completa tus datos',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      });
+    } else if (email !== checkEmail && email && checkEmail) {
+      Swal.fire({
+        title: 'Los emails no coinciden',
+        html: 'Por favor, intente nuevamente',
+        buttons: true,
+        dangerMode: true,
+      });
+    } else {
+      try {
         
-            })
-        }
-        else if (email != checkEmail && email && checkEmail) {
-            Swal.fire({
-            title: "Los emails no coinciden",
-            html: "Por favor, intente nuevamente",
-            buttons: true,
-            dangerMode: true,
-        })
-    }
+        const response = await fetch('/api/contact/sendMail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            surname,
+            phone,
+            email,
+            message,
+          }),
+        });
 
-    else {
-        Swal.fire({
-            title: "Datos Guardados",
-            icon: "success",
+        if (response.ok) {
+          Swal.fire({
+            title: 'Datos Guardados',
+            icon: 'success',
             buttons: true,
-        })
-    completoDatos(
-        name,
-        surname,
-        address,
-        phone,
-        email
-    )
+          });
+
+          completoDatos(name, surname,  phone, email);
+        } else {
+          Swal.fire({
+            title: 'Error al enviar datos',
+            icon: 'error',
+            buttons: true,
+          });
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        Swal.fire({
+          title: 'Error al enviar datos',
+          icon: 'error',
+          buttons: true,
+        });
+      }
     }
-    }
+  };
+
+
+    
 
 
 
     return (
 
-
+      <form onSubmit={submit}>
 <div className=" mx-auto py-5 h-fit">
     <h1 className="text-center py-5 text-2xl w-full text-text-color-5 font-extrabold">Get in touch with us!</h1>
   <div className="form flex flex-col items-center h-fit bg-bg-color-5  w-1/2 m-auto p-5 rounded-md">
@@ -126,7 +148,7 @@ const submit = (e) => {
     </Button>
   </div>
 </div>
-
+</form>
 
         
 )
@@ -134,3 +156,4 @@ const submit = (e) => {
 
             
 export default ClientForm
+
