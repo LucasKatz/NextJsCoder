@@ -7,6 +7,7 @@ import { useState } from "react"
 
 
 
+
 {/*export const FormData = createContext({
     name:"",
     surname:"",
@@ -43,7 +44,7 @@ const ClientForm = ({ completoDatos }) => {
     } else {
       try {
         
-        const response = await fetch('/app/api/shop/contact/sendMail', {
+        const response = await fetch('/components/userint/sendMail"', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -112,7 +112,7 @@ export const MockProducts = [
         description: `Flashcard to teach Numbers 1-10`,
         //inStock: 100,
         price: 2500,
-        slug: 'Numbers 1-10',
+        slug: 'Numbers1-10',
         image: 'number110.jpeg',
         categories: 'vocabulary'
     },
@@ -121,7 +121,7 @@ export const MockProducts = [
         description: `Banner to teach Numbers 1-10`,
         //inStock: 100,
         price: 2500,
-        slug: 'Numbers 1-10',
+        slug: 'Numbers1-10Bis',
         image: 'numbers110Bis.jpeg',
         categories: 'vocabulary'
     },

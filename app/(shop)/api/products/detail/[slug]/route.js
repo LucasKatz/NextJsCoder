@@ -8,7 +8,7 @@ export const GET = async (_, { params }) => {
 
     const items = slug
 
-    await sleep(1000)
+    await sleep(5000)
 
     return NextResponse.json(items)
 }
