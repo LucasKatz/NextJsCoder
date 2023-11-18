@@ -15,6 +15,8 @@ const DetailPage = async ({params}) => {
    
     const {slug} = params
 
+    
+
     const response = await fetch(`http://localhost:3000/api/products/detail/${slug}`, {
         
 })
