@@ -1,8 +1,9 @@
-import { MockProducts } from "./asyncMock"
+import { getProducts } from "@/app/(shop)/api/productsApi"
 import ProductCard from "./itemCard"
 
-const ProductsList = ({ categories }) => {
-    const items = categories === 'todos' ? MockProducts : MockProducts.filter(item => item.categories === categories)
+const ProductsList = async ({ categories }) => {
+    const items = await getProducts(categories);
+    console.log("a ver queonda" + items)
 
     return (
         <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">
