@@ -1,12 +1,18 @@
-import { MockProducts } from "./asyncMock"
+import { getProductBySlug } from "@/app/(shop)/api/productsApi"
 import Image from "next/image"
 import Counter from "../userint/counter"
 import Link from "next/link"
 
 
 
-const ProductDetail = ({ slug }) => {
-    const item = MockProducts.find(p => p.slug === slug)
+const ProductDetail = async ({ slug }) => {
+ 
+    const item = await getProductBySlug(slug);
+
+    if (!item) {
+        // Manejar el caso en el que no se encuentra el producto
+        return <div>Producto no encontrado</div>;
+    }
 
     return (
         <div className="max-w-4xl m-auto ">
