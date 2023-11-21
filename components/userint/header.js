@@ -4,6 +4,8 @@ import { FaUser, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import CartWidget from './CartWidget';
+import Cart from '@/app/(shop)/cart/page';
 
 const links = [ 
   {
@@ -55,12 +57,10 @@ links.map(link => (
   </div>
 
   <div className="flex items-center justify-end space-x-4 p-4 w-1/4">
-    <Link href="/cart">
-      <FaShoppingCart className='text-3xl'/>
-    </Link>
     <Link href="/login">
       <FaUser className='text-3xl'/>
     </Link>
+    <CartWidget/>
   </div>
 </nav>
 

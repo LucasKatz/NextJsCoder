@@ -1,4 +1,7 @@
+"use client"
+
 import { getProductBySlug } from "@/app/(shop)/api/productsApi"
+import { useState } from "react"
 import Image from "next/image"
 import Counter from "../userint/counter"
 import Link from "next/link"
@@ -38,7 +41,7 @@ const ProductDetail = async ({ slug }) => {
 
                     <div className="my-5 text-center">
                         <div className="flex items-center">
-                            <Counter item={item} />
+                            <Counter item={item}  />
                             <button className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12">Add to Cart</button>
                         </div>
                         <div className="my-8">
