@@ -24,6 +24,7 @@ const ProductDetail = ({ slug }) => {
   const handleAddToCart = () => {
     addProduct(productToAdd, quantity);
   };
+  
 
   if (!productToAdd) {
     return <div>Loading...</div>; 
@@ -60,7 +61,9 @@ const ProductDetail = ({ slug }) => {
               <button
                 className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12"
                 onClick={handleAddToCart}
+                
               >
+              
                 Add to Cart
               </button>
             </div>

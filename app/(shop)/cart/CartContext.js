@@ -28,20 +28,23 @@ export const CartProvider = ({children} ) => {
     }, [cart])
 
 	const addProduct = (productToAdd, quantity) => {
-        if (!isInCart(productToAdd.id)) {
+        if (!isInCart(productToAdd.title)) {
             const productWithQuantity = {
                 ...productToAdd,
                 quantity: quantity
             };
+            console.log("this is" + productToAdd.title)
             setCart([...cart, productWithQuantity]);
         } else {
             const cartUpdated = cart.map(prod => {
-                if (prod.id === productToAdd.id) {
-                    console.log("id del producto" + prod.id)
+                if (prod.title === productToAdd.title) {
+                    console.log("id del producto" + prod.title)
                     const productUpdated = {
                         ...prod,
                         quantity: quantity + prod.quantity
                     };
+                    console.log("this is 2" + productToAdd.title)
+                    console.log("actualizado" + productUpdated)
                     return productUpdated;
                 } else {
                     return prod;
