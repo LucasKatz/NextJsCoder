@@ -29,18 +29,7 @@ const ProductDetail = ({ slug }) => {
     return <div>Loading...</div>; 
   }
 
-  const onAdd = (quantity) => {
-    const productToAdd = {
-        id,
-        img,
-        name,
-        category,
-        price,
-        description
-    }
-    setGoToCart(true);
-    addProduct (productToAdd, quantity);
-}
+
 
 
   return (
