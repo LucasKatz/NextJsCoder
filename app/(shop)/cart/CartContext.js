@@ -61,9 +61,9 @@ const clearCart = () => setCart ([ ])
 
 
 
-const isInCart = (id) => { return cart.find (product =>product.id ===id) }
+const isInCart = (title) => { return cart.find (product =>product.title ===title) }
 
-const removeProduct = (id) => setCart (cart.filter ( product => product.id !== id))
+const removeProduct = (title) => setCart (cart.filter ( product => product.title !== title))
 
 
 

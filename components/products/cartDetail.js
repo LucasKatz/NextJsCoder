@@ -5,8 +5,9 @@ import { useCart } from "@/app/(shop)/cart/CartContext";
 
 
 
-const CartDetail = async () => {
-  const { cart, totalQuantity,id } = useCart();
+
+const CartDetail = () => {
+  const { cart, totalQuantity,clearCart, removeProduct } = useCart();
 
 
   if (cart.length === 0) {
@@ -26,6 +27,8 @@ const CartDetail = async () => {
       </main>
     );
   }
+
+  
   
   return (
     <div className="p-5 ">
@@ -52,6 +55,9 @@ const CartDetail = async () => {
             <p className="text-text-color-5 text-center font-semibold">
               Subtotal: ${cartProduct.price * cartProduct.quantity}
             </p>
+            <button onClick={() => removeProduct(cartProduct.title)} className="text-text-color-5 text-center font-semibold">
+              Remove
+            </button>
           </li>
         ))}
       </ul>
@@ -60,7 +66,11 @@ const CartDetail = async () => {
       </h2>
       <h2 className="text-text-color-5 font-semibold">Metodo de Envio</h2>
       <h2 className="text-text-color-5 font-semibold">Metodo de Pago</h2>
+      <button className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12"
+                onClick={clearCart}>Clear Cart </button>
     </div>
+
+    
   );
 };
 
