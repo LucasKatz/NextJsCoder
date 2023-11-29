@@ -1,13 +1,21 @@
-import { MockProducts } from "../../../components/products/asyncMock";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import { getProducts } from "@/app/(shop)/api/productsApi";
 import Image from "next/image";
 import Link from "next/link";
 
 
-const AdminDetail = () => {
+const AdminDetail = async () => {
+
+  const response = await fetch(`http://localhost:3000/api/products/todos`, {
+
+  cache:"no-store"
+        
+})
+const items = await response.json()
+
   return (
     <>
-    <div className="p-5">
+    <div className="p-5 ">
       <h2 className="text-center text-text-color-5 text-3xl font-semibold py-5">Admin Panel</h2>
       <table className="table-fixed w-full ">
         <thead>
@@ -20,9 +28,9 @@ const AdminDetail = () => {
             <th className="w-1/6 text-text-color-5">DELETE</th>
           </tr>
         </thead>
-        <tbody>
-          {MockProducts.map((product) => (
-            <tr key={product.slug}>
+        <tbody >
+          {items.map((product) => (
+            <tr key={product.slug} className="border-white border-8">
               <td className="text-center text-text-color-5">{product.title}</td>
               <td className="text-center text-text-color-5">${product.price}</td>
               <td className="text-center">
