@@ -1,9 +1,9 @@
-import createProductForm from "./newProduct"
+import CreateProductForm from "./newProduct"
 
-const createPage = async = () => {
+const createPage = async () => {
     return(
         <div>
-            <createProductForm/>
+            <CreateProductForm/>
         </div>
     )
 

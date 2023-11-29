@@ -5,18 +5,6 @@ import { useState } from "react"
 
 
 
-
-
-
-{/*export const FormData = createContext({
-    name:"",
-    surname:"",
-    address:"",
-    phone:"",
-    email:""
-})*/}
-
-
 const ClientForm = ({ completoDatos }) => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
