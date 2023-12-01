@@ -3,6 +3,7 @@ import Navbar from '@/components/userint/header'
 import Footer from '@/components/userint/footer'
 import './globals.css'
 import { CartProvider } from '../context/CartContext'
+import { AuthProvider } from '../context/AuthContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,11 +17,13 @@ export default function RootLayout({ children}) {
   return (
     <html lang="en">
       <body className="bg-giphy-background" >
+        <AuthProvider>
         <CartProvider>
         <Navbar/>
         {children}
         <Footer/>
         </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   )
