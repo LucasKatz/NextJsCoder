@@ -4,7 +4,7 @@ import { getProductBySlug } from "@/app/(shop)/api/productsApi";
 import Image from "next/image";
 import Counter from "../userint/counter";
 import Link from "next/link";
-import { useCart } from "@/app/context/CartContext";
+import { useCart } from "@/components/context/CartContext";
 import { useState, useEffect } from "react";
 
 const ProductDetail = ({ slug }) => {

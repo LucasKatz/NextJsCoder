@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { useAuthContext } from "@/app/context/AuthContext"
+import { useAuthContext } from "@/components/context/AuthContext"
 
 
 const  SignUp = () => {
