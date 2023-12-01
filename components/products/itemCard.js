@@ -4,7 +4,7 @@ import Image from "next/image"
 
 
 const ProductCard = ({item}) => {
-console.log(item)
+
     return (
         <div className="contenedorLista my-5 ">
           <div className="bg-bg-color-5 p-5  text-center rounded-lg">

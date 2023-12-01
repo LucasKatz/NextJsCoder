@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../userint/button";
-import { useCart } from "@/app/(shop)/cart/CartContext";
+import { useCart } from "@/app/context/CartContext";
 
 
 

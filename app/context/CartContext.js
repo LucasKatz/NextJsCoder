@@ -33,18 +33,17 @@ export const CartProvider = ({children} ) => {
                 ...productToAdd,
                 quantity: quantity
             };
-            console.log("this is" + productToAdd.title)
+    
             setCart([...cart, productWithQuantity]);
         } else {
             const cartUpdated = cart.map(prod => {
                 if (prod.title === productToAdd.title) {
-                    console.log("id del producto" + prod.title)
+
                     const productUpdated = {
                         ...prod,
                         quantity: quantity + prod.quantity
                     };
-                    console.log("this is 2" + productToAdd.title)
-                    console.log("actualizado" + productUpdated)
+
                     return productUpdated;
                 } else {
                     return prod;
