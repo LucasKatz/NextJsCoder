@@ -44,8 +44,8 @@ const  SignUp = () => {
                         Name:
                     </label>
                     <input
-                        id="first_name"
-                        name="first_name"
+                        id="name"
+                        name="name"
                         type="text"
                         value={values.name}
                         className="w-full border border-gray-300 rounded p-1"
@@ -57,8 +57,8 @@ const  SignUp = () => {
                         Surname:
                     </label>
                     <input
-                        id="last_name"
-                        name="last_name"
+                        id="surname"
+                        name="surname"
                         type="text"
                         value={values.surname}
                         className="w-full border border-gray-300 rounded p-1"
@@ -85,10 +85,9 @@ const  SignUp = () => {
                     </label>
                     <input
                         id="repeatEmail"
-                        name="email"
+                        name="repeatEmail"
                         type="email"
                         value={values.repeatEmail}
-                        placeholder="joe@example.com"
                         className="w-full border border-gray-300 rounded p-1"
                         onChange={handleChange}
                     />
@@ -109,6 +108,7 @@ const  SignUp = () => {
             </div>
             <div className="form-row mb-4 flex justify-center">
                 <button
+                    onClick={()=>registerUser(values)}
                     id="signup"
                     type="button"
                     className="bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
@@ -117,7 +117,7 @@ const  SignUp = () => {
             </div>
             <div className="flex flex-row items-center justify-center">
                 <p className="font-semibold">Already have an account?</p>
-            <Link href={"/login"}
+                <Link href={"/login"}
                     className=" ml-2 bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
                     Login
                 </Link >

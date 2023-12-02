@@ -63,7 +63,7 @@ const LoginForm = () => {
                 </div>
             </div>
             <div className="m-auto text-center">
-                <Link href={"/admin"} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Login</Link>
+                <button   onClick={()=>loginUser(values)} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Login</button>
             </div>
             <div className="form-row mb-4 flex items-center justify-center my-5">
                 <p className="mr-2 font-semibold p-2">Don&apos;t have an account?</p>
