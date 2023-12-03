@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, createContext, useContext, useEffect } from 'react';
-import { auth } from '@/services/firebase';
+import { auth, googleAuth } from '@/services/firebase';
 import { useRouter } from 'next/navigation';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from 'firebase/auth';
 
 
 const AuthContext = createContext();
@@ -40,6 +40,16 @@ router.push('/products/todos');
   }
 }
 
+const googleLogin = async () => {
+  try{
+  await signInWithPopup(auth, googleAuth)
+  router.push('/products/todos');
+  }catch (error){
+    console.error("Not possible to login", error)
+  }
+}
+
+
 const logout = async () => {
   await signOut(auth)
   console.log ("Deslogueado con exito")
@@ -72,6 +82,7 @@ useEffect (()=>{
     <AuthContext.Provider value={{user,
       registerUser,
       loginUser,
+      googleLogin,
       logout}}>
       {children}
     </AuthContext.Provider>
