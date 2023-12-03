@@ -2,7 +2,8 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import { getProducts } from "@/app/(shop)/api/productsApi";
 import Image from "next/image";
 import Link from "next/link";
-
+import Button from "@/components/userint/button";
+import LogoutButton from "./logOutButton";
 
 const AdminDetail = async () => {
 
@@ -59,15 +60,13 @@ const items = await response.json()
       </table>
     </div>
                 <div className="flex flex-row items-center justify-center my-5">
-                <Link href={"/login"}
-                    className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
-                    Logout
-                </Link >
+                <LogoutButton/>
 
                 <Link href={"/admin/create"}
                     className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
                     Create New Product
                 </Link >
+                
             </div>
             </>
   );
