@@ -3,7 +3,7 @@ import { useState } from "react"
 
 
 const Counter = ({ quantity, setQuantity }) => {
-  const [counter, setCounter] = useState(0)
+  const [counter, setCounter] = useState(1)
 
     const increase = () => setQuantity(quantity + 1);
     const decrease = () => setQuantity(quantity - 1);

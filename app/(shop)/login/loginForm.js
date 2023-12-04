@@ -64,14 +64,11 @@ const LoginForm = () => {
             </div>
             <div className="m-auto text-center">
                 <button   onClick={()=>loginUser(values)} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Login</button>
-                <button   onClick={googleLogin} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Google Login</button>
+                <button   onClick={googleLogin} className="bg-purple-900 ml-4 text-white p-2 font-semibold rounded-md">Google Login</button>
             </div>
             <div className="form-row mb-4 flex items-center justify-center my-5">
                 <p className="mr-2 font-semibold p-2">Don&apos;t have an account?</p>
                 <Link href={"/signup"} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Sign Up</Link>
-            </div>
-            <div className="m-auto text-center">
-                <Link href={"/signup"} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Use Google</Link>
             </div>
         </form>
 

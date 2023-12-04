@@ -6,12 +6,12 @@ import {getAuth, GoogleAuthProvider} from 'firebase/auth'
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBFUcXExQwF-XeU32W_EcHlqyEmARKQQM0",
-  authDomain: "night-owl-resources-757d9.firebaseapp.com",
-  projectId: "night-owl-resources-757d9",
-  storageBucket: "night-owl-resources-757d9.appspot.com",
-  messagingSenderId: "512556298525",
-  appId: "1:512556298525:web:b9252cb152d9e65f3931f4"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
 

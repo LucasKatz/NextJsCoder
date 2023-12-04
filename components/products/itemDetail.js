@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 const ProductDetail = ({ slug }) => {
   const { addProduct } = useCart();
   const [productToAdd, setproductToAdd] = useState(null);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchProduct = async () => {

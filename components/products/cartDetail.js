@@ -35,7 +35,7 @@ const CartDetail = () => {
       <h2>Cart Detail</h2>
       <ul className="flex flex-row gap-6 items-center justify-center">
         {cart.map((cartProduct) => (
-          <li key={cartProduct.id}>
+          <li key={cartProduct.id} className="flex flex-col items-center">
             <Image
               alt={cartProduct.title}
               src={`/images/products/${cartProduct.image}`}
@@ -47,7 +47,7 @@ const CartDetail = () => {
               {cartProduct.title}
             </h3>
             <p className="text-text-color-5 text-center font-semibold">
-              {cartProduct.description}
+              Units: {cartProduct.quantity}
             </p>
             <p className="text-text-color-5 text-center font-semibold">
               Price: ${cartProduct.price}
@@ -55,7 +55,7 @@ const CartDetail = () => {
             <p className="text-text-color-5 text-center font-semibold">
               Subtotal: ${cartProduct.price * cartProduct.quantity}
             </p>
-            <button onClick={() => removeProduct(cartProduct.title)} className="text-text-color-5 text-center font-semibold">
+            <button onClick={() => removeProduct(cartProduct.title)} className="text-text-color-5 font-semibold w-1/2 justify-center bg-bg-color-2 rounded-md">
               Remove
             </button>
           </li>
@@ -66,8 +66,11 @@ const CartDetail = () => {
       </h2>
       <h2 className="text-text-color-5 font-semibold">Metodo de Envio</h2>
       <h2 className="text-text-color-5 font-semibold">Metodo de Pago</h2>
-      <button className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12"
-                onClick={clearCart}>Clear Cart </button>
+      <div className="flex flex-row justify-center">
+      <button className="text-l bg-purple-900 text-white rounded-md p-auto w-40 h-12"
+                onClick={clearCart}>Clear Cart
+      </button>
+      </div>
     </div>
 
     
