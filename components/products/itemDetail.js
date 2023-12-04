@@ -46,7 +46,7 @@ const ProductDetail = ({ slug }) => {
             className="rounded-lg py-14 items-center"
           />
         </div>
-        <div className="basis-1/2 m-auto text-center p-5">
+        <div className="basis-1/2 m-auto text-center p-5 flex flex-col">
 
             <p className="text-2xl font-semibold  pb-4 mb-4  text-purple-900">{productToAdd.title}</p>
 
@@ -55,18 +55,18 @@ const ProductDetail = ({ slug }) => {
             </div>
 
             <div className="flex flex-row items-center justify-center">
-            <p className="text-xl font-semibold  pb-4  text-purple-900">Description:</p>
+            <p className="text-xl font-semibold  text-purple-900">Description:</p>
             <p className="ml-4 font-semibold text-xl text-purple-900">{productToAdd.description}</p>
             </div>     
 
             <div className="flex flex-row items-center justify-center">       
-            <p className="text-xl font-semibold   pb-4  text-purple-900">Size:</p>
+            <p className="text-xl font-semibold    text-purple-900">Size:</p>
             <p className="ml-4 text-xl font-semibold text-purple-900">{productToAdd.size}</p>
             </div> 
 
           <div className="my-5 text-center">
+              <Counter quantity={quantity} setQuantity={setQuantity}/>
             <div className="flex productToAdds-center">
-              <Counter quantity={quantity} setQuantity={setQuantity} />
               <button
                 className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12"
                 onClick={handleAddToCart}>
@@ -74,9 +74,11 @@ const ProductDetail = ({ slug }) => {
               </button>
 
               
-              <Link href={"/cart"} className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12">
+              <button className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12">
+                <Link href={"/cart"}>
                 Go to Cart
-              </Link>
+                </Link>
+              </button>
             </div>
             <div className="my-8">
               <Link
