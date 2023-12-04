@@ -47,15 +47,23 @@ const ProductDetail = ({ slug }) => {
           />
         </div>
         <div className="basis-1/2 m-auto text-center p-5">
-        <h2 className="text-2xl font-semibold  pb-4 mb-4  text-purple-900">{productToAdd.title}</h2>
-                    <p className="text-2xl text-purple-900">Price: $ {productToAdd.price}</p>
 
-                    <h3 className="text-2xl font-semibold   pb-4 my-7 text-purple-900">Description:</h3>
-                    <p className="font-semibold text-purple-900">{productToAdd.description}</p>
-                    
-                    
-                    <h3 className="text-2xl font-semibold   pb-4 my-7 text-purple-900">Size:</h3>
-                    <p className="font-semibold text-purple-900">{productToAdd.size}</p>
+            <p className="text-2xl font-semibold  pb-4 mb-4  text-purple-900">{productToAdd.title}</p>
+
+            <div className="flex flex-row items-center justify-center">
+            <p className="ml-4 text-xl font-semibold text-purple-900">Price: $ {productToAdd.price}</p>
+            </div>
+
+            <div className="flex flex-row items-center justify-center">
+            <p className="text-xl font-semibold  pb-4  text-purple-900">Description:</p>
+            <p className="ml-4 font-semibold text-xl text-purple-900">{productToAdd.description}</p>
+            </div>     
+
+            <div className="flex flex-row items-center justify-center">       
+            <p className="text-xl font-semibold   pb-4  text-purple-900">Size:</p>
+            <p className="ml-4 text-xl font-semibold text-purple-900">{productToAdd.size}</p>
+            </div> 
+
           <div className="my-5 text-center">
             <div className="flex productToAdds-center">
               <Counter quantity={quantity} setQuantity={setQuantity} />

@@ -31,7 +31,7 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { user } = useAuthContext(); // Obtén la información del usuario desde tu contexto de autenticación
+  const { user } = useAuthContext(); 
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -57,9 +57,9 @@ export default function Navbar() {
         ))}
       </div>
 
-     <div className="flex items-center justify-end space-x-4 p-4 w-1/4">
+    <div className="flex items-center justify-end space-x-4 p-4 w-1/4">
   {user.loggedIn ? (
-    // Si hay una sesión iniciada, muestra el correo electrónico del usuario con un estilo diferente
+
     <div className="relative">
       <button
         className="text-sm text-gray-500 focus:outline-none"
@@ -75,7 +75,7 @@ export default function Navbar() {
       )}
     </div>
   ) : (
-    // Si no hay sesión iniciada, muestra el icono de FaUser y el enlace de inicio de sesión
+
     <>
       <Link href="/login">
         <FaUser className='text-3xl'/>
