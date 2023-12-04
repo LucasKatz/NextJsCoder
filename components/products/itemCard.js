@@ -20,7 +20,7 @@ const ProductCard = ({item}) => {
               </div>
               <div className="linkContainer mt-3"> 
                 <button href={`/products/detail/${item.slug}`} className="font-semibold text-purple-900">
-                  Ver detalle
+                  Check It!
                 </button>
               </div>
             </Link>

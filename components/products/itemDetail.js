@@ -6,6 +6,7 @@ import Counter from "../userint/counter";
 import Link from "next/link";
 import { useCart } from "@/components/context/CartContext";
 import { useState, useEffect } from "react";
+import Loader from "@/app/(shop)/products/detail/[slug]/loading";
 
 const ProductDetail = ({ slug }) => {
   const { addProduct } = useCart();
@@ -27,7 +28,7 @@ const ProductDetail = ({ slug }) => {
   
 
   if (!productToAdd) {
-    return <div>Loading...</div>; 
+    return <Loader/>; 
   }
 
 
@@ -42,7 +43,7 @@ const ProductDetail = ({ slug }) => {
             alt={productToAdd.title}
             width={560}
             height={560}
-            className="rounded-lg py-14"
+            className="rounded-lg py-14 items-center"
           />
         </div>
         <div className="basis-1/2 m-auto text-center p-5">
@@ -60,12 +61,14 @@ const ProductDetail = ({ slug }) => {
               <Counter quantity={quantity} setQuantity={setQuantity} />
               <button
                 className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12"
-                onClick={handleAddToCart}
-                
-              >
-              
+                onClick={handleAddToCart}>
                 Add to Cart
               </button>
+
+              
+              <Link href={"/cart"} className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12">
+                Go to Cart
+              </Link>
             </div>
             <div className="my-8">
               <Link

@@ -3,7 +3,7 @@
 import { useState, createContext, useContext, useEffect } from 'react';
 import { auth, googleAuth } from '@/services/firebase';
 import { useRouter } from 'next/navigation';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup, browserSessionPersistence, setPersistence } from 'firebase/auth';
 
 
 const AuthContext = createContext();
@@ -33,6 +33,8 @@ export const AuthProvider = ({ children }) => {
 
 const loginUser = async (values) => {
   try {
+  await setPersistence(auth, browserSessionPersistence);
+  console.log ("Persistencia Activa")
   await signInWithEmailAndPassword(auth, values.email, values.password)
 router.push('/products/todos');
   }catch (error) {
@@ -42,6 +44,7 @@ router.push('/products/todos');
 
 const googleLogin = async () => {
   try{
+  await setPersistence(auth, browserSessionPersistence);
   await signInWithPopup(auth, googleAuth)
   router.push('/products/todos');
   }catch (error){

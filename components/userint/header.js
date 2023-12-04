@@ -4,8 +4,11 @@ import { FaUser, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useAuthContext } from '../context/AuthContext';
 import CartWidget from './CartWidget';
-import Cart from '@/app/(shop)/cart/page';
+import { useState } from 'react';
+
+
 
 const links = [ 
   {
@@ -24,45 +27,65 @@ const links = [
     label:"Contact",
     href:"/contact"
   }
-]
-
+];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const { user } = useAuthContext(); // Obtén la información del usuario desde tu contexto de autenticación
 
-
-  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className="flex items-center justify-between p-4 w-full text-purple-900 bg-white">
 
-  <div className="flex items-center gap-2 p-4 w-1/4">
-    <Link href="/">
-      <Image
-        src="/images/logo.jpeg"
-        alt="Logo"
-        width={50}
-        height={70}
-      />
-    </Link>
-  </div>
+      <div className="flex items-center gap-2 p-4 w-1/4">
+        <Link href="/">
+          <Image
+            src="/images/logo.jpeg"
+            alt="Logo"
+            width={50}
+            height={70}
+          />
+        </Link>
+      </div>
 
-  <div className="hidden md:flex items-center justify-center flex-1 w-1/2">
-{
-links.map(link => (
-  <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "font-extrabold font-lobster" : ""}`}>
-    {link.label}
-  </Link>
-))
-}
-  </div>
+      <div className="hidden md:flex items-center justify-center flex-1 w-1/2">
+        {links.map(link => (
+          <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "font-extrabold font-lobster" : ""}`}>
+            {link.label}
+          </Link>
+        ))}
+      </div>
 
-  <div className="flex items-center justify-end space-x-4 p-4 w-1/4">
-    <Link href="/login">
-      <FaUser className='text-3xl'/>
-    </Link>
-    <CartWidget/>
-  </div>
-</nav>
+     <div className="flex items-center justify-end space-x-4 p-4 w-1/4">
+  {user.loggedIn ? (
+    // Si hay una sesión iniciada, muestra el correo electrónico del usuario con un estilo diferente
+    <div className="relative">
+      <button
+        className="text-sm text-gray-500 focus:outline-none"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {user.email}
+      </button>
+      {isMenuOpen && (
+        <div className="absolute top-8 left-0 bg-white border border-gray-300 p-2 rounded flex flex-col">
+          <button onClick={() => console.log('Profile clicked')}>Profile</button>
+          <button onClick={() => console.log('Logout clicked')}>Logout</button>
+        </div>
+      )}
+    </div>
+  ) : (
+    // Si no hay sesión iniciada, muestra el icono de FaUser y el enlace de inicio de sesión
+    <>
+      <Link href="/login">
+        <FaUser className='text-3xl'/>
+      </Link>
+    </>
+  )}
+  <CartWidget/>
+</div>
 
-  )  
+
+    </nav>
+  );  
 }
