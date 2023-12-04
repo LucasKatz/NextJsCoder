@@ -1,7 +1,7 @@
 "use client"
 
 import  {useState, useEffect, useContext,createContext} from 'react'
-
+import Swal from 'sweetalert2'
 
 
 export const CartContext = createContext({
@@ -27,7 +27,7 @@ export const CartProvider = ({children} ) => {
         setTotal(total)
     }, [cart])
 
-	const addProduct = (productToAdd, quantity) => {
+    const addProduct = (productToAdd, quantity) => {
         if (!isInCart(productToAdd.title)) {
             const productWithQuantity = {
                 ...productToAdd,
@@ -35,15 +35,22 @@ export const CartProvider = ({children} ) => {
             };
     
             setCart([...cart, productWithQuantity]);
+    
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Product added to cart',
+                showConfirmButton: true,
+
+            });
         } else {
             const cartUpdated = cart.map(prod => {
                 if (prod.title === productToAdd.title) {
-
                     const productUpdated = {
                         ...prod,
                         quantity: quantity + prod.quantity
                     };
-
+    
                     return productUpdated;
                 } else {
                     return prod;
@@ -54,15 +61,29 @@ export const CartProvider = ({children} ) => {
         }
     };
     
+    
 
-
-const clearCart = () => setCart ([ ])
-
-
-
+    
+    
+    
 const isInCart = (title) => { return cart.find (product =>product.title ===title) }
 
-const removeProduct = (title) => setCart (cart.filter ( product => product.title !== title))
+const clearCart = () => {setCart ([ ]) 
+    Swal.fire({
+        icon: 'success',
+        title: 'Your cart is empty',
+        showConfirmButton: true
+    });
+}
+
+const removeProduct = (title) => {
+    setCart (cart.filter ( product => product.title !== title))
+    Swal.fire({
+        icon: 'success',
+        title: 'Product removed from cart!',
+        showConfirmButton: true
+    });
+}
 
 
 
