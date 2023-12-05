@@ -36,9 +36,10 @@ const updateProduct = async (slug, values, file) => {
       }
 }
 
-const EditForm= ({item}) => {
+const EditForm= ({product}) => {
 
-    const { title, description, price, type, image, slug } = item
+  console.log("Properties" + product)
+    const { title, description, price, type, image, slug } = product
     const [values, setValues] = useState({
         title: item.title,
         description: item.description,

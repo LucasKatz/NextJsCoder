@@ -9,7 +9,7 @@ const EditPage = async ({params}) => {
 })
 
 const items = await response.json()
-console.log("these are" + items)
+
 
 
     return (
