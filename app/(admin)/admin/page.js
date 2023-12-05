@@ -14,7 +14,6 @@ const AdminProducts = ({ params }) => {
     return (
         <main className="container m-auto">
             <AdminDetail/>
-
         </main>
     );
 };

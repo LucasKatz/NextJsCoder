@@ -1,8 +1,6 @@
 import { FaTrash, FaEdit } from "react-icons/fa";
-import { getProducts } from "@/app/(shop)/api/productsApi";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "@/components/userint/button";
 import LogoutButton from "./logOutButton";
 
 const AdminDetail = async () => {
@@ -46,7 +44,8 @@ const items = await response.json()
               <td className="text-center text-white">{product.description}</td>
               <td className="text-center">
                 <button className="bg-blue-500 text-text-color-5 px-4 py-2 rounded-md">
-                  <FaEdit /> Edit
+                  <FaEdit /> 
+                  <Link href={`/admin/edit/${product.slug}`}>Edit</Link>
                 </button>
               </td>
               <td className="text-center">
