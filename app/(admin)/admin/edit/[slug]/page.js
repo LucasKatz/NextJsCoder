@@ -1,22 +1,37 @@
-import EditForm from "./editForm"
+import EditForm from "@/components/admin/editForm";
+import { getProductBySlug } from "@/app/(shop)/api/productsApi";
 
-const EditPage = async ({params}) => {
-   
-    const {slug} = params
+const EditPage = async ({ params }) => {
+  const { slug } = params;
 
-    const response = await fetch(`http://localhost:3000/api/products/detail/${slug}`, {
-        
-})
+  try {
+    const product = await getProductBySlug(slug);
 
-const items = await response.json()
+    console.log("show me", product);
 
-
+    if (!product) {
+      console.error("Product not found");
+      return (
+        <div>
+          <p>Product not found</p>
+        </div>
+      );
+    }
 
     return (
-        <div>
-            <EditForm items={items}/>
-        </div>
-    )
-}
+      <div>
+        <p className="text-color-white font-semibold">WoloLolooooooo</p>
+      </div>
+    );
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    return (
+      <div>
+        <p>Error fetching product</p>
+      </div>
+    );
+  }
+};
 
-export default EditPage
+export default EditPage;
+

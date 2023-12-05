@@ -10,13 +10,14 @@ import Link from "next/link";
 
 
 
+
 const updateProduct = async (slug, values, file) => {
 
     try{
     let fileURL = values.image
 
     if (file) {
-        const storageRef = ref(fireStorage, values.slug)
+        const storageRef = ref(fireStorage, slug)
         const fileSnapshot = await uploadBytes(storageRef, file)
         fileURL = await getDownloadURL(fileSnapshot.ref)
     }
@@ -38,15 +39,18 @@ const updateProduct = async (slug, values, file) => {
 
 const EditForm= ({product}) => {
 
+  console.log("EditForm rendered");
+
+  const { title, description, price, type, image, slug } = product
   console.log("Properties" + product)
-    const { title, description, price, type, image, slug } = product
     const [values, setValues] = useState({
-        title: item.title,
-        description: item.description,
-        price: 0,
-        type: "",
-        slug: "",
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      type: product.type,
+      slug: product.slug,
     });
+    
 
   const handleChange = (e) => {
     setValues({
@@ -68,7 +72,7 @@ const EditForm= ({product}) => {
       });
     } else {
       try {
-        const response = await updateProduct(item.slug, values);
+        const response = await updateProduct(product.slug, values);
 
         if (response.ok) {
           Swal.fire({

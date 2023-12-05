@@ -1,15 +1,21 @@
+import { NextResponse } from "next/server";
+import { getProductBySlug } from "../../../productsApi";
 
-import { NextResponse } from "next/server"
-import { getProductBySlug } from "../../../productsApi"
-
-const sleep = async (timer) => new Promise((resolve) => setTimeout(resolve, timer))
+const sleep = async (timer) => new Promise((resolve) => setTimeout(resolve, timer));
 
 export const GET = async (_, { params }) => {
-    const {slug} = params
+  const { slug } = params;
 
-    const items = getProductBySlug
+  try {
+    const product = await getProductBySlug(slug);
+    console.log("Specific product:", product);
 
-    await sleep(3000)
+    await sleep(3000);
 
-    return NextResponse.json(items)
-}
+    return NextResponse.json(product);
+  } catch (error) {
+    console.error("Error fetching product:", error);
+
+    return NextResponse.json({ error: "Error fetching product" }, { status: 500 });
+  }
+};
