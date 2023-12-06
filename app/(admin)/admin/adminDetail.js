@@ -1,7 +1,8 @@
-import { FaTrash, FaEdit } from "react-icons/fa";
+import {FaEdit } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import LogoutButton from "./logOutButton";
+import DeleteButton from "./deleteButton";
 
 const AdminDetail = async () => {
 
@@ -11,6 +12,7 @@ const AdminDetail = async () => {
         
 })
 const items = await response.json()
+
 
   return (
     <>
@@ -49,9 +51,7 @@ const items = await response.json()
                 </button>
               </td>
               <td className="text-center">
-                <button className="bg-red-500 text-text-color-5 px-4 py-2 rounded-md">
-                  <FaTrash /> Delete
-                </button>
+                <DeleteButton slug={product.slug}/>
               </td>
             </tr>
           ))}

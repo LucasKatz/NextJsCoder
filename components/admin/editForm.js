@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { dataBase, fireStorage} from "@/services/firebase";
 import Button from "@/components/userint/button";
@@ -11,34 +11,36 @@ import Link from "next/link";
 
 
 
-const updateProduct = async (slug, values, file) => {
 
-    try{
-    let fileURL = values.image
+const updateProduct = async (slug, values, file) => {
+  try {
+    let fileURL = values.image;
 
     if (file) {
-        const storageRef = ref(fireStorage, slug)
-        const fileSnapshot = await uploadBytes(storageRef, file)
-        fileURL = await getDownloadURL(fileSnapshot.ref)
+      const storageRef = ref(fireStorage, `products/${slug}`);
+      const fileSnapshot = await uploadBytes(storageRef, file);
+      fileURL = await getDownloadURL(fileSnapshot.ref);
     }
 
-    const docRef = doc(dataBase, "products", slug)
-    return updateDoc(docRef, {
-        title: values.title,
-        description: values.description,
-        price: Number(values.price),
-        image: values.image,
-        category: values.category,
-        size: values.size,
-        slug: values.slug
-    })
-        .then(() => console.log("Product Updated"))
+    const docRef = doc(dataBase, "products", slug);
+    await updateDoc(docRef, {
+      title: values.title,
+      description: values.description,
+      price: Number(values.price),
+      image: fileURL,
+      category: values.category,
+      size: values.size,
+      slug: values.slug,
+    });
 
-    }catch(error) {
-        console.error("Error updating product:", error);
-        return { ok: false };
-      }
-}
+    console.log("Product Updated");
+
+    return { ok: true };
+  } catch (error) {
+    console.error("Error updating product:", error);
+    return { ok: false };
+  }
+};
 
 const EditForm= ({product}) => {
 
@@ -98,7 +100,7 @@ const EditForm= ({product}) => {
 
   return (
     <>
-      <form onSubmit={Handlesubmit}>
+      <form onSubmit={Handlesubmit} encType="multipart/form-data">
         <div className="mx-auto py-5 h-fit">
           <h1 className="text-center py-5 text-2xl w-full text-text-color-5 font-extrabold">
             Update your Product
@@ -130,13 +132,12 @@ const EditForm= ({product}) => {
             />
             
             <input
-              value={values.image}
-              onChange={handleChange}
               type="file"
               name="image"
+              onChange={handleChange}
               className="form-input mb-4 w-2/3"
               placeholder="Image"
-            /> 
+            />
             <input
               value={values.price}
               onChange={handleChange}
