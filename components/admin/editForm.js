@@ -27,7 +27,10 @@ const updateProduct = async (slug, values, file) => {
         title: values.title,
         description: values.description,
         price: Number(values.price),
-        image: fileURL
+        image: values.image,
+        category: values.category,
+        size: values.size,
+        slug: values.slug
     })
         .then(() => console.log("Product Updated"))
 
@@ -39,16 +42,17 @@ const updateProduct = async (slug, values, file) => {
 
 const EditForm= ({product}) => {
 
-  console.log("EditForm rendered");
+
 
   const { title, description, price, type, image, slug } = product
-  console.log("Properties" + product)
+
     const [values, setValues] = useState({
       title: product.title,
       description: product.description,
       price: product.price,
-      type: product.type,
       slug: product.slug,
+      category: product.category,
+      size: product.size
     });
     
 
@@ -61,16 +65,9 @@ const EditForm= ({product}) => {
 
   const Handlesubmit = async (e) => {
     e.preventDefault();
-    const { title, slug, description, price, size, category } = values;
+    const { title, slug, description, price, size, category,image } = values;
 
-    if (!title || !slug || !description || !price || !size || !category) {
-      Swal.fire({
-        title: "Please complete the product`s data",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      });
-    } else {
+
       try {
         const response = await updateProduct(product.slug, values);
 
@@ -97,7 +94,6 @@ const EditForm= ({product}) => {
           buttons: true,
         });
       }
-    }
   };
 
   return (
@@ -105,18 +101,16 @@ const EditForm= ({product}) => {
       <form onSubmit={Handlesubmit}>
         <div className="mx-auto py-5 h-fit">
           <h1 className="text-center py-5 text-2xl w-full text-text-color-5 font-extrabold">
-            New Product
+            Update your Product
           </h1>
           <div className="form flex flex-col items-center bg-bg-color-5 w-1/2 m-auto p-5 rounded-md text-start h-fit">
             <input
               value={values.title}
               onChange={handleChange}
               type="text"
-              pattern="[a-zA-Z ]{1,35}"
               name="title"
               className="form-input mb-4 w-2/3"
               placeholder="Title"
-              required
             />
             <input
               value={values.slug}
@@ -125,7 +119,6 @@ const EditForm= ({product}) => {
               name="slug"
               className="form-input mb-4 w-2/3"
               placeholder="Slug"
-              required
             />
             <input
               value={values.description}
@@ -134,16 +127,15 @@ const EditForm= ({product}) => {
               name="description"
               className="form-input mb-4 w-2/3"
               placeholder="Description"
-              required
             />
             
             <input
+              value={values.image}
               onChange={handleChange}
               type="file"
               name="image"
               className="form-input mb-4 w-2/3"
               placeholder="Image"
-              required
             /> 
             <input
               value={values.price}
@@ -152,7 +144,6 @@ const EditForm= ({product}) => {
               name="price"
               className="form-input mb-4 w-2/3"
               placeholder="Price"
-              required
             />
             <input
               value={values.size}
@@ -161,7 +152,6 @@ const EditForm= ({product}) => {
               name="size"
               placeholder="Size"
               className="w-2/3 mb-4"
-              required
             />
             <input
               value={values.category}

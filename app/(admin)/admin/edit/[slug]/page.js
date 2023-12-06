@@ -20,7 +20,7 @@ const EditPage = async ({ params }) => {
 
     return (
       <div>
-        <p className="text-color-white font-semibold">WoloLolooooooo</p>
+        <EditForm product={product}/>
       </div>
     );
   } catch (error) {
