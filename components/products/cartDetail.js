@@ -2,12 +2,27 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../userint/button";
 import { useCart } from "@/components/context/CartContext";
-
+import { useAuthContext } from "../context/AuthContext";
 
 
 
 const CartDetail = () => {
-  const { cart, totalQuantity,clearCart, removeProduct } = useCart();
+  const { cart,clearCart, removeProduct } = useCart();
+  const { user } = useAuthContext();
+
+  if (!user.loggedIn) {
+    return (
+      <main className="container m-auto my-5 p-auto w-1/2">
+        <div className="m-auto bg-orange-300 text-center rounded-md">
+          <h1 className="m-auto py-12 text-2xl font-semibold text-purple-900">
+            You need to be logged in to access the cart.
+          </h1>
+          {/* Boton para dirigirse a Login */}
+        </div>
+      </main>
+    );
+  }
+  
 
 
   if (cart.length === 0) {

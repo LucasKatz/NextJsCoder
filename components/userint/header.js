@@ -1,14 +1,12 @@
 "use client"
 
-import { FaUser, FaShoppingCart } from 'react-icons/fa';
+import { FaUser} from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAuthContext } from '../context/AuthContext';
 import CartWidget from './CartWidget';
 import { useState } from 'react';
-
-
 
 const links = [ 
   {
@@ -31,7 +29,7 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { user } = useAuthContext(); 
+  const { user,logout } = useAuthContext(); 
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -70,7 +68,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="absolute top-8 left-0 bg-white border border-gray-300 p-2 rounded flex flex-col">
           <button onClick={() => console.log('Profile clicked')}>Profile</button>
-          <button onClick={() => console.log('Logout clicked')}>Logout</button>
+          <button onClick={logout}> Logout</button>
         </div>
       )}
     </div>
