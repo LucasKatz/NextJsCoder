@@ -31,7 +31,9 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const { user,logout } = useAuthContext(); 
-  const { handleLogout } = useCart();
+  const { eraseCart} = useCart();
+  
+  
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -70,7 +72,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="absolute top-8 left-0 bg-white border border-gray-300 p-2 rounded flex flex-col">
           <button onClick={() => console.log('Profile clicked')}>Profile</button>
-          <button onClick={() => { handleLogout(); logout(); }}> Logout</button>
+          <button onClick={() => { eraseCart(user); logout();}}> Logout</button>
         </div>
       )}
     </div>

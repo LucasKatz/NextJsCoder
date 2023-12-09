@@ -18,35 +18,32 @@ export const CartProvider = ({ children }) => {
   const { user } = useAuthContext();
   const [cartDocId, setCartDocId] = useState(null);
 
-  useEffect(() => {
-    if (user && user.uid) {
-      const fetchCartDocId = async () => {
-        try {
-          const querySnapshot = await getDocs(
-            query(collection(dataBase, 'carts'), where('userId', '==', user.uid))
-          );
+  const fetchCartDocId = async (user) => {
+    try {
+      if (user && user.uid) {
+        const querySnapshot = await getDocs(
+          query(collection(dataBase, 'carts'), where('userId', '==', user.uid))
+        );
   
-          if (!querySnapshot.empty) {
-            const cartDoc = querySnapshot.docs[0];
-            setCartDocId(cartDoc.id);
-          } else {
-            const cartDocRef = await addDoc(collection(dataBase, 'carts'), {
-              userId: user.uid,
-              cart: [],
-            });
+        if (!querySnapshot.empty) {
+          const cartDoc = querySnapshot.docs[0];
+          return cartDoc.id;
+        } else {
+          const cartDocRef = await addDoc(collection(dataBase, 'carts'), {
+            userId: user.uid,
+            cart: [],
+          });
   
-            const newCartDocId = cartDocRef.id;
-            setCartDocId(newCartDocId);
-            console.log('New cart created. Cart document ID:', newCartDocId);
-          }
-        } catch (error) {
-          console.error('Error fetching or creating cart document:', error);
+          const newCartDocId = cartDocRef.id;
+          console.log('New cart created. Cart document ID:', newCartDocId);
+          return newCartDocId;
         }
-      };
-  
-      fetchCartDocId();
+      }
+    } catch (error) {
+      console.error('Error fetching or creating cart document:', error);
+      return null;
     }
-  }, [user]);
+  };
 
   useEffect(() => {
     const totalQty = getQuantity();
@@ -61,19 +58,38 @@ export const CartProvider = ({ children }) => {
 
   const addProduct = async (productToAdd, quantity) => {
     try {
-
+      // Fetch or add cart document id
+      let cartDocId;
+      if (user && user.uid) {
+        const querySnapshot = await getDocs(
+          query(collection(dataBase, 'carts'), where('userId', '==', user.uid))
+        );
+  
+        if (!querySnapshot.empty) {
+          const cartDoc = querySnapshot.docs[0];
+          cartDocId = cartDoc.id;
+        } else {
+          const cartDocRef = await addDoc(collection(dataBase, 'carts'), {
+            userId: user.uid,
+            cart: [],
+          });
+  
+          cartDocId = cartDocRef.id;
+          console.log('New cart created. Cart document ID:', cartDocId);
+        }
+      }
+  
+      // Add product to cart
       if (!isInCart(productToAdd.title)) {
         const productWithQuantity = {
           ...productToAdd,
           quantity: quantity,
         };
   
-        // Actualiza el estado local del carrito
         setCart((prevCart) => [...prevCart, productWithQuantity]);
-  
-        // Espera a que el estado local se actualice y luego actualiza el carrito en Firestore
-        await new Promise(resolve => setTimeout(resolve, 0));
-        await updateCartInFirestore([...cart, productWithQuantity]);
+        await new Promise((resolve) => setTimeout(resolve, 0));
+        const updatedCart = [...cart, productWithQuantity];
+        await updateCartInFirestore(updatedCart);
       } else {
         const cartUpdated = cart.map((prod) => {
           if (prod.title === productToAdd.title) {
@@ -88,11 +104,8 @@ export const CartProvider = ({ children }) => {
           }
         });
   
-        // Actualiza el estado local del carrito
         setCart(cartUpdated);
-  
-        // Espera a que el estado local se actualice y luego actualiza el carrito en Firestore
-        await new Promise(resolve => setTimeout(resolve, 0));
+        await new Promise((resolve) => setTimeout(resolve, 0));
         await updateCartInFirestore(cartUpdated);
       }
   
@@ -106,14 +119,10 @@ export const CartProvider = ({ children }) => {
     }
   };
   
-
-  const isInCart = (title) => {
-    return cart.find((product) => product.title === title);
-  };
-
-const handleLogout = async () => {
+  const eraseCart = async (user) => {
     try {
-      if (user && user.uid && cartDocId) {
+      const cartDocId = await fetchCartDocId(user);
+      if (cartDocId) {
         await deleteDoc(doc(dataBase, 'carts', cartDocId));
         console.log('Cart document deleted. Cart document ID:', cartDocId);
       }
@@ -121,6 +130,13 @@ const handleLogout = async () => {
       console.error('Error deleting cart document:', error);
     }
   };
+
+  
+
+  const isInCart = (title) => {
+    return cart.find((product) => product.title === title);
+  };
+
 
   const clearCart = async () => {
     try {
@@ -157,16 +173,21 @@ const handleLogout = async () => {
 
   const updateCartInFirestore = async (updatedCart) => {
     try {
-      console.log('Current cartDocId:', cartDocId);
-      if (user && user.loggedIn) {
-        const cartDocRef = doc(dataBase, 'carts', cartDocId);
-        console.log("Carrito actualizado", cartDocId);
-        await updateDoc(cartDocRef, { cart: updatedCart });
+      if (user) {
+        // Obtener el cartDocId actualizado llamando a fetchCartDocId
+        const updatedCartDocId = await fetchCartDocId(user);
+  
+        if (updatedCartDocId) {
+          const cartDocRef = doc(dataBase, 'carts', updatedCartDocId);
+          console.log("Carrito actualizado", updatedCartDocId);
+          await updateDoc(cartDocRef, { cart: updatedCart });
+        }
       }
     } catch (error) {
       console.error('Error updating cart in Firestore:', error);
     }
   };
+  
 
   const getTotal = () => {
     let total = 0;
@@ -195,6 +216,9 @@ const handleLogout = async () => {
 
   console.log(cart);
 
+
+
+
   return (
     <CartContext.Provider
       value={{
@@ -208,7 +232,8 @@ const handleLogout = async () => {
         totalQuantity,
         total,
         cart,
-        handleLogout
+        eraseCart,
+        fetchCartDocId
       }}
     >
       {children}

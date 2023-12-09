@@ -1,9 +1,11 @@
 "use client"
 
 import { useState, createContext, useContext, useEffect } from 'react';
-import { auth, googleAuth, dataBase,  } from '@/services/firebase';
+import { auth, googleAuth} from '@/services/firebase';
 import { useRouter } from 'next/navigation';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from 'firebase/auth';
+
+
 
 const AuthContext = createContext();
 
@@ -11,6 +13,7 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const router = useRouter();
+
 
   const [user, setUser] = useState({
     loggedIn: false,
@@ -50,6 +53,7 @@ const googleLogin = async () => {
     console.error("Not possible to login", error)
   }
 }
+
 
 
 const logout = async () => {
