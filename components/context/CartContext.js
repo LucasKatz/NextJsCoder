@@ -4,7 +4,7 @@ import { useState, useEffect, useContext, createContext } from 'react';
 import Swal from 'sweetalert2';
 import { useAuthContext } from './AuthContext';
 import { dataBase } from '@/services/firebase';
-import { addDoc, collection, updateDoc, doc, getDocs, query, where, deleteDoc } from 'firebase/firestore';
+import { addDoc, collection, updateDoc, doc, getDocs, query, where, deleteDoc, getDoc } from 'firebase/firestore';
 
 export const CartContext = createContext({
   cart: [],
@@ -118,6 +118,37 @@ export const CartProvider = ({ children }) => {
       console.error('Error adding product to cart:', error);
     }
   };
+
+  const readCart = async () => {
+    try {
+      const cartDocId = await fetchCartDocId(user);
+  
+      if (cartDocId) {
+        const cartDocRef = doc(dataBase, 'carts', cartDocId);
+        const cartSnapshot = await getDoc(cartDocRef); // Cambiar de getDocs() a getDoc()
+        
+        console.log("Carrito leído");
+  
+        if (cartSnapshot.exists()) {
+          const cartData = cartSnapshot.data();
+          const cartFromFirestore = cartData.cart || [];
+  
+          setCart(cartFromFirestore);
+          setTotalQuantity(getQuantity());
+          setTotal(getTotal());
+        }
+      }
+    } catch (error) {
+      console.error('Error reading cart from Firestore:', error);
+    }
+  };
+  
+  useEffect(() => {
+    readCart();
+  }, [user]);
+  
+
+  
   
   const eraseCart = async (user) => {
     try {
@@ -131,7 +162,6 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  
 
   const isInCart = (title) => {
     return cart.find((product) => product.title === title);
@@ -233,7 +263,8 @@ export const CartProvider = ({ children }) => {
         total,
         cart,
         eraseCart,
-        fetchCartDocId
+        fetchCartDocId,
+        readCart
       }}
     >
       {children}
