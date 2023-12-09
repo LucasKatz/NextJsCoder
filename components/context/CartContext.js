@@ -4,7 +4,7 @@ import { useState, useEffect, useContext, createContext } from 'react';
 import Swal from 'sweetalert2';
 import { useAuthContext } from './AuthContext';
 import { dataBase } from '@/services/firebase';
-import { addDoc, collection, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { addDoc, collection, updateDoc, doc, getDocs, query, where } from 'firebase/firestore';
 
 export const CartContext = createContext({
   cart: [],
@@ -15,7 +15,34 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [total, setTotal] = useState(0);
-  const { user, cartDocId } = useAuthContext();
+  const { user } = useAuthContext();
+  const [cartDocId, setCartDocId] = useState(null);
+
+  useEffect(() => {
+    if (user && user.uid) {
+      const fetchCartDocId = async () => {
+        const querySnapshot = await getDocs(
+          query(collection(dataBase, 'carts'), where('userId', '==', user.uid))
+        );
+
+        if (!querySnapshot.empty) {
+          const cartDoc = querySnapshot.docs[0];
+          setCartDocId(cartDoc.id);
+        } else {
+          const cartDocRef = await addDoc(collection(dataBase, 'carts'), {
+            userId: user.uid,
+            cart: [],
+          });
+
+          const newCartDocId = cartDocRef.id;
+          setCartDocId(newCartDocId);
+          console.log('New cart created. Cart document ID:', newCartDocId);
+        }
+      };
+
+      fetchCartDocId();
+    }
+  }, [user]);
 
   useEffect(() => {
     const totalQty = getQuantity();
@@ -27,8 +54,22 @@ export const CartProvider = ({ children }) => {
     setTotal(total);
   }, [cart]);
 
+
   const addProduct = async (productToAdd, quantity) => {
     try {
+      // Verifica si el usuario tiene un carrito
+      if (cartDocId) {
+        // Si no tiene un carrito, crea uno y obtén el nuevo cartDocId
+        const cartDocRef = await addDoc(collection(dataBase, 'carts'), {
+          userId: user.uid,
+          cart: [],
+        });
+  
+        const newCartDocId = cartDocRef.id;
+  
+        console.log('New cart created. Cart document ID:', newCartDocId);
+      }
+  
       if (!isInCart(productToAdd.title)) {
         const productWithQuantity = {
           ...productToAdd,
@@ -73,7 +114,7 @@ export const CartProvider = ({ children }) => {
     }
   };
   
-  
+
   const isInCart = (title) => {
     return cart.find((product) => product.title === title);
   };
@@ -113,9 +154,10 @@ export const CartProvider = ({ children }) => {
 
   const updateCartInFirestore = async (updatedCart) => {
     try {
+      console.log('Current cartDocId:', cartDocId);
       if (user && user.loggedIn) {
-        const cartDocRef = doc(dataBase, 'carts', user.uid);
-        console.log(cartDocRef)
+        const cartDocRef = doc(dataBase, 'carts', cartDocId);
+        console.log("Carrito actualizado", cartDocId);
         await updateDoc(cartDocRef, { cart: updatedCart });
       }
     } catch (error) {
@@ -163,7 +205,6 @@ export const CartProvider = ({ children }) => {
         totalQuantity,
         total,
         cart,
-        cartDocId
       }}
     >
       {children}
@@ -174,4 +215,3 @@ export const CartProvider = ({ children }) => {
 export const useCart = () => {
   return useContext(CartContext);
 };
-
