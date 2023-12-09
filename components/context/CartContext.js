@@ -4,7 +4,7 @@ import { useState, useEffect, useContext, createContext } from 'react';
 import Swal from 'sweetalert2';
 import { useAuthContext } from './AuthContext';
 import { dataBase } from '@/services/firebase';
-import { addDoc, collection, updateDoc, doc, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, collection, updateDoc, doc, getDocs, query, where, deleteDoc } from 'firebase/firestore';
 
 export const CartContext = createContext({
   cart: [],
@@ -21,25 +21,29 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     if (user && user.uid) {
       const fetchCartDocId = async () => {
-        const querySnapshot = await getDocs(
-          query(collection(dataBase, 'carts'), where('userId', '==', user.uid))
-        );
-
-        if (!querySnapshot.empty) {
-          const cartDoc = querySnapshot.docs[0];
-          setCartDocId(cartDoc.id);
-        } else {
-          const cartDocRef = await addDoc(collection(dataBase, 'carts'), {
-            userId: user.uid,
-            cart: [],
-          });
-
-          const newCartDocId = cartDocRef.id;
-          setCartDocId(newCartDocId);
-          console.log('New cart created. Cart document ID:', newCartDocId);
+        try {
+          const querySnapshot = await getDocs(
+            query(collection(dataBase, 'carts'), where('userId', '==', user.uid))
+          );
+  
+          if (!querySnapshot.empty) {
+            const cartDoc = querySnapshot.docs[0];
+            setCartDocId(cartDoc.id);
+          } else {
+            const cartDocRef = await addDoc(collection(dataBase, 'carts'), {
+              userId: user.uid,
+              cart: [],
+            });
+  
+            const newCartDocId = cartDocRef.id;
+            setCartDocId(newCartDocId);
+            console.log('New cart created. Cart document ID:', newCartDocId);
+          }
+        } catch (error) {
+          console.error('Error fetching or creating cart document:', error);
         }
       };
-
+  
       fetchCartDocId();
     }
   }, [user]);
@@ -57,19 +61,7 @@ export const CartProvider = ({ children }) => {
 
   const addProduct = async (productToAdd, quantity) => {
     try {
-      // Verifica si el usuario tiene un carrito
-      if (cartDocId) {
-        // Si no tiene un carrito, crea uno y obtén el nuevo cartDocId
-        const cartDocRef = await addDoc(collection(dataBase, 'carts'), {
-          userId: user.uid,
-          cart: [],
-        });
-  
-        const newCartDocId = cartDocRef.id;
-  
-        console.log('New cart created. Cart document ID:', newCartDocId);
-      }
-  
+
       if (!isInCart(productToAdd.title)) {
         const productWithQuantity = {
           ...productToAdd,
@@ -117,6 +109,17 @@ export const CartProvider = ({ children }) => {
 
   const isInCart = (title) => {
     return cart.find((product) => product.title === title);
+  };
+
+const handleLogout = async () => {
+    try {
+      if (user && user.uid && cartDocId) {
+        await deleteDoc(doc(dataBase, 'carts', cartDocId));
+        console.log('Cart document deleted. Cart document ID:', cartDocId);
+      }
+    } catch (error) {
+      console.error('Error deleting cart document:', error);
+    }
   };
 
   const clearCart = async () => {
@@ -205,6 +208,7 @@ export const CartProvider = ({ children }) => {
         totalQuantity,
         total,
         cart,
+        handleLogout
       }}
     >
       {children}

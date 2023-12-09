@@ -13,11 +13,11 @@ const CartDetail = () => {
   if (!user.loggedIn) {
     return (
       <main className="container m-auto my-5 p-auto w-1/2">
-        <div className="m-auto bg-orange-300 text-center rounded-md">
-          <h1 className="m-auto py-12 text-2xl font-semibold text-purple-900">
+        <div className="flex flex-col m-auto bg-orange-300 text-center rounded-md h-56">
+          <h1 className="m-auto py-1/2 text-2xl font-semibold text-purple-900 justify-center">
             You need to be logged in to access the cart.
           </h1>
-          {/* Boton para dirigirse a Login */}
+          <Link href={"/login"} className="m-auto py-1/2 text-xl font-semibold text-purple-900 justify-center">Login</Link>
         </div>
       </main>
     );

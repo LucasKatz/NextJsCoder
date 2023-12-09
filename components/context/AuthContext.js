@@ -3,7 +3,6 @@
 import { useState, createContext, useContext, useEffect } from 'react';
 import { auth, googleAuth, dataBase,  } from '@/services/firebase';
 import { useRouter } from 'next/navigation';
-import {  collection,  } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from 'firebase/auth';
 
 const AuthContext = createContext();
@@ -25,20 +24,13 @@ export const AuthProvider = ({ children }) => {
 
   const registerUser = async (values) => {
     try {
-      const authUser = await createUserWithEmailAndPassword(auth, values.email, values.password);
+      await createUserWithEmailAndPassword(auth, values.email, values.password, values.repeatEmail, values.name, values.surname)
 
-      await addDoc(collection(dataBase, 'users'), {
-        uid: authUser.user.uid,
-        email: values.email,
-        name: values.name,
-        surname: values.surname,
-      });
-  
-      router.push('/products/todos');
-    } catch (error) {
-      console.error('Error registering user:', error);
-    }
-  };
+  router.push('/login');
+} catch (error) {
+  console.error('Error registering user:', error);
+}
+}
 
 
 const loginUser = async (values) => {
@@ -52,7 +44,6 @@ router.push('/products/todos');
 
 const googleLogin = async () => {
   try{
-  await setPersistence(auth, browserSessionPersistence);
   await signInWithPopup(auth, googleAuth)
   router.push('/products/todos');
   }catch (error){

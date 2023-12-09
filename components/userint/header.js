@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAuthContext } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 import CartWidget from './CartWidget';
 import { useState } from 'react';
 
@@ -30,6 +31,7 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const { user,logout } = useAuthContext(); 
+  const { handleLogout } = useCart();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -68,7 +70,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="absolute top-8 left-0 bg-white border border-gray-300 p-2 rounded flex flex-col">
           <button onClick={() => console.log('Profile clicked')}>Profile</button>
-          <button onClick={logout}> Logout</button>
+          <button onClick={() => { handleLogout(); logout(); }}> Logout</button>
         </div>
       )}
     </div>
