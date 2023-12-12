@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
 const loginUser = async (values) => {
   try {
   await signInWithEmailAndPassword(auth, values.email, values.password)
-router.push('/products/todos');
+
   }catch (error) {
     console.error('Error registering user:', error);
   }

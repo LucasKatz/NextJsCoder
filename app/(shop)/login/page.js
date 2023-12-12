@@ -1,12 +1,6 @@
 import LoginForm from "./loginForm";
 
-export async function generateMetadata({params, searchParams}, parent) {
-    console.log(params)
-
-    return {
-        title: `Night Owl - Login`,
-    }
-}
+export const metadata = { title: "Night Owl Resources - Login"}
 
 
 const LoginPage = () => {

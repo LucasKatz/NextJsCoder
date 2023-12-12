@@ -244,7 +244,7 @@ export const CartProvider = ({ children }) => {
     return product?.quantity;
   };
 
-  console.log(cart);
+
 
 
 
