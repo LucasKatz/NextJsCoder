@@ -39,7 +39,7 @@ const ProductDetail = ({ slug }) => {
       <section className="flex gap-6 my-5  bg-bg-color-5 rounded-md">
         <div className="p-5 productToAdds-center align-middle">
           <Image
-            src={productToAdd.image}
+            src={`/images/products/${productToAdd.image}`}
             alt={productToAdd.title}
             width={560}
             height={560}
