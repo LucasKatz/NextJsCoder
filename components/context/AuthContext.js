@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
       
       await createUserWithEmailAndPassword(auth, values.email, values.password, values.repeatEmail, values.name, values.surname)
 
-  router.push('/products/todos');
+  router.push('/products/all');
 } catch (error) {
   throw new Error(`Registration failed: ${error.message}`);
 }
