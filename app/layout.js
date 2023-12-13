@@ -1,6 +1,4 @@
 import { Inter } from 'next/font/google'
-import Navbar from '@/components/userint/header'
-import Footer from '@/components/userint/footer'
 import './(shop)/globals.css'
 import { CartProvider } from '../components/context/CartContext'
 import { AuthProvider } from '@/components/context/AuthContext'
@@ -19,9 +17,7 @@ export default function RootLayout({ children}) {
       <body className="bg-giphy-background" >
         <AuthProvider>
         <CartProvider>
-
         {children}
-
         </CartProvider>
         </AuthProvider>
       </body>

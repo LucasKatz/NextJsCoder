@@ -2,7 +2,7 @@
 
 import { useState, createContext, useContext, useEffect } from 'react';
 import { auth, googleAuth} from '@/services/firebase';
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from 'firebase/auth';
 
 
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password, values.repeatEmail, values.name, values.surname)
 
-  router.push('/login');
+  router.push('/products/todos');
 } catch (error) {
   console.error('Error registering user:', error);
 }

@@ -79,7 +79,7 @@ export default function Navbar() {
   ) : (
 
     <>
-      <Link href="/login">
+      <Link href="/signup">
         <FaUser className='text-3xl'/>
       </Link>
     </>
