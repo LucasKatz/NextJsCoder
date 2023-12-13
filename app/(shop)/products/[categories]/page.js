@@ -37,7 +37,7 @@ const Productos = async({params}) => {
             <h2 className="text-2xl my-10 pb-4 text-center text-text-color-5 font-extrabold">Products</h2>
 
             <div className="flex gap-10">
-                <ProductsList categories={categories}/>
+                <ProductsList categories={categories} page={1} pageSize={10}/>
             </div>
         </main>
     )
