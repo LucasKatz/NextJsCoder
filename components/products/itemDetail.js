@@ -4,6 +4,7 @@ import { getProductBySlug } from "@/app/(shop)/api/productsApi";
 import Image from "next/image";
 import Counter from "../userint/counter";
 import Link from "next/link";
+import Button from "../userint/button";
 import { useCart } from "@/components/context/CartContext";
 import { useState, useEffect } from "react";
 import Loader from "@/app/(shop)/products/detail/[slug]/loading";
@@ -72,26 +73,26 @@ const ProductDetail = ({ slug }) => {
           <div className="my-5 text-center">
               <Counter quantity={quantity} setQuantity={setQuantity}/>
             <div className="flex productToAdds-center">
-              <button
-                className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12"
+              <Button
+                className="p-auto ml-4 w-40 h-12"
                 onClick={handleAddToCart}>
                 Add to Cart
-              </button>
+              </Button>
 
               
-              <button className="text-l bg-purple-900 text-white rounded-md p-auto ml-4 w-40 h-12">
+              <Button className="p-auto ml-4 w-40 h-12">
                 <Link href={"/cart"}>
                 Go to Cart
                 </Link>
-              </button>
+              </Button>
             </div>
             <div className="my-8">
-              <Link
+              <Button
                 href="/products/todos"
-                className="text-l bg-purple-900 text-white my-5 rounded-md p-5"
+                className="my-2 rounded-md p-5"
               >
                 Back to Catalogue
-              </Link>
+              </Button>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Button from "../userint/button";
 import { useState } from "react"
 import { useAuthContext } from "@/components/context/AuthContext"
 
@@ -96,12 +96,12 @@ const LoginForm = () => {
                 </div>
             </div>
             <div className="m-auto text-center">
-                <button   onClick={()=>loginUser(values)} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Login</button>
-                <button   onClick={googleLogin} className="bg-purple-900 ml-4 text-white p-2 font-semibold rounded-md">Google Login</button>
+                <Button   onClick={()=>loginUser(values)} >Login</Button>
+                <Button   onClick={googleLogin} className="ml-2">Google Login</Button>
             </div>
             <div className="form-row mb-4 flex items-center justify-center my-5">
                 <p className="mr-2 font-semibold p-2">Don&apos;t have an account?</p>
-                <Link href={"/signup"} className="bg-purple-900 text-white p-2 font-semibold rounded-md">Sign Up</Link>
+                <Button href={"/signup"}>Sign Up</Button>
             </div>
         </form>
 

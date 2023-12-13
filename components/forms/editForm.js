@@ -169,19 +169,19 @@ const EditForm= ({product}) => {
       </form>
 
       <div className="flex flex-row items-center justify-center my-5">
-        <Link
+        <Button
           href={"/login"}
-          className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2"
+          className="px-4 py-2 cursor-pointer rounded mr-2"
         >
           Logout
-        </Link>
+        </Button>
 
-        <Link
+        <Button
           href={"/admin"}
-          className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2"
+          className=" px-4 py-2 cursor-pointer rounded mr-2"
         >
           Back to Panel
-        </Link>
+        </Button>
       </div>
     </>
   );

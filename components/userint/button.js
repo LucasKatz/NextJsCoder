@@ -4,7 +4,7 @@ const Button = ({children, className = '', ...args}) => {
 
     return (
         <button
-            className={`btn-nav ${className}`}
+            className={`buttonUI ${className}`}
             {...args}
         >
             {children}

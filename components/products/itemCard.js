@@ -1,5 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
+import Button from "../userint/button"
+
 
 
 
@@ -19,9 +21,9 @@ const ProductCard = ({item}) => {
                 <h3 className="text-center font-bold ">{item.title}</h3>
               </div>
               <div className="linkContainer mt-3"> 
-                <button href={`/products/detail/${item.slug}`} className="font-semibold text-purple-900">
+                <Button   href={`/products/detail/${item.slug}`}>
                   Check It!
-                </button>
+                </Button>
               </div>
             </Link>
           </div>
