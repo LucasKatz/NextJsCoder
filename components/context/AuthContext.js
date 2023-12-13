@@ -57,6 +57,7 @@ const googleLogin = async () => {
 
 
 const logout = async () => {
+  
   await signOut(auth)
   router.push('/login');
   console.log ("Deslogueado con exito")

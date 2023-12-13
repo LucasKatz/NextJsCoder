@@ -19,9 +19,9 @@ export default function RootLayout({ children}) {
       <body className="bg-giphy-background" >
         <AuthProvider>
         <CartProvider>
-        <Navbar/>
+
         {children}
-        <Footer/>
+
         </CartProvider>
         </AuthProvider>
       </body>

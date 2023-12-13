@@ -165,11 +165,6 @@ export const CartProvider = ({ children }) => {
     try {
       setCart([]);
       await updateCartInFirestore([]);
-      Swal.fire({
-        icon: 'success',
-        title: 'Your cart is empty',
-        showConfirmButton: true,
-      });
     } catch (error) {
       console.error('Error clearing cart:', error);
     }
