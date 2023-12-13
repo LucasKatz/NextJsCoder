@@ -1,6 +1,7 @@
 "use client"
 
 import { getProductBySlug } from "@/app/(shop)/api/productsApi";
+import { useAuthContext } from "../context/AuthContext";
 import Image from "next/image";
 import Counter from "../userint/counter";
 import Link from "next/link";
@@ -13,6 +14,7 @@ const ProductDetail = ({ slug }) => {
   const { addProduct } = useCart();
   const [productToAdd, setProductToAdd] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -21,13 +23,11 @@ const ProductDetail = ({ slug }) => {
         setProductToAdd(product);
       } catch (error) {
         console.error(`Error fetching product with slug ${slug}:`, error);
-        // Puedes manejar el error aquí, por ejemplo, mostrando un mensaje al usuario
       }
     };
 
     fetchProduct();
   }, [slug]);
-
   const handleAddToCart = () => {
     addProduct(productToAdd, quantity);
   };
@@ -71,11 +71,17 @@ const ProductDetail = ({ slug }) => {
             </div> 
 
           <div className="my-5 text-center">
+                {!user.loggedIn && (
+                  <p className="text-red-500 font-semibold mb-4">
+                    You need to login to buy
+                  </p>
+                )}      
               <Counter quantity={quantity} setQuantity={setQuantity}/>
             <div className="flex productToAdds-center">
               <Button
                 className="p-auto ml-4 w-40 h-12"
-                onClick={handleAddToCart}>
+                onClick={handleAddToCart}
+                disabled={!user.loggedIn}>
                 Add to Cart
               </Button>
 
