@@ -16,7 +16,7 @@ const links = [
   },
   {
     label:"Products",
-    href:"/products/todos"
+    href:"/products/all"
   },
   {
     label:"About Us",

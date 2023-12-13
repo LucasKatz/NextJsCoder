@@ -10,13 +10,18 @@ import Loader from "@/app/(shop)/products/detail/[slug]/loading";
 
 const ProductDetail = ({ slug }) => {
   const { addProduct } = useCart();
-  const [productToAdd, setproductToAdd] = useState(null);
+  const [productToAdd, setProductToAdd] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const product = await getProductBySlug(slug);
-      setproductToAdd(product);
+      try {
+        const product = await getProductBySlug(slug);
+        setProductToAdd(product);
+      } catch (error) {
+        console.error(`Error fetching product with slug ${slug}:`, error);
+        // Puedes manejar el error aquí, por ejemplo, mostrando un mensaje al usuario
+      }
     };
 
     fetchProduct();

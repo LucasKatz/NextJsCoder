@@ -8,7 +8,7 @@ export const getProducts = async (categories) => {
 
     let items;
 
-    if (categories === 'todos') {
+    if (categories === 'all') {
         const allProductsQuery = await getDocs(productsFire);
         items = allProductsQuery.docs.map(doc => doc.data());
 

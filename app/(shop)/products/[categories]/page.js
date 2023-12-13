@@ -12,7 +12,7 @@ export async function generateMetadata({params, searchParams}, parent) {
 
 export async function generateStaticParams() {
     return [
-        { categories: 'todos' },
+        { categories: 'all' },
         { categories: 'vocabulary' },
         { categories: 'stories' },
         { categories: 'routines' },

@@ -11,12 +11,17 @@ const ProductsList = ({ categories }) => {
 
     useEffect(() => {
         const fetchProducts = async () => {
+          try {
             const products = await getProducts(categories);
             setAllProducts(products);
+          } catch (error) {
+            console.error('Error fetching products: ItemList', error);
+          }
         };
-
+    
         fetchProducts();
-    }, [categories]);
+      }, [categories]);
+    
 
     const paginatedProducts = allProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 

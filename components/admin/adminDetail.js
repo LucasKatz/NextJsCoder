@@ -6,7 +6,7 @@ import DeleteButton from "./deleteButton";
 
 const AdminDetail = async () => {
 
-  const response = await fetch(`http://localhost:3000/api/products/todos`, {
+  const response = await fetch(`http://localhost:3000/api/products/all`, {
 
   cache:"no-store"
         

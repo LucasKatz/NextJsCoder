@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 const links = [
   {
     label: 'All',
-    href: '/products/todos',
+    href: '/products/all',
   },
   {
     label: 'Vocabulary',
