@@ -1,4 +1,4 @@
-import EditForm from "@/components/admin/editForm";
+import EditForm from "@/components/forms/editForm";
 import { getProductBySlug } from "@/app/(shop)/api/productsApi";
 
 const EditPage = async ({ params }) => {

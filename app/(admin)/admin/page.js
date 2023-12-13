@@ -1,4 +1,4 @@
-import AdminDetail from "./adminDetail";
+import AdminDetail from "../../../components/admin/adminDetail";
 
 export async function generateMetadata({params, searchParams}, parent) {
     console.log(params)

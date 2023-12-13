@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from 'react';
-import ContactForm from './contactForm';
+import ContactForm from '../../../components/forms/contactForm';
 
 const metadata = { title: "Night Owl Resources - Contact" };
 

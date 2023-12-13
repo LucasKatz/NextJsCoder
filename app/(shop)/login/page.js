@@ -1,4 +1,4 @@
-import LoginForm from "./loginForm";
+import LoginForm from "@/components/forms/loginForm";
 
 export async function generateMetadata({params, searchParams}, parent) {
     console.log(params)
