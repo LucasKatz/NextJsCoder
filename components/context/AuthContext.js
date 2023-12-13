@@ -39,7 +39,11 @@ export const AuthProvider = ({ children }) => {
 const loginUser = async (values) => {
   try {
   await signInWithEmailAndPassword(auth, values.email, values.password)
-router.push('/products/todos');
+  if (values.email === process.env.NEXT_PUBLIC_ADMIN_CREDENTIALS) {
+    router.push('/admin');
+  } else {
+    router.push('/products/todos');
+  }
   }catch (error) {
     console.error('Error registering user:', error);
   }
@@ -48,7 +52,11 @@ router.push('/products/todos');
 const googleLogin = async () => {
   try{
   await signInWithPopup(auth, googleAuth)
-  router.push('/products/todos');
+  if (user.email === process.env.NEXT_PUBLIC_ADMIN_CREDENTIALS) {
+    router.push('/admin');
+  } else {
+    router.push('/products/todos');
+  }
   }catch (error){
     console.error("Not possible to login", error)
   }
