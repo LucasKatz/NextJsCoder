@@ -25,13 +25,22 @@ export const AuthProvider = ({ children }) => {
 
 
 
+
+
   const registerUser = async (values) => {
     try {
+
+      const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+      if (!strongPasswordRegex.test(values.password)) {
+        throw new functions.https.HttpsError('invalid-argument', 'Password must be strong enough.');
+      }
+      
       await createUserWithEmailAndPassword(auth, values.email, values.password, values.repeatEmail, values.name, values.surname)
 
   router.push('/products/todos');
 } catch (error) {
-  console.error('Error registering user:', error);
+  throw new Error(`Registration failed: ${error.message}`);
 }
 }
 
@@ -45,8 +54,7 @@ const loginUser = async (values) => {
     router.push('/products/todos');
   }
   }catch (error) {
-    console.error('Error registering user:', error);
-  }
+    throw new Error(`Login failed: ${error.message}`);  }
 }
 
 const googleLogin = async () => {
