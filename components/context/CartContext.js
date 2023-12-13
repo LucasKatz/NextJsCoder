@@ -29,14 +29,7 @@ export const CartProvider = ({ children }) => {
           const cartDoc = querySnapshot.docs[0];
           return cartDoc.id;
         } else {
-          const cartDocRef = await addDoc(collection(dataBase, 'carts'), {
-            userId: user.uid,
-            cart: [],
-          });
-  
-          const newCartDocId = cartDocRef.id;
-          console.log('New cart created. Cart document ID:', newCartDocId);
-          return newCartDocId;
+        return null
         }
       }
     } catch (error) {
