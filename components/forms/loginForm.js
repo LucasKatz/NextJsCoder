@@ -4,6 +4,11 @@ import Link from "next/link"
 import { useState } from "react"
 import { useAuthContext } from "@/components/context/AuthContext"
 
+
+const scriptRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
 const LoginForm = () => {
 
     const {loginUser, googleLogin } = useAuthContext()
@@ -12,6 +17,35 @@ const LoginForm = () => {
         password: ''
     })
 
+    const validateForm = () => {
+        const errors = {};
+    
+        if (!values.email) {
+          errors.email = 'Email is required.';
+        } else if (!emailRegex.test(values.email)) {
+          errors.email = 'Invalid email format.';
+        }
+    
+        if (!values.password) {
+          errors.password = 'Password is required.';
+        }
+    
+        return errors;
+      };
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const formErrors = validateForm();
+    
+        if (Object.keys(formErrors).length === 0) {
+          // Realizar la lógica de inicio de sesión aquí
+          loginUser(values);
+        } else {
+          console.log('Form validation errors:', formErrors);
+        }
+      };
+
     const handleChange = (e) => {
         setValues({
             ...values,
@@ -19,9 +53,6 @@ const LoginForm = () => {
         })
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-    }
 
     return (
     <>
@@ -43,6 +74,7 @@ const LoginForm = () => {
                         id="email"
                         name="email"
                         type="email"
+                        required
                         value={values.email}
                         placeholder="joe@example.com"
                         className="w-full border border-gray-300 rounded p-1"
@@ -57,6 +89,7 @@ const LoginForm = () => {
                         id="password"
                         name="password"
                         type="password"
+                        required
                         value={values.password}
                         className="w-full border border-gray-300 rounded p-1"
                         onChange={handleChange}/>
