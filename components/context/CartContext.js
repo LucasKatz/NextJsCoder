@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect, useContext, createContext } from 'react';
-import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useAuthContext } from './AuthContext';
 import { dataBase } from '@/services/firebase';
 import { addDoc, collection, updateDoc, doc, getDocs, query, where, deleteDoc, getDoc } from 'firebase/firestore';
@@ -102,11 +103,8 @@ export const CartProvider = ({ children }) => {
         await updateCartInFirestore(cartUpdated);
       }
   
-      Swal.fire({
-        icon: 'success',
-        title: 'Product added to cart',
-        showConfirmButton: true,
-      });
+      toast.success('Product added to cart', { position: toast.POSITION.TOP_RIGHT });
+
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
@@ -179,11 +177,8 @@ export const CartProvider = ({ children }) => {
       // Remueve el producto del carrito en Firebase
       await updateCartInFirestore(updatedCart);
 
-      Swal.fire({
-        icon: 'success',
-        title: 'Product removed from cart!',
-        showConfirmButton: true,
-      });
+      toast.success('Product removed from cart!', { position: toast.POSITION.TOP_RIGHT });
+
     } catch (error) {
       console.error('Error removing product from cart:', error);
     }
