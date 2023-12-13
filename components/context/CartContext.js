@@ -52,7 +52,9 @@ export const CartProvider = ({ children }) => {
 
   const addProduct = async (productToAdd, quantity) => {
     try {
-      // Fetch or add cart document id
+      
+      toast.success('Product added to cart', { position: toast.POSITION.TOP_RIGHT });
+      
       let cartDocId;
       if (user && user.uid) {
         const querySnapshot = await getDocs(
@@ -103,7 +105,7 @@ export const CartProvider = ({ children }) => {
         await updateCartInFirestore(cartUpdated);
       }
   
-      toast.success('Product added to cart', { position: toast.POSITION.TOP_RIGHT });
+    
 
     } catch (error) {
       console.error('Error adding product to cart:', error);
