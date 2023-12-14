@@ -51,7 +51,7 @@ const loginUser = async (values) => {
   if (values.email === process.env.NEXT_PUBLIC_ADMIN_CREDENTIALS) {
     router.push('/admin');
   } else {
-    router.push('/products/todos');
+    router.push('/products/all');
   }
   }catch (error) {
     throw new Error(`Login failed: ${error.message}`);  }
@@ -63,7 +63,7 @@ const googleLogin = async () => {
   if (user.email === process.env.NEXT_PUBLIC_ADMIN_CREDENTIALS) {
     router.push('/admin');
   } else {
-    router.push('/products/todos');
+    router.push('/products/all');
   }
   }catch (error){
     console.error("Not possible to login", error)

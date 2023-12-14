@@ -39,7 +39,7 @@ const LoginForm = () => {
         const formErrors = validateForm();
     
         if (Object.keys(formErrors).length === 0) {
-          // Realizar la lógica de inicio de sesión aquí
+          
           loginUser(values);
         } else {
           console.log('Form validation errors:', formErrors);
