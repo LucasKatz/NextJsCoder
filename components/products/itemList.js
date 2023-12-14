@@ -3,24 +3,32 @@
 import { useEffect, useState } from 'react';
 import { getProducts } from "@/app/(shop)/api/productsApi";
 import ProductCard from "./itemCard";
+import Loader from '@/app/(shop)/products/detail/[slug]/loading';
 
 const ProductsList = ({ categories }) => {
     const [allProducts, setAllProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(true); 
     const pageSize = 10;
 
     useEffect(() => {
         const fetchProducts = async () => {
-          try {
-            const products = await getProducts(categories);
-            setAllProducts(products);
-          } catch (error) {
-            console.error('Error fetching products: ItemList', error);
-          }
+            try {
+                const products = await getProducts(categories);
+                setAllProducts(products);
+                setLoading(false);  
+            } catch (error) {
+                console.error('Error fetching products: ItemList', error);
+                setLoading(false); 
+            }
         };
-    
+
         fetchProducts();
-      }, [categories]);
+    }, [categories]);
+
+    if (loading) {
+        return <Loader />; 
+    }
     
 
     const paginatedProducts = allProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize);

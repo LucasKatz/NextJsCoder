@@ -18,7 +18,6 @@ export default function RootLayout({ children}) {
   return (
     <html lang="en">
       <body className="bg-giphy-background" >
-        <ToastContainer />
         <AuthProvider>
         <CartProvider>
         {children}
