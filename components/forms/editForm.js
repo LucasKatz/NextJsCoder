@@ -71,7 +71,7 @@ const EditForm= ({product}) => {
 
 
       try {
-        const response = await updateProduct(product.slug, values);
+        const response = await updateProduct(product.slug, values, file);
 
         if (response.ok) {
           Swal.fire({

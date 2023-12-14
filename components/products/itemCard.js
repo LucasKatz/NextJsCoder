@@ -18,7 +18,7 @@ const ProductCard = ({item}) => {
             <Link href={`/products/detail/${slug}`}>
               <Image
                 alt={title}
-                src={imageUrl}
+                src={image}
                 width={270}
                 height={270}
                 className="mx-auto my-5 rounded-md"/>

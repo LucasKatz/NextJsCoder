@@ -36,7 +36,7 @@ const items = await response.json()
               <td className="text-center text-text-color-5">${product.price}</td>
               <td className="text-center">
                 <Image
-                    src={`/images/products/${product.image}`}
+                    src={product.image}
                     alt={product.title}
                     className="w-20 h-20 mx-auto"
                     width={40}

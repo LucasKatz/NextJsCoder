@@ -61,13 +61,13 @@ const CreateProductForm = () => {
           Swal.fire({
             title: "Product Created",
             icon: "success",
-            buttons: true,
+            button: true,
           });
         } else {
           Swal.fire({
             title: "Oops! There`s been a mistake",
             icon: "error",
-            buttons: true,
+            button: true,
           });
         }
 
@@ -105,7 +105,6 @@ const CreateProductForm = () => {
               value={values.title}
               onChange={handleChange}
               type="text"
-              pattern="[a-zA-Z ]{1,35}"
               name="title"
               className="form-input mb-4 w-2/3"
               placeholder="Title"
