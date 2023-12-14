@@ -4,7 +4,7 @@ import { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { dataBase, fireStorage} from "@/services/firebase";
-import Button from "@/components/userint/button";
+import Button from "../userint/button";
 import Swal from "sweetalert2";
 import Link from "next/link";
 
@@ -12,11 +12,12 @@ const CreateProductForm = () => {
   const [values, setValues] = useState({
     title: "",
     description: "",
-    inStock: 0,
+    stock: 0,
     price: 0,
     type: "",
     slug: "",
   });
+  const [file, setFile] = useState(null)
 
   const createProduct = async (values,file) => {
     try {
@@ -43,9 +44,9 @@ const CreateProductForm = () => {
 
   const Handlesubmit = async (e) => {
     e.preventDefault();
-    const { title, slug, description, price, size, category } = values;
+    const { title, slug, description, price, size, category, stock } = values;
 
-    if (!title || !slug || !description || !price || !size || !category) {
+    if (!title || !slug || !description || !price || !size || !category|| !stock) {
       Swal.fire({
         title: "Please complete the product`s data",
         icon: "warning",
@@ -54,7 +55,7 @@ const CreateProductForm = () => {
       });
     } else {
       try {
-        const response = await createProduct(values);
+        const response = await createProduct(values, file);
 
         if (response.ok) {
           Swal.fire({
@@ -130,8 +131,8 @@ const CreateProductForm = () => {
             />
             
             <input
-              onChange={handleChange}
               type="file"
+              onChange={(e) => setFile(e.target.files[0])}
               name="image"
               className="form-input mb-4 w-2/3"
               placeholder="Image"
@@ -161,8 +162,17 @@ const CreateProductForm = () => {
               type="text"
               name="category"
               placeholder="Category"
-              className="w-2/3"
+              className="w-2/3 mb-4"
               required
+            />
+            <input
+              type="number"
+              value={values.stock}
+              required
+              placeholder="Stock"
+              className="w-2/3"
+              name="stock"
+              onChange={handleChange}
             />
             <Button type="submit">Submit</Button>
           </div>
