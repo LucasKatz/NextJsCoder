@@ -11,31 +11,38 @@ import Link from "next/link";
 
 // Función para actualizar un producto
 const updateProduct = async (slug, values, file) => {
-
+  try {
     let fileURL = values.image;
 
     console.log("File state before if:", file);
     if (file) {
-      console.log("File state AFTER if:", file)
+      console.log("File state AFTER if:", file);
       const storageRef = ref(fireStorage, values.slug);
-      console.log(storageRef,"storage")
+      console.log(storageRef, "storage");
       const fileSnapshot = await uploadBytes(storageRef, file);
-      console.log(fileSnapshot,"snapshot")
+      console.log(fileSnapshot, "snapshot");
       fileURL = await getDownloadURL(fileSnapshot.ref);
-      console.log ("File URL", fileURL)
+      console.log("File URL", fileURL);
     }
 
     const docRef = doc(dataBase, "products", slug);
-    return updateDoc(docRef, {
+    await updateDoc(docRef, {
       title: values.title,
       description: values.description,
       inStock: Number(values.inStock),
       price: Number(values.price),
-      type: values.type,
-      image: fileURL
-  })
-      .then(() => console.log("Producto actualizado correctamente"))
+      image: fileURL,
+    });
+
+    console.log("Producto actualizado correctamente");
+    
+    return { ok: true };
+  } catch (error) {
+    console.error("Error updating product:", error);
+    return { ok: false, error };
+  }
 };
+
 
 const EditForm = ({ product }) => {
   const { logout } = useAuthContext();
@@ -80,8 +87,6 @@ const EditForm = ({ product }) => {
           buttons: true,
         });
       }
-
-      return { ok: true };
     } catch (error) {
       console.error("Error:", error);
       Swal.fire({
