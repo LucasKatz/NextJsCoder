@@ -1,8 +1,10 @@
 "use client"
 
 import { useState, createContext, useContext, useEffect } from 'react';
-import { auth, googleAuth} from '@/services/firebase';
+import { auth, googleAuth, dataBase} from '@/services/firebase';
 import { useRouter } from "next/navigation";
+import Swal from 'sweetalert2';
+import { doc, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from 'firebase/auth';
 
 
@@ -23,27 +25,41 @@ export const AuthProvider = ({ children }) => {
     surname: null,
   });
 
-
-
-
-
   const registerUser = async (values) => {
     try {
-
-      const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/])[A-Za-z\d@$!%*?&/]{8,}$/;
 
       if (!strongPasswordRegex.test(values.password)) {
-        throw new functions.https.HttpsError('invalid-argument', 'Password must be strong enough.');
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Password Error',
+          text: 'Password must be strong enough.',
+        });
+        return; 
       }
-      
-      await createUserWithEmailAndPassword(auth, values.email, values.password, values.repeatEmail, values.name, values.surname)
+  
+      await createUserWithEmailAndPassword(auth, values.email, values.password, values.repeatEmail, values.name, values.surname, values.phone);
 
-  router.push('/products/all');
 
-} catch (error) {
-  throw new Error(`Registration failed: ${error.message}`);
-}
-}
+          const userDocRef = doc(dataBase, 'users', values.email);  
+          await setDoc(userDocRef, {
+              email: values.email,
+              name: values.name,
+              surname: values.surname,
+              phone:values.phone
+          });
+  
+      router.push('/products/all');
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Registration Error',
+        text: `Registration failed: ${error.message}`,
+      });
+    }
+  };
+  
 
 
 const loginUser = async (values) => {

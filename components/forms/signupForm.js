@@ -12,6 +12,7 @@ const SignUp = () => {
     password: "",
     name: "",
     surname: "",
+    phone:"",
   });
 
   const [errors, setErrors] = useState({});
@@ -86,6 +87,17 @@ const SignUp = () => {
                         name="surname"
                         type="text"
                         value={values.surname}
+                        className="w-full border border-gray-300 rounded p-1"
+                        onChange={handleChange}
+                        required/>
+                </div>
+                <div className="mb-4">
+                    <label className="font-bold" htmlFor="phone">Phone Number</label>
+                    <input
+                        id="phone"
+                        name="phone"
+                        type="number"
+                        value={values.phone}
                         className="w-full border border-gray-300 rounded p-1"
                         onChange={handleChange}
                         required/>

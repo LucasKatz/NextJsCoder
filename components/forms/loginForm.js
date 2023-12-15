@@ -3,6 +3,7 @@
 import Button from "../userint/button";
 import { useState } from "react"
 import { useAuthContext } from "@/components/context/AuthContext"
+import Link from "next/link";
 
 
 const scriptRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
@@ -17,34 +18,10 @@ const LoginForm = () => {
         password: ''
     })
 
-    const validateForm = () => {
-        const errors = {};
-    
-        if (!values.email) {
-          errors.email = 'Email is required.';
-        } else if (!emailRegex.test(values.email)) {
-          errors.email = 'Invalid email format.';
-        }
-    
-        if (!values.password) {
-          errors.password = 'Password is required.';
-        }
-    
-        return errors;
-      };
     
       const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        const formErrors = validateForm();
-    
-        if (Object.keys(formErrors).length === 0) {
-          
-          loginUser(values);
-        } else {
-          console.log('Form validation errors:', formErrors);
-        }
-      };
+        loginUser(values);};
 
     const handleChange = (e) => {
         setValues({
@@ -93,10 +70,14 @@ const LoginForm = () => {
 
             <div className="form-row mb-4 flex items-center justify-center my-5">
                 <p className="mr-2 font-semibold p-2">Don&apos;t have an account?</p>
-                <Button href={"/signup"}>Sign Up</Button>
+                <Button> 
+                  <Link href={"/signup"}>
+                    Sign Up
+                  </Link>
+                </Button>
             </div>
-
         </form>
+
 
 </main>
     )
