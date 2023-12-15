@@ -18,8 +18,11 @@ const updateProduct = async (slug, values, file) => {
     if (file) {
       console.log("File state AFTER if:", file)
       const storageRef = ref(fireStorage, values.slug);
+      console.log(storageRef,"storage")
       const fileSnapshot = await uploadBytes(storageRef, file);
+      console.log(fileSnapshot,"snapshot")
       fileURL = await getDownloadURL(fileSnapshot.ref);
+      console.log ("File URL", fileURL)
     }
 
     const docRef = doc(dataBase, "products", slug);
@@ -37,15 +40,16 @@ const updateProduct = async (slug, values, file) => {
 const EditForm = ({ product }) => {
   const { logout } = useAuthContext();
 
-  const { title, description, price, type, image, slug } = product;
+  const { title, description, price, category, size, image, slug } = product;
 
   const [values, setValues] = useState({
-    title: product.title,
-    description: product.description,
-    price: product.price,
-    slug: product.slug,
-    category: product.category,
-    size: product.size,
+    title,
+    description,
+    price,
+    slug,
+    category,
+    size,
+    image
   });
   const [file, setFile] = useState(null);
 
@@ -57,9 +61,10 @@ const EditForm = ({ product }) => {
   };
 
   const Handlesubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      const response = await updateProduct(product.slug, values, file);
+      const response = await updateProduct(slug, values, file);
 
       if (response.ok) {
         Swal.fire({
