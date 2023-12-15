@@ -59,17 +59,17 @@ const ProductDetail = ({ slug }) => {
             <p className="text-2xl font-semibold  pb-4 mb-4  text-purple-900">{title}</p>
 
             <div className="flex flex-row items-center justify-center">
-            <p className="ml-4 text-xl font-semibold text-purple-900">Price: $ {price}</p>
+                <p className="ml-4 text-xl font-semibold text-purple-900">Price: $ {price}</p>
             </div>
 
             <div className="flex flex-row items-center justify-center">
-            <p className="text-xl font-semibold  text-purple-900">Description:</p>
-            <p className="ml-4 font-semibold text-xl text-purple-900">{description}</p>
+                <p className="text-xl font-semibold  text-purple-900">Description:</p>
+                <p className="ml-4 font-semibold text-xl text-purple-900">{description}</p>
             </div>     
 
             <div className="flex flex-row items-center justify-center">       
-            <p className="text-xl font-semibold    text-purple-900">Size:</p>
-            <p className="ml-4 text-xl font-semibold text-purple-900">{size}</p>
+                <p className="text-xl font-semibold    text-purple-900">Size:</p>
+                <p className="ml-4 text-xl font-semibold text-purple-900">{size}</p>
             </div> 
 
           <div className="my-5 text-center">

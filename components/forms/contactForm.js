@@ -83,7 +83,7 @@ const ContactForm = ({ completoDatos }) => {
         <div className=" mx-auto mt-6 py-5 h-fit">
                   <h1 className="text-center py-5 text-2xl w-full text-text-color-5 font-extrabold">Get in touch with us!</h1>
           <div className="form flex flex-col items-center  bg-bg-color-5  w-1/2 m-auto pt-9 p-5 rounded-md text-start h-fit">
-  
+            
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -132,7 +132,7 @@ const ContactForm = ({ completoDatos }) => {
               onChange={(e) => setMessage(e.target.value)}
               type="text"
               placeholder="Message"
-              className="form-input w-2/3 h-24"
+              className="form-input w-2/3 h-24 mb-4"
               required
             />
   

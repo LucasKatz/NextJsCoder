@@ -60,15 +60,15 @@ export default function Navbar() {
       </div>
 
     <div className="flex items-center justify-end space-x-4 p-4 w-1/4">
-  {user.loggedIn ? (
+      {user.loggedIn ? (
 
     <div className="relative">
       <button
-        className="text-sm text-gray-500 focus:outline-none"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-      >
-        {user.email}
+          className="text-sm text-gray-500 focus:outline-none"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {user.email}
       </button>
+      
       {isMenuOpen && (
         <div className="absolute top-8 left-0 bg-white border border-gray-300 p-2 rounded flex flex-col">
           <button onClick={() => console.log('Profile clicked')}>Profile</button>
