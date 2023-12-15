@@ -90,6 +90,8 @@ const CreateProductForm = () => {
             New Product
           </h1>
           <div className="form flex flex-col items-center bg-bg-color-5 w-1/2 m-auto p-5 rounded-md text-start h-fit">
+
+          <label className="font-bold">Title</label>
             <input
               value={values.title}
               onChange={handleChange}
@@ -98,6 +100,8 @@ const CreateProductForm = () => {
               className="form-input mb-4 w-2/3"
               placeholder="Title"
               required/>
+
+          <label className="font-bold">Slug</label>    
             <input
               value={values.slug}
               onChange={handleChange}
@@ -106,6 +110,8 @@ const CreateProductForm = () => {
               className="form-input mb-4 w-2/3"
               placeholder="Slug"
               required/>
+
+          <label className="font-bold">Description</label>     
             <input
               value={values.description}
               onChange={handleChange}
@@ -114,6 +120,8 @@ const CreateProductForm = () => {
               className="form-input mb-4 w-2/3"
               placeholder="Description"
               required/>
+
+          <label className="font-bold">Image</label>            
             <input
               type="file"
               onChange={(e) => setFile(e.target.files[0])}
@@ -121,6 +129,8 @@ const CreateProductForm = () => {
               className="form-input mb-4 w-2/3"
               placeholder="Image"
               required/> 
+
+          <label className="font-bold">Price</label>         
             <input
               value={values.price}
               onChange={handleChange}
@@ -129,6 +139,8 @@ const CreateProductForm = () => {
               className="form-input mb-4 w-2/3"
               placeholder="Price"
               required/>
+
+          <label className="font-bold">Size</label>            
             <input
               value={values.size}
               onChange={handleChange}
@@ -137,6 +149,8 @@ const CreateProductForm = () => {
               placeholder="Size"
               className="w-2/3 mb-4"
               required/>
+
+          <label className="font-bold">Category</label>              
             <input
               value={values.category}
               onChange={handleChange}
@@ -145,6 +159,8 @@ const CreateProductForm = () => {
               placeholder="Category"
               className="w-2/3 mb-4"
               required/>
+
+          <label className="font-bold">Stock</label>            
             <input
               type="number"
               value={values.stock}

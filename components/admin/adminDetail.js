@@ -1,17 +1,50 @@
-import {FaEdit } from "react-icons/fa";
+"use client"
+
+import { FaEdit } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import LogoutButton from "./logOutButton";
+import Button from "../userint/button";
 import DeleteButton from "./deleteButton";
+import { useAuthContext } from "../context/AuthContext";
+import 'react-toastify/dist/ReactToastify.css';
+import { useState, useEffect } from 'react';
 
-const AdminDetail = async () => {
+const AdminDetail = () => {
+  const [items, setItems] = useState([]);
+  const { logout } = useAuthContext()
 
-  const response = await fetch(`http://localhost:3000/api/products/all`, {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/products/all`, {
+          cache: "no-store"
+        });
+        const products = await response.json();
+        setItems(products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
-  cache:"no-store"
-        
-})
-const items = await response.json()
+    fetchProducts();
+  }, []); // Fetch products on initial mount
+
+  const handleDeleteSuccess = () => {
+    // Reload products after successful deletion
+    fetchProducts();
+  };
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/products/all`, {
+        cache: "no-store"
+      });
+      const products = await response.json();
+      setItems(products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
 
   return (
@@ -51,7 +84,7 @@ const items = await response.json()
                 </button>
               </td>
               <td className="text-center">
-                <DeleteButton slug={product.slug}/>
+                <DeleteButton slug={product.slug} onDeleteSuccess={handleDeleteSuccess} />
               </td>
             </tr>
           ))}
@@ -59,13 +92,13 @@ const items = await response.json()
       </table>
     </div>
                 <div className="flex flex-row items-center justify-center my-5">
-                <LogoutButton/>
+                <Button onClick={logout}>Log Out</Button>
 
-                <Link href={"/admin/create"}
-                    className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
+                <Button className="ml-4">
+                <Link href={"/admin/create"}>
                     Create New Product
                 </Link >
-                
+                </Button>
             </div>
             </>
   );

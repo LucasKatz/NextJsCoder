@@ -4,10 +4,13 @@ import { useState } from "react";
 import { doc, updateDoc} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { dataBase, fireStorage} from "@/services/firebase";
+import { useAuthContext } from "../context/AuthContext";
 import Button from "@/components/userint/button";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 const updateProduct = async (slug, values, file) => {
+  
   try {
     let fileURL = values.image;
 
@@ -28,7 +31,6 @@ const updateProduct = async (slug, values, file) => {
       slug: values.slug,
     });
 
-    console.log("Product Updated");
 
     return { ok: true };
   } catch (error) {
@@ -38,6 +40,7 @@ const updateProduct = async (slug, values, file) => {
 };
 
 const EditForm= ({product}) => {
+  const { logout } = useAuthContext()
 
   const { title, description, price, type, image, slug } = product
 
@@ -99,54 +102,61 @@ const EditForm= ({product}) => {
             Update your Product
           </h1>
           <div className="form flex flex-col items-center bg-bg-color-5 w-1/2 m-auto p-5 rounded-md text-start h-fit">
+
+          <label className="font-bold">Title</label>
             <input
               value={values.title}
               onChange={handleChange}
               type="text"
               name="title"
               className="form-input mb-4 w-2/3"
-              placeholder="Title"
-            />
+              placeholder="Title"/>
+
+          <label className="font-bold">Slug</label>
             <input
               value={values.slug}
               onChange={handleChange}
               type="text"
               name="slug"
               className="form-input mb-4 w-2/3"
-              placeholder="Slug"
-            />
+              placeholder="Slug"/>
+
+          <label className="font-bold">Description</label>
             <input
               value={values.description}
               onChange={handleChange}
               type="text"
               name="description"
               className="form-input mb-4 w-2/3"
-              placeholder="Description"
-            />
-            
+              placeholder="Description"/>
+
+          <label className="font-bold">Image</label>            
             <input
               type="file"
               name="image"
               onChange={handleChange}
               className="form-input mb-4 w-2/3"
-              placeholder="Image"
-            />
+              placeholder="Image"/>
+
+          <label className="font-bold">Price</label>
             <input
               value={values.price}
               onChange={handleChange}
               type="number"
               name="price"
               className="form-input mb-4 w-2/3"
-              placeholder="Price"
-            />
+              placeholder="Price"/>
+
+          <label className="font-bold">Size</label>    
             <input
               value={values.size}
               onChange={handleChange}
               type="text"
               name="size"
               placeholder="Size"
-              className="w-2/3 mb-4"
-            />
+              className="w-2/3 mb-4"/>
+
+          <label className="font-bold">Category</label>    
             <input
               value={values.category}
               onChange={handleChange}
@@ -154,20 +164,21 @@ const EditForm= ({product}) => {
               name="category"
               placeholder="Category"
               className="w-2/3"
-              required
-            />
+              required/>
             <Button type="submit">Submit</Button>
           </div>
         </div>
       </form>
 
       <div className="flex flex-row items-center justify-center my-5">
-        <Button href={"/login"}className="px-4 py-2 cursor-pointer rounded mr-2">
-          Logout
+        <Button className="px-4 py-2 cursor-pointer rounded mr-2" onClick={logout}> 
+            Logout
         </Button>
 
-        <Button href={"/admin"} className=" px-4 py-2 cursor-pointer rounded mr-2">
-          Back to Panel
+        <Button> 
+          <Link href={"/admin"}className="px-4 py-2 cursor-pointer rounded mr-2">
+            Back to Panel
+          </Link>
         </Button>
       </div>
     </>

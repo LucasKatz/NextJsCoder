@@ -83,7 +83,7 @@ const ContactForm = ({ completoDatos }) => {
         <div className=" mx-auto mt-6 py-5 h-fit">
                   <h1 className="text-center py-5 text-2xl w-full text-text-color-5 font-extrabold">Get in touch with us!</h1>
           <div className="form flex flex-col items-center  bg-bg-color-5  w-1/2 m-auto pt-9 p-5 rounded-md text-start h-fit">
-            
+            <label className="font-bold">Name</label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -91,42 +91,45 @@ const ContactForm = ({ completoDatos }) => {
               pattern="[a-zA-Z ]{1,35}"
               className="form-input mb-4 w-2/3"
               placeholder="Name"
-              required
-            />
+              required/>
+
+            <label className="font-bold">Surname</label>
             <input
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
               type="text"
               className="form-input mb-4 w-2/3"
               placeholder="Surname"
-              required
-            />
+              required/>
+            
+            <label className="font-bold">Email</label>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               className="form-input mb-4 w-2/3"
               placeholder="Email"
-              required
-            />
+              required/>
+            
+            <label className="font-bold">Repeat Email</label>
             <input
               value={checkEmail}
               onChange={(e) => setCheckEmail(e.target.value)}
               type="email"
               className="form-input mb-4 w-2/3"
-              placeholder="Confirme Email"
-              required
-            />
+              placeholder="Repeat Email"
+              required/>
+            
+            <label className="font-bold">Phone Number</label>
             <input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               type="number"
               className="form-input mb-4 w-2/3"
               placeholder="Phone Number"
-              required
-            />
+              required/>
 
-    
+            <label className="font-bold">Message</label>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}

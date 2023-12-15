@@ -1,16 +1,19 @@
 "use client"
 
-import { FaTrash } from "react-icons/fa";
-import { deleteDoc, doc } from "firebase/firestore";
-import { dataBase } from "@/services/firebase";
+import { FaTrash } from 'react-icons/fa';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { dataBase } from '@/services/firebase';
+import { toast } from 'react-toastify';
 
-const DeleteButton = ({ slug }) => {
+const DeleteButton = ({ slug, onDeleteSuccess }) => {
   const deleteProduct = async () => {
     try {
-      await deleteDoc(doc(dataBase, "products", slug));      
+      await deleteDoc(doc(dataBase, 'products', slug));
+      toast.success('Product deleted successfully');
+      onDeleteSuccess();
     } catch (error) {
-      console.error("Error deleting product:", error);
-      
+      console.error('Error deleting product:', error);
+      toast.error('Error deleting product');
     }
   };
 
