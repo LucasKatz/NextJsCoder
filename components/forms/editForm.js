@@ -1,58 +1,53 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import { doc, updateDoc} from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { dataBase, fireStorage} from "@/services/firebase";
+import { dataBase, fireStorage } from "@/services/firebase";
 import { useAuthContext } from "../context/AuthContext";
 import Button from "@/components/userint/button";
 import Swal from "sweetalert2";
 import Link from "next/link";
 
+// Función para actualizar un producto
 const updateProduct = async (slug, values, file) => {
-  
-  try {
+
     let fileURL = values.image;
 
+    console.log("File state before if:", file);
     if (file) {
-      const storageRef = ref(fireStorage, `products/${slug}`);
+      console.log("File state AFTER if:", file)
+      const storageRef = ref(fireStorage, values.slug);
       const fileSnapshot = await uploadBytes(storageRef, file);
       fileURL = await getDownloadURL(fileSnapshot.ref);
     }
 
     const docRef = doc(dataBase, "products", slug);
-    await updateDoc(docRef, {
+    return updateDoc(docRef, {
       title: values.title,
       description: values.description,
+      inStock: Number(values.inStock),
       price: Number(values.price),
-      image: fileURL,
-      category: values.category,
-      size: values.size,
-      slug: values.slug,
-    });
-
-
-    return { ok: true };
-  } catch (error) {
-    console.error("Error updating product:", error);
-    return { ok: false };
-  }
+      type: values.type,
+      image: fileURL
+  })
+      .then(() => console.log("Producto actualizado correctamente"))
 };
 
-const EditForm= ({product}) => {
-  const { logout } = useAuthContext()
+const EditForm = ({ product }) => {
+  const { logout } = useAuthContext();
 
-  const { title, description, price, type, image, slug } = product
+  const { title, description, price, type, image, slug } = product;
 
-    const [values, setValues] = useState({
-      title: product.title,
-      description: product.description,
-      price: product.price,
-      slug: product.slug,
-      category: product.category,
-      size: product.size
-    });
-    
+  const [values, setValues] = useState({
+    title: product.title,
+    description: product.description,
+    price: product.price,
+    slug: product.slug,
+    category: product.category,
+    size: product.size,
+  });
+  const [file, setFile] = useState(null);
 
   const handleChange = (e) => {
     setValues({
@@ -62,38 +57,35 @@ const EditForm= ({product}) => {
   };
 
   const Handlesubmit = async (e) => {
-    e.preventDefault();
-    const { title, slug, description, price, size, category,image } = values;
 
+    try {
+      const response = await updateProduct(product.slug, values, file);
 
-      try {
-        const response = await updateProduct(product.slug, values, file);
-
-        if (response.ok) {
-          Swal.fire({
-            title: "Product Updated",
-            icon: "success",
-            buttons: true,
-          });
-        } else {
-          Swal.fire({
-            title: "Oops! There`s been a mistake",
-            icon: "error",
-            buttons: true,
-          });
-        }
-
-        return { ok: true };
-      } catch (error) {
-        console.error("Error:", error);
+      if (response.ok) {
         Swal.fire({
-          title: "Something happened. Please refresh and try again",
+          title: "Product Updated",
+          icon: "success",
+          buttons: true,
+        });
+      } else {
+        Swal.fire({
+          title: "Oops! There's been a mistake",
+          text: `Error: ${response.error.message}`,
           icon: "error",
           buttons: true,
         });
       }
-  };
 
+      return { ok: true };
+    } catch (error) {
+      console.error("Error:", error);
+      Swal.fire({
+        title: "Something happened. Please refresh and try again",
+        icon: "error",
+        buttons: true,
+      });
+    }
+  }
   return (
     <>
       <form onSubmit={Handlesubmit} encType="multipart/form-data">
@@ -131,12 +123,13 @@ const EditForm= ({product}) => {
               placeholder="Description"/>
 
           <label className="font-bold">Image</label>            
-            <input
+          <input
               type="file"
               name="image"
-              onChange={handleChange}
+              onChange={(e) => setFile(e.target.files[0])}
               className="form-input mb-4 w-2/3"
-              placeholder="Image"/>
+              placeholder="Image"
+            />
 
           <label className="font-bold">Price</label>
             <input
