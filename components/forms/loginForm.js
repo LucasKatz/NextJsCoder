@@ -55,21 +55,13 @@ const LoginForm = () => {
 
 
     return (
-    <>
 <main className="flex min-h-screen flex-row items-center justify-between">
 
-    <form   
-            onSubmit={handleSubmit}
-            id="signupForm"
-            method="GET"
-            className="speaker-form bg-gray-100 border border-gray-300 rounded-md max-w-md mx-auto p-4"
-        >
+    <form   onSubmit={handleSubmit} method="GET" className="speaker-form bg-gray-100 border border-gray-300 rounded-md max-w-md mx-auto p-4">
             <div className="form-row mb-4">
                 <h1 className="text-center py-5 text-text-color-2 font-extrabold">Log In</h1>
                 <div className="mb-4">
-                    <label className="font-bold" htmlFor="email">
-                        Email:
-                    </label>
+                    <label className="font-bold" htmlFor="email">Email:</label>
                     <input
                         id="email"
                         name="email"
@@ -82,9 +74,7 @@ const LoginForm = () => {
                         
                 </div>
                 <div className="mb-4">
-                    <label className="font-bold" htmlFor="password">
-                        Password:
-                    </label>
+                    <label className="font-bold" htmlFor="password">Password:</label>
                     <input
                         id="password"
                         name="password"
@@ -95,19 +85,20 @@ const LoginForm = () => {
                         onChange={handleChange}/>
                 </div>
             </div>
+
             <div className="m-auto text-center">
                 <Button   onClick={()=>loginUser(values)} >Login</Button>
                 <Button   onClick={googleLogin} className="ml-2">Google Login</Button>
             </div>
+
             <div className="form-row mb-4 flex items-center justify-center my-5">
                 <p className="mr-2 font-semibold p-2">Don&apos;t have an account?</p>
                 <Button href={"/signup"}>Sign Up</Button>
             </div>
+
         </form>
 
 </main>
-
-</>
     )
     }
 

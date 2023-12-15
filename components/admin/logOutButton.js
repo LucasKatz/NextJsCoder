@@ -5,7 +5,7 @@ import Button from "@/components/userint/button"
 const LogoutButton = () => {
     const { logout } = useAuthContext()
 
-    return <Button onClick={logout} className="bg-red-500">Log Out</Button>
+    return <Button onClick={logout}>Log Out</Button>
 }
 
 export default LogoutButton

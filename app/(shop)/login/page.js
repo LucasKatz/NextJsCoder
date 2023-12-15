@@ -1,7 +1,6 @@
 import LoginForm from "@/components/forms/loginForm";
 
 export async function generateMetadata({params, searchParams}, parent) {
-    console.log(params)
 
     return {
         title: `Night Owl - Login`,

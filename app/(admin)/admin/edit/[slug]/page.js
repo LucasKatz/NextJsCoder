@@ -7,8 +7,6 @@ const EditPage = async ({ params }) => {
   try {
     const product = await getProductBySlug(slug);
 
-    console.log("show me", product);
-
     if (!product) {
       console.error("Product not found");
       return (

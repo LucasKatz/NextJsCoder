@@ -64,20 +64,12 @@ const SignUp = () => {
   };
 
   return (
-    <>
       <main className="flex min-h-screen flex-row items-center justify-between">
-        <form
-          onSubmit={handleSubmit}
-          id="signupForm"
-          method="GET"
-          className="speaker-form bg-gray-100 border border-gray-300 rounded-md max-w-md mx-auto p-4"
-        >
+        <form onSubmit={handleSubmit} method="GET" className="speaker-form bg-gray-100 border border-gray-300 rounded-md max-w-md mx-auto p-4">
           <div className="form-row mb-4">
             <h1 className="text-center py-5 text-purple-900 font-extrabold">Sign Up</h1>
-            <div className="mb-4">
-                    <label className="font-bold" htmlFor="first_name">
-                        Name:
-                    </label>
+                <div className="mb-4">
+                    <label className="font-bold" htmlFor="first_name">Name:</label>
                     <input
                         id="name"
                         name="name"
@@ -85,13 +77,10 @@ const SignUp = () => {
                         value={values.name}
                         className="w-full border border-gray-300 rounded p-1"
                         onChange={handleChange}
-                        required
-                    />
+                        required/>
                 </div>
                 <div className="mb-4">
-                    <label className="font-bold" htmlFor="last_name">
-                        Surname:
-                    </label>
+                    <label className="font-bold" htmlFor="last_name">Surname:</label>
                     <input
                         id="surname"
                         name="surname"
@@ -99,13 +88,10 @@ const SignUp = () => {
                         value={values.surname}
                         className="w-full border border-gray-300 rounded p-1"
                         onChange={handleChange}
-                        required
-                    />
+                        required/>
                 </div>
                 <div className="mb-4">
-                    <label className="font-bold" htmlFor="email">
-                        Email:
-                    </label>
+                    <label className="font-bold" htmlFor="email">Email:</label>
                     <input
                         id="email"
                         name="email"
@@ -114,13 +100,10 @@ const SignUp = () => {
                         placeholder="joe@example.com"
                         className="w-full border border-gray-300 rounded p-1"
                         onChange={handleChange}
-                        required
-                    />
+                        required/>
                 </div>
                 <div className="mb-4">
-                    <label className="font-bold" htmlFor="email">
-                        Repeat Email:
-                    </label>
+                    <label className="font-bold" htmlFor="email">Repeat Email:</label>
                     <input
                         id="repeatEmail"
                         name="repeatEmail"
@@ -128,13 +111,10 @@ const SignUp = () => {
                         value={values.repeatEmail}
                         className="w-full border border-gray-300 rounded p-1"
                         onChange={handleChange}
-                        required
-                    />
+                        required/>
                 </div>
                 <div className="mb-4">
-                    <label className="font-bold" htmlFor="password">
-                        Password:
-                    </label>
+                    <label className="font-bold" htmlFor="password">Password:</label>
                     <input
                         id="password"
                         name="password"
@@ -142,15 +122,11 @@ const SignUp = () => {
                         value={values.password}
                         className="w-full border border-gray-300 rounded p-1"
                         onChange={handleChange}
-                        required
-                    />
+                        required/>
                 </div>
             </div>
           <div className="form-row mb-4 flex justify-center">
-            <button
-              type="submit"
-              className="bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2"
-            >
+            <button type="submit" className="bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
               Register
             </button>
           </div>
@@ -158,14 +134,12 @@ const SignUp = () => {
             <p className="font-semibold">Already have an account?</p>
             <Link
               href={"/login"}
-              className="ml-2 bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2"
-            >
+              className="ml-2 bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
               Login
             </Link>
           </div>
         </form>
       </main>
-    </>
   );
 };
 

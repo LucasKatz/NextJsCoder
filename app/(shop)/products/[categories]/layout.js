@@ -9,8 +9,7 @@ const ProductsLayout = ({children}) => {
         <div className="container m-auto">
             <CategoriesMenu/>
             <Suspense fallback = {
-                <Loader/>
-            }>
+                <Loader/>}>
             {children}
             </Suspense>
         </div>

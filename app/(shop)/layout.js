@@ -11,11 +11,9 @@ export default function ShopLayout({ children}) {
     return (
     <html lang="en">
         <body className="bg-giphy-background" >
-
-        <Navbar/>
-        {children}
-        <Footer/>
-
+            <Navbar/>
+            {children}
+            <Footer/>
         </body>
     </html>
     )

@@ -6,11 +6,6 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { dataBase, fireStorage} from "@/services/firebase";
 import Button from "@/components/userint/button";
 import Swal from "sweetalert2";
-import Link from "next/link";
-
-
-
-
 
 const updateProduct = async (slug, values, file) => {
   try {
@@ -43,8 +38,6 @@ const updateProduct = async (slug, values, file) => {
 };
 
 const EditForm= ({product}) => {
-
-
 
   const { title, description, price, type, image, slug } = product
 
@@ -169,17 +162,11 @@ const EditForm= ({product}) => {
       </form>
 
       <div className="flex flex-row items-center justify-center my-5">
-        <Button
-          href={"/login"}
-          className="px-4 py-2 cursor-pointer rounded mr-2"
-        >
+        <Button href={"/login"}className="px-4 py-2 cursor-pointer rounded mr-2">
           Logout
         </Button>
 
-        <Button
-          href={"/admin"}
-          className=" px-4 py-2 cursor-pointer rounded mr-2"
-        >
+        <Button href={"/admin"} className=" px-4 py-2 cursor-pointer rounded mr-2">
           Back to Panel
         </Button>
       </div>

@@ -27,7 +27,6 @@ const CreateProductForm = () => {
       const fileURL = await getDownloadURL(fileSnapshot.ref)
       const docRef = doc(dataBase, "products", values.slug);
       await setDoc(docRef, { ...values, image:fileURL });
-      console.log("Producto Agregado con éxito");
       return { ok: true };
     } catch (error) {
       console.error("Error adding product:", error);
@@ -71,16 +70,6 @@ const CreateProductForm = () => {
           });
         }
 
-        console.log(
-          "These are the values" +
-            title +
-            slug +
-            category +
-            description +
-            price +
-            size
-        );
-
         return { ok: true };
       } catch (error) {
         console.error("Error:", error);
@@ -108,8 +97,7 @@ const CreateProductForm = () => {
               name="title"
               className="form-input mb-4 w-2/3"
               placeholder="Title"
-              required
-            />
+              required/>
             <input
               value={values.slug}
               onChange={handleChange}
@@ -117,8 +105,7 @@ const CreateProductForm = () => {
               name="slug"
               className="form-input mb-4 w-2/3"
               placeholder="Slug"
-              required
-            />
+              required/>
             <input
               value={values.description}
               onChange={handleChange}
@@ -126,17 +113,14 @@ const CreateProductForm = () => {
               name="description"
               className="form-input mb-4 w-2/3"
               placeholder="Description"
-              required
-            />
-            
+              required/>
             <input
               type="file"
               onChange={(e) => setFile(e.target.files[0])}
               name="image"
               className="form-input mb-4 w-2/3"
               placeholder="Image"
-              required
-            /> 
+              required/> 
             <input
               value={values.price}
               onChange={handleChange}
@@ -144,8 +128,7 @@ const CreateProductForm = () => {
               name="price"
               className="form-input mb-4 w-2/3"
               placeholder="Price"
-              required
-            />
+              required/>
             <input
               value={values.size}
               onChange={handleChange}
@@ -153,8 +136,7 @@ const CreateProductForm = () => {
               name="size"
               placeholder="Size"
               className="w-2/3 mb-4"
-              required
-            />
+              required/>
             <input
               value={values.category}
               onChange={handleChange}
@@ -162,8 +144,7 @@ const CreateProductForm = () => {
               name="category"
               placeholder="Category"
               className="w-2/3 mb-4"
-              required
-            />
+              required/>
             <input
               type="number"
               value={values.stock}
@@ -171,8 +152,7 @@ const CreateProductForm = () => {
               placeholder="Stock"
               className="w-2/3"
               name="stock"
-              onChange={handleChange}
-            />
+              onChange={handleChange}/>
             <Button type="submit">Submit</Button>
           </div>
         </div>
@@ -181,15 +161,13 @@ const CreateProductForm = () => {
       <div className="flex flex-row items-center justify-center my-5">
         <Link
           href={"/login"}
-          className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2"
-        >
+          className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
           Logout
         </Link>
 
         <Link
           href={"/admin"}
-          className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2"
-        >
+          className=" m bg-bg-color-1 text-text-color-5 border-none px-4 py-2 cursor-pointer rounded mr-2">
           Back to Panel
         </Link>
       </div>

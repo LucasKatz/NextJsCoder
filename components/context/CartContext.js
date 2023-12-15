@@ -71,11 +71,10 @@ export const CartProvider = ({ children }) => {
           });
   
           cartDocId = cartDocRef.id;
-          console.log('New cart created. Cart document ID:', cartDocId);
+
         }
       }
   
-      // Add product to cart
       if (!isInCart(productToAdd.title)) {
         const productWithQuantity = {
           ...productToAdd,
@@ -118,9 +117,7 @@ export const CartProvider = ({ children }) => {
   
       if (cartDocId) {
         const cartDocRef = doc(dataBase, 'carts', cartDocId);
-        const cartSnapshot = await getDoc(cartDocRef); // Cambiar de getDocs() a getDoc()
-        
-        console.log("Carrito leído");
+        const cartSnapshot = await getDoc(cartDocRef); 
   
         if (cartSnapshot.exists()) {
           const cartData = cartSnapshot.data();
@@ -172,11 +169,11 @@ export const CartProvider = ({ children }) => {
 
   const removeProduct = async (title) => {
     try {
-      // Remueve el producto del carrito local
+
       const updatedCart = cart.filter((product) => product.title !== title);
       setCart(updatedCart);
 
-      // Remueve el producto del carrito en Firebase
+
       await updateCartInFirestore(updatedCart);
 
       toast.success('Product removed from cart!', { position: toast.POSITION.TOP_RIGHT });
@@ -189,12 +186,11 @@ export const CartProvider = ({ children }) => {
   const updateCartInFirestore = async (updatedCart) => {
     try {
       if (user) {
-        // Obtener el cartDocId actualizado llamando a fetchCartDocId
+
         const updatedCartDocId = await fetchCartDocId(user);
   
         if (updatedCartDocId) {
           const cartDocRef = doc(dataBase, 'carts', updatedCartDocId);
-          console.log("Carrito actualizado", updatedCartDocId);
           await updateDoc(cartDocRef, { cart: updatedCart });
         }
       }
@@ -228,11 +224,6 @@ export const CartProvider = ({ children }) => {
 
     return product?.quantity;
   };
-
-  console.log(cart);
-
-
-
 
   return (
     <CartContext.Provider

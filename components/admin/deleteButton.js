@@ -7,9 +7,7 @@ import { dataBase } from "@/services/firebase";
 const DeleteButton = ({ slug }) => {
   const deleteProduct = async () => {
     try {
-      await deleteDoc(doc(dataBase, "products", slug));
-      console.log("Product Deleted");
-      
+      await deleteDoc(doc(dataBase, "products", slug));      
     } catch (error) {
       console.error("Error deleting product:", error);
       

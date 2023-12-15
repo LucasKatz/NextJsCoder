@@ -1,15 +1,15 @@
-"use client"
 
-import { useEffect } from 'react';
 import ContactForm from '../../../components/forms/contactForm';
 
-const metadata = { title: "Night Owl Resources - Contact" };
+export async function generateMetadata({params, searchParams}, parent) {
+
+    return {
+        title: `Night Owl - Contact`,
+    }
+}
 
 export default function Contact() {
-    useEffect(() => {
 
-        document.title = metadata.title;
-    }, []);
 
     return (
         <>

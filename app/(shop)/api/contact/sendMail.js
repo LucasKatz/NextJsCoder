@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
     const mailOptions = {
         from: email,
-        to: 'destinatario@example.com',
+        to: 'l.katz92@gmail.com',
         subject: 'Night Owl Resources Contact Form',
         text: JSON.stringify(emailContent,null, 2),
     };
@@ -21,11 +21,11 @@ export default async function handler(req, res) {
     try {
         await transporter.sendMail(mailOptions);
         res.status(200).json({ success: true });
-    } catch (error) {
+}   catch (error) {
         console.error(error);
         res.status(500).json({ success: false, error: 'Error al enviar el correo.' });
     }
-    } else {
+}   else {
         res.status(405).json({ success: false, message: 'Método no permitido' });
     }
 }
