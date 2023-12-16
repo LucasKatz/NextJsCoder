@@ -72,7 +72,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="absolute top-8 left-0 bg-white border border-gray-300 p-2 rounded flex flex-col">
           <Link href="/profile">Profile</Link>
-          <button onClick={() => { eraseCart(user); logout(); clearCart();}}> Logout</button>
+          <button onClick={() => { logout(); }}> Logout</button>
         </div>
       )}
     </div>

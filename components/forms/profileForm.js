@@ -38,7 +38,7 @@ if (!userData) {
 return (
     <main className="flex  flex-row m-auto mb-10 p-5 justify-center bg-bg-color-5 w-1/3 rounded-md">
     <form className="items-center">
-            <div className="form-row mb-4 text-center">
+        <div className="form-row mb-4 text-center">
             <div className="mb-4">
                 <label className="font-bold" htmlFor="name">
                     Name:

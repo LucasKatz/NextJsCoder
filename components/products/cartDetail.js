@@ -91,11 +91,6 @@ const CartDetail = () => {
           </li>
         ))}
       </ul>
-      <h2 className="text-text-color-5 font-semibold">
-        Total a Pagar:$ {cart.reduce((total, prod) => total + prod.price * prod.quantity, 0)}
-      </h2>
-      <h2 className="text-text-color-5 font-semibold">Shipping Method</h2>
-      <h2 className="text-text-color-5 font-semibold">Payment Method</h2>
       <div className="flex flex-row justify-center">
       <Button 
                 onClick={clearCart}>Clear Cart
