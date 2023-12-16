@@ -1,6 +1,7 @@
 "use client"
 
 import Button from "../userint/button"
+import jsPDF from "jspdf"
 import { useEffect, useState } from "react"
 import { useAuthContext } from "../context/AuthContext"
 import {  useCart } from "../context/CartContext"
@@ -32,6 +33,26 @@ const createOrder = async (userData, cart) => {
     return docId;
 };
 
+const generatePDF = (userData, cart) => {
+    const pdf = new jsPDF();
+
+    pdf.text(20, 20, `Name: ${userData.name}`);
+    pdf.text(20, 30, `Surname: ${userData.surname}`);
+    pdf.text(20, 40, `Phone Number: ${userData.phone}`);
+    pdf.text(20, 50, `Email: ${userData.email}`);
+
+    pdf.text(20, 60, 'Purchase Details:');
+    cart.forEach((cartProduct, index) => {
+      const yPosition = 70 + index * 10;
+    pdf.text(20, yPosition, `${cartProduct.title} - Quantity: ${cartProduct.quantity}`);
+    });
+
+    pdf.text(20, 160, `Total: $${cart.reduce((total, prod) => total + prod.price * prod.quantity, 0)}`);
+
+    pdf.save('ticket.pdf');
+
+    pdf.output('dataurlnewwindow');
+};
 
 const PurchaseForm = () => {
     const { cart, eraseCart, clearCart } = useCart()
@@ -119,7 +140,7 @@ const PurchaseForm = () => {
             </div>
     </div>
             <div className="flex flex-row justify-center my-5">
-                <Button onClick={() => { eraseCart(user); clearCart();}}  type="submit">Terminar mi compra</Button>
+                <Button onClick={() => {  generatePDF(userData, cart);}}  type="submit">Terminar mi compra</Button>
             </div>
     </form>
     )}
@@ -130,3 +151,4 @@ const PurchaseForm = () => {
 
 export default PurchaseForm
 
+/*eraseCart(user); clearCart();*/
