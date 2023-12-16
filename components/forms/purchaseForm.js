@@ -7,7 +7,8 @@ import { useAuthContext } from "../context/AuthContext"
 import {  useCart } from "../context/CartContext"
 import { dataBase } from "@/services/firebase"
 import Loader from "@/app/(shop)/products/detail/[slug]/loading"
-import { setDoc, doc, getDoc, Timestamp, collection, getFirestore } from "firebase/firestore"
+import { writeBatch, writeBatchCommit } from "firebase/firestore"
+import { setDoc, doc, getDoc, Timestamp, collection, getFirestore} from "firebase/firestore"
 
 
 const createOrder = async (userData, cart) => {
@@ -29,6 +30,20 @@ const createOrder = async (userData, cart) => {
     const docId = Timestamp.fromDate(new Date()).toMillis();
     const orderRef = doc(dataBase, "Tickets", String(docId));
     await setDoc(orderRef, order);
+
+    const batch = writeBatch(dataBase);
+
+    cart.forEach((cartProduct) => {
+        const productRef = doc(dataBase, "products", cartProduct.slug);
+        const newStock = cartProduct.stock - cartProduct.quantity;
+        batch.update(productRef, { stock: newStock });
+        console.log("Stock descontado")
+});
+
+
+    await writeBatchCommit(batch);
+    await setDoc(orderRef, order);
+
 
     return docId;
 };
@@ -140,7 +155,7 @@ const PurchaseForm = () => {
             </div>
     </div>
             <div className="flex flex-row justify-center my-5">
-                <Button onClick={() => {  generatePDF(userData, cart);}}  type="submit">Terminar mi compra</Button>
+                <Button onClick={() => {  }}  type="submit">Terminar mi compra</Button>
             </div>
     </form>
     )}
@@ -151,4 +166,4 @@ const PurchaseForm = () => {
 
 export default PurchaseForm
 
-/*eraseCart(user); clearCart();*/
+/*eraseCart(user); clearCart(); generatePDF(userData, cart);*/
