@@ -1,33 +1,33 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../userint/button";
+import Loader from "@/app/(shop)/products/detail/[slug]/loading";
 import { useCart } from "@/components/context/CartContext";
 import { useAuthContext } from "../context/AuthContext";
-
-
+import { useState, useEffect } from "react";
 
 const CartDetail = () => {
-  const { cart,clearCart, removeProduct } = useCart();
+  const { cart, clearCart, removeProduct } = useCart();
   const { user } = useAuthContext();
+  const [loading, setLoading] = useState(true);
 
-  if (!user.loggedIn) {
-    return (
-      <main className="container m-auto my-5 p-auto w-1/2">
-        <div className="flex flex-col m-auto bg-orange-300 text-center rounded-md h-56">
-          <h1 className="m-auto py-1/2 text-2xl font-semibold text-purple-900 justify-center">
-            You need to be logged in to access the cart.
-          </h1>
-          <Link href={"/login"} className="m-auto py-1/2 text-xl font-semibold text-purple-900 justify-center">Login</Link>
-        </div>
-      </main>
-    );
+  useEffect(() => {
+    const fetchData = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []); 
+
+  if (loading) {
+    return <Loader />;
   }
-  
-
 
   if (cart.length === 0) {
+
     return (
       <main className="container m-auto my-5 p-auto w-1/2">
         <div className="m-auto bg-orange-300 text-center rounded-md">
@@ -45,6 +45,19 @@ const CartDetail = () => {
     );
   }
 
+  if (!user.loggedIn) {
+
+    return (
+      <main className="container m-auto my-5 p-auto w-1/2">
+        <div className="flex flex-col m-auto bg-orange-300 text-center rounded-md h-56">
+          <h1 className="m-auto py-1/2 text-2xl font-semibold text-purple-900 justify-center">
+            You need to be logged in to access the cart.
+          </h1>
+          <Link href={"/login"} className="m-auto py-1/2 text-xl font-semibold text-purple-900 justify-center">Login</Link>
+        </div>
+      </main>
+    );
+  }
   
   
   return (
@@ -84,9 +97,12 @@ const CartDetail = () => {
       <h2 className="text-text-color-5 font-semibold">Shipping Method</h2>
       <h2 className="text-text-color-5 font-semibold">Payment Method</h2>
       <div className="flex flex-row justify-center">
-      <button className="text-l bg-purple-900 text-white rounded-md p-auto w-40 h-12"
+      <Button 
                 onClick={clearCart}>Clear Cart
-      </button>
+      </Button>
+      <Button className="ml-5">
+                <Link  href={"/payment"}>Proceed to Payment </Link>
+      </Button>
       </div>
     </div>
 

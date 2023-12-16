@@ -95,11 +95,10 @@ const ProductDetail = ({ slug }) => {
               </Button>
             </div>
             <div className="my-8">
-              <Button
-                href="/products/todos"
-                className="my-2 rounded-md p-5"
-              >
+              <Button className="my-2 rounded-md p-5">
+                <Link href="/products/all">
                 Back to Catalogue
+                </Link>
               </Button>
             </div>
           </div>
