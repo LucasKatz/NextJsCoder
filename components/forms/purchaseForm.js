@@ -7,7 +7,7 @@ import { useAuthContext } from "../context/AuthContext"
 import {  useCart } from "../context/CartContext"
 import { dataBase } from "@/services/firebase"
 import Loader from "@/app/(shop)/products/detail/[slug]/loading"
-import { writeBatch, writeBatchCommit } from "firebase/firestore"
+import { writeBatch, commit } from "firebase/firestore"
 import { setDoc, doc, getDoc, Timestamp, collection, getFirestore} from "firebase/firestore"
 
 
@@ -33,17 +33,14 @@ const createOrder = async (userData, cart) => {
 
     const batch = writeBatch(dataBase);
 
-    cart.forEach((cartProduct) => {
-        const productRef = doc(dataBase, "products", cartProduct.slug);
-        const newStock = cartProduct.stock - cartProduct.quantity;
-        batch.update(productRef, { stock: newStock });
-        console.log("Stock descontado")
-});
+  cart.forEach((cartProduct) => {
+    const productRef = doc(dataBase, "products", cartProduct.slug);
+    const newStock = cartProduct.stock - cartProduct.quantity;
+    batch.update(productRef, { stock: newStock });
+    console.log("Stock descontado");
+  });
 
-
-    await writeBatchCommit(batch);
-    await setDoc(orderRef, order);
-
+  await batch.commit();
 
     return docId;
 };
