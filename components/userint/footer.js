@@ -9,9 +9,9 @@ const Footer = () => {
       <div className="flex justify-between">
         {/* Left Section */}
         <div className="w-1/3 p-4">
-          <h3 className="text-2xl font-semibold text-center font-lobster">About Us</h3>
+          <Link href={"/about"}><h3 className="text-2xl font-semibold text-center font-lobster">About Us</h3>   </Link>
             <p className="mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore   et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+            In the heart of the educational landscape, an innovative venture emerged from the passion of an  English teacher. Fueled by the vision to redefine teaching, this entrepreneur set out to create a haven for educators.
             </p>    
         </div>
   

@@ -17,15 +17,16 @@ export default function About() {
         <div className="flex w-1/2 p-auto mr-5">
             <Image
                 alt={""}
-                src={`/images/about.webp`}
+                src={`/images/Lucy's%20new%20pencil-case.jpg`}
                 width={"860"}
                 height={"1240"}
                 className="mx-2 p-8"
             />
         </div>
-        <div className="flex w-1/2 text-text-color-5 font-lobster text-3xl">
+        <div className="flex w-1/2 text-text-color-5 font-lobster text-xl">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+          In the heart of the educational landscape, an innovative venture emerged from the passion of an  English teacher. Fueled by the vision to redefine teaching, this entrepreneur set out to create a haven for educators. Recognizing the need for high-quality, tailored teaching resources, the venture was born, aiming to empower teachers in making every lesson extraordinary. The founder&aposs journey, inspired by personal classroom experiences, resulted in a collection of thoughtfully designed materials dedicated to simplifying lesson planning and enriching the educational experience. Today, this entrepreneurial endeavor stands as a testament to the transformative power of education, offering support to teachers worldwide as they strive to create impactful and memorable learning adventures.
           </p>
         </div>
         </section>

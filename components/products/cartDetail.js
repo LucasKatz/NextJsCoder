@@ -55,7 +55,7 @@ const CartDetail = () => {
           <li key={cartProduct.id} className="flex flex-col items-center">
             <Image
               alt={cartProduct.title}
-              src={`/images/products/${cartProduct.image}`}
+              src={cartProduct.image}
               width={270}
               height={270}
               className="mx-auto my-5 rounded-md"
