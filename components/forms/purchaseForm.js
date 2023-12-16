@@ -9,23 +9,29 @@ import Loader from "@/app/(shop)/products/detail/[slug]/loading"
 import { setDoc, doc, getDoc, Timestamp, collection, getFirestore } from "firebase/firestore"
 
 
-const createOrder = async (values, items) => {
+const createOrder = async (userData, cart) => {
     const order = {
-        client: values,
-        items: items.map(item => ({
+        client: {
+            name: userData.name,
+            surname: userData.surname,
+            phone: userData.phone,
+            email: userData.email,
+        },
+        items: cart.map(item => ({
             title: item.title,
             price: item.price,
             quantity: item.quantity
         })),
         date: new Date().toISOString()
-    }
+    };
 
-    const docId = Timestamp.fromDate(new Date()).toMillis()
-    const orderRef = doc(dataBase, "orders", String(docId))
-    await setDoc(orderRef, order)
+    const docId = Timestamp.fromDate(new Date()).toMillis();
+    const orderRef = doc(dataBase, "Tickets", String(docId));
+    await setDoc(orderRef, order);
 
-    return docId
-}
+    return docId;
+};
+
 
 const PurchaseForm = () => {
     const { cart, eraseCart, clearCart } = useCart()
@@ -60,7 +66,7 @@ const PurchaseForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const result = await createOrder(values, cart)
+        const result = await createOrder(userData, cart)
         console.log(result)
     }
 
@@ -113,7 +119,7 @@ const PurchaseForm = () => {
             </div>
     </div>
             <div className="flex flex-row justify-center my-5">
-                <Button onClick={() => { eraseCart(user); clearCart();}} type="submit">Terminar mi compra</Button>
+                <Button onClick={() => { eraseCart(user); clearCart();}}  type="submit">Terminar mi compra</Button>
             </div>
     </form>
     )}
@@ -123,3 +129,4 @@ const PurchaseForm = () => {
 };
 
 export default PurchaseForm
+
