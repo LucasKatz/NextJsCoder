@@ -27,24 +27,13 @@ const AdminDetail = () => {
     };
 
     fetchProducts();
-  }, []); // Fetch products on initial mount
+  }, []);
 
   const handleDeleteSuccess = () => {
-    // Reload products after successful deletion
+
     fetchProducts();
   };
 
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch(`http://localhost:3000/api/products/all`, {
-        cache: "no-store"
-      });
-      const products = await response.json();
-      setItems(products);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
 
 
   return (

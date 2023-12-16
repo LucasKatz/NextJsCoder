@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuthContext } from "@/components/context/AuthContext";
-import "./admin.css";
+import "@/app/globals.css"
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "@/app/(shop)/products/detail/[slug]/loading";
@@ -18,7 +18,7 @@ useEffect(() => {
 
   setTimeout(() => {
     setLoading(false);
-  }, 1000);
+  }, 3000);
 }, []);
 
 

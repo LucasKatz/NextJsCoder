@@ -7,8 +7,8 @@ export async function generateMetadata({params, searchParams}, parent) {
     }
 }
 
-const AdminProducts = ({ params }) => {
-    const categories = params?.categories ?? "todos";
+const AdminProducts = () => {
+
 
     return (
         <main className="container m-auto">
