@@ -15,7 +15,7 @@ const DetailPage = async ({params}) => {
 
     const {slug} = params
 
-    const response = await fetch(`http:${process.env.VERCEL_URL}/api/products/detail/${slug}`, {
+    const response = await fetch(`https:${process.env.VERCEL_URL}/api/products/detail/${slug}`, {
         
 })
 
