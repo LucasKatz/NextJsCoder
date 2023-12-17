@@ -10,6 +10,7 @@ import { addDoc, collection, updateDoc, doc, getDocs, query, where, deleteDoc, g
 export const CartContext = createContext({
   cart: [],
   totalQuantity: 0,
+  resetTotalQuantity: () => {}
 });
 
 export const CartProvider = ({ children }) => {
@@ -17,6 +18,7 @@ export const CartProvider = ({ children }) => {
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [total, setTotal] = useState(0);
   const { user } = useAuthContext();
+  const [cartQuantity, setCartQuantity] = useState(0);
   const [cartDocId, setCartDocId] = useState(null);
 
   const fetchCartDocId = async (user) => {
@@ -225,6 +227,10 @@ export const CartProvider = ({ children }) => {
     return product?.quantity;
   };
 
+  const resetTotalQuantity = () => {
+    setTotalQuantity(0);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -238,6 +244,7 @@ export const CartProvider = ({ children }) => {
         totalQuantity,
         total,
         cart,
+        resetTotalQuantity,
         eraseCart,
         fetchCartDocId,
         readCart

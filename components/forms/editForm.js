@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import React, { useReducer } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { dataBase, fireStorage } from "@/services/firebase";
@@ -9,20 +9,14 @@ import Button from "@/components/userint/button";
 import Swal from "sweetalert2";
 import Link from "next/link";
 
-// Función para actualizar un producto
 const updateProduct = async (slug, values, file) => {
   try {
     let fileURL = values.image;
 
-    console.log("File state before if:", file);
     if (file) {
-      console.log("File state AFTER if:", file);
       const storageRef = ref(fireStorage, values.slug);
-      console.log(storageRef, "storage");
       const fileSnapshot = await uploadBytes(storageRef, file);
-      console.log(fileSnapshot, "snapshot");
       fileURL = await getDownloadURL(fileSnapshot.ref);
-      console.log("File URL", fileURL);
     }
 
     const docRef = doc(dataBase, "products", slug);
@@ -34,8 +28,6 @@ const updateProduct = async (slug, values, file) => {
       image: fileURL,
     });
 
-    console.log("Producto actualizado correctamente");
-    
     return { ok: true };
   } catch (error) {
     console.error("Error updating product:", error);
@@ -43,35 +35,48 @@ const updateProduct = async (slug, values, file) => {
   }
 };
 
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case "UPDATE_FIELD":
+      return { ...state, [action.field]: action.value };
+    case "SET_FILE":
+      return { ...state, file: action.file };
+    default:
+      return state;
+  }
+};
 
 const EditForm = ({ product }) => {
   const { logout } = useAuthContext();
 
   const { title, description, price, category, size, image, slug } = product;
 
-  const [values, setValues] = useState({
+  const initialState = {
     title,
     description,
     price,
     slug,
     category,
     size,
-    image
-  });
-  const [file, setFile] = useState(null);
-
-  const handleChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    });
+    image,
+    file: null,
   };
 
-  const Handlesubmit = async (e) => {
+  const [state, dispatch] = useReducer(formReducer, initialState);
+
+  const handleChange = (e) => {
+    dispatch({ type: "UPDATE_FIELD", field: e.target.name, value: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    dispatch({ type: "SET_FILE", file: e.target.files[0] });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await updateProduct(slug, values, file);
+      const response = await updateProduct(slug, state, state.file);
 
       if (response.ok) {
         Swal.fire({
@@ -95,10 +100,11 @@ const EditForm = ({ product }) => {
         buttons: true,
       });
     }
-  }
+  };
+
   return (
     <>
-      <form onSubmit={Handlesubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="mx-auto py-5 h-fit">
           <h1 className="text-center py-5 text-2xl w-full text-text-color-5 font-extrabold">
             Update your Product
@@ -107,7 +113,7 @@ const EditForm = ({ product }) => {
 
           <label className="font-bold">Title</label>
             <input
-              value={values.title}
+              value={state.title}
               onChange={handleChange}
               type="text"
               name="title"
@@ -116,7 +122,7 @@ const EditForm = ({ product }) => {
 
           <label className="font-bold">Slug</label>
             <input
-              value={values.slug}
+              value={state.slug}
               onChange={handleChange}
               type="text"
               name="slug"
@@ -125,7 +131,7 @@ const EditForm = ({ product }) => {
 
           <label className="font-bold">Description</label>
             <input
-              value={values.description}
+              value={state.description}
               onChange={handleChange}
               type="text"
               name="description"
@@ -136,14 +142,14 @@ const EditForm = ({ product }) => {
           <input
               type="file"
               name="image"
-              onChange={(e) => setFile(e.target.files[0])}
+              onChange={handleFileChange}
               className="form-input mb-4 w-2/3"
               placeholder="Image"
             />
 
           <label className="font-bold">Price</label>
             <input
-              value={values.price}
+              value={state.price}
               onChange={handleChange}
               type="number"
               name="price"
@@ -152,7 +158,7 @@ const EditForm = ({ product }) => {
 
           <label className="font-bold">Size</label>    
             <input
-              value={values.size}
+              value={state.size}
               onChange={handleChange}
               type="text"
               name="size"
@@ -161,7 +167,7 @@ const EditForm = ({ product }) => {
 
           <label className="font-bold">Category</label>    
             <input
-              value={values.category}
+              value={state.category}
               onChange={handleChange}
               type="text"
               name="category"
