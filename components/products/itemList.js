@@ -52,7 +52,7 @@ const ProductsList = ({ categories }) => {
             className="cursor-pointer ml-2 p-2 text-white"
             style={{ fontSize: '1.5rem' }}
         >
-            &#8592; {/* Flecha hacia la izquierda */}
+            &#8592; {/* Left Arrow*/}
         </span>
     )}
 
@@ -66,7 +66,7 @@ const ProductsList = ({ categories }) => {
             className="cursor-pointer ml-2 p-2 text-white"
             style={{ fontSize: '1.5rem' }}
         >
-            &#8594; {/* Flecha hacia la derecha */}
+            &#8594; {/* Right Arrow*/}
         </span>
     )}
 </div>

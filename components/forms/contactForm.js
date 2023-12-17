@@ -17,7 +17,7 @@ const ContactForm = ({ completoDatos }) => {
     e.preventDefault();
     if (!name || !email || !phone) {
       Swal.fire({
-        title: 'Completa tus datos',
+        title: 'Fill in the blanks',
         icon: 'warning',
         buttons: true,
         dangerMode: true,
@@ -31,8 +31,8 @@ const ContactForm = ({ completoDatos }) => {
       });
     } else {
       try {
-        
-        const response = await fetch('/components/userint/sendMail"', {
+
+        const response = await fetch(`http://${process.env.VERCEL_URL}/components/userint/sendMail`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const ContactForm = ({ completoDatos }) => {
 
         if (response.ok) {
           Swal.fire({
-            title: 'Datos Guardados',
+            title: 'Message Sent!',
             icon: 'success',
             buttons: true,
           });
@@ -56,7 +56,7 @@ const ContactForm = ({ completoDatos }) => {
           completoDatos(name, surname,  phone, email);
         } else {
           Swal.fire({
-            title: 'Error al enviar datos',
+            title: 'Your message was not sent, please try again',
             icon: 'error',
             buttons: true,
           });
@@ -64,7 +64,7 @@ const ContactForm = ({ completoDatos }) => {
       } catch (error) {
         console.error('Error:', error);
         Swal.fire({
-          title: 'Error al enviar datos',
+          title: 'Your message was not sent, please try again',
           icon: 'error',
           buttons: true,
         });

@@ -27,7 +27,7 @@ export const revalidate = 3600
 const Productos = async({params}) => {
     const { categories } = params
     
-    const response = await fetch(`http://localhost:3000/api/products/${categories}`, {
+    const response = await fetch(`http://${process.env.VERCEL_URL}/api/products/${categories}`, {
         
     })
     const items = await response.json()

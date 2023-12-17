@@ -31,7 +31,7 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const { user,logout } = useAuthContext(); 
-  const { eraseCart, clearCart, resetTotalQuantity} = useCart();
+  const { resetTotalQuantity} = useCart();
   
   
 

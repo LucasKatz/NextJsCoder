@@ -21,7 +21,7 @@ const UserForm = () => {
 
             setUserData(docSnapshot.data());
         } else {
-            console.log("Usuario no encontrado en la colección 'users'");
+            console.log("User not found'users'");
         }
         })
         .catch((error) => {

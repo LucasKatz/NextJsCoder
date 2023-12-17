@@ -38,7 +38,7 @@ const createOrder = async (userData, cart) => {
     const productRef = doc(dataBase, "products", cartProduct.slug);
     const newStock = cartProduct.stock - cartProduct.quantity;
     batch.update(productRef, { stock: newStock });
-    console.log("Stock descontado");
+
   });
 
   await batch.commit();
@@ -94,11 +94,11 @@ const PurchaseForm = () => {
     
                 setUserData(docSnapshot.data());
             } else {
-                console.log("Usuario no encontrado en la colección 'users'");
+                console.log("User data not found 'users'");
             }
             })
             .catch((error) => {
-                console.error("Error al obtener datos del usuario:", error);
+                console.error("User data not found:", error);
             })
             .finally(() => {
             setLoading(false);
@@ -173,4 +173,3 @@ const PurchaseForm = () => {
 
 export default PurchaseForm
 
-/*eraseCart(user); clearCart(); generatePDF(userData, cart);*/

@@ -12,7 +12,7 @@ switch (action.type) {
 }
 };
 
-const Counter = ({ quantity, setQuantity }) => {
+const Counter = ({ quantity}) => {
     const [state, dispatch] = useReducer(counterReducer, { quantity });
 
     const increase = () => dispatch({ type: "INCREMENT" });
