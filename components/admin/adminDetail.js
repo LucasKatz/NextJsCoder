@@ -6,6 +6,7 @@ import Link from "next/link";
 import Button from "../userint/button";
 import DeleteButton from "./deleteButton";
 import { useAuthContext } from "../context/AuthContext";
+import { getProducts } from "@/app/(shop)/api/productsApi";
 import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from 'react';
 
@@ -16,9 +17,8 @@ const AdminDetail = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/products/all`, {
-          cache: "no-store"
-        });
+        const response = await getProducts(categories); {
+        };
         const products = await response.json();
         setItems(products);
       } catch (error) {
