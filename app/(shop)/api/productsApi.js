@@ -28,8 +28,7 @@ export const getProductBySlug = async (slug) => {
     const slugQuery = query(productsFire, where('slug', '==', slug));
     const slugQuerySnapshot = await getDocs(slugQuery);
     const product = slugQuerySnapshot.docs.map(doc => doc.data())[0];
-    
-    console.log('Product by Slug:', product);
+    console.log("productAPI" ,slug)
     
     return product;
 };

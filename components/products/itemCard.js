@@ -8,9 +8,8 @@ import Button from "../userint/button"
 const ProductCard = ({item}) => {
 
   const {title,image,slug} = item
+  console.log("item", item)
 
-  console.log("valor de URL" + item.imageUrl)
-  console.log("Valor de Item" + item.title, item.image, item.slug)
 
     return (
       <div className="contenedorLista my-5 ">

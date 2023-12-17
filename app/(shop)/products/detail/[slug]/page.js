@@ -1,31 +1,26 @@
-import ProductDetail from "@/components/products/itemDetail"
-
+import ProductDetail from "@/components/products/itemDetail";
+import { getProductBySlug } from "@/app/(shop)/api/productsApi";
 
 export async function generateMetadata({ params, searchParams }, parent) {
-    console.log(params);
+  console.log(params);
 
-    return {
-        title: `Night Owl - Products - ${params.slug}`,
-    }
+  return {
+    title: `Night Owl - Products - ${params.slug}`,
+  };
 }
 
+const DetailPage = async ({ params }) => {
+  const { slug } = params;
 
+  const product = await getProductBySlug(slug);
+  console.log("ProductDetail",product)
 
-const DetailPage = async ({params}) => {
+  return (
+    <main className="container m-auto mt-10">
 
-    const {slug} = params
+      <ProductDetail product={product} />
+    </main>
+  );
+};
 
-    const response = await fetch(`https:${process.env.VERCEL_URL}/api/products/detail/${slug}`, {
-        
-})
-
-const items = await response.json()
-
-    return (
-        <main className="container m-auto mt-10">
-            <ProductDetail slug={slug}/>        
-        </main>
-    )
-}
-
-export default DetailPage
+export default DetailPage;
