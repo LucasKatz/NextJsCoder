@@ -12,14 +12,15 @@ import { useState, useEffect } from 'react';
 
 const AdminDetail = () => {
   const [items, setItems] = useState([]);
-  const { logout } = useAuthContext()
+  const { logout } = useAuthContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await getProducts(categories); {
-        };
-        const products = await response.json();
+
+        const categories = 'all';
+
+        const products = await getProducts(categories);
         setItems(products);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -28,7 +29,6 @@ const AdminDetail = () => {
 
     fetchProducts();
   }, []);
-
   const handleDeleteSuccess = () => {
 
     fetchProducts();
