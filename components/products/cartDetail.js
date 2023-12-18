@@ -26,25 +26,6 @@ const CartDetail = () => {
     return <Loader />;
   }
 
-  if (cart.length === 0) {
-
-    return (
-      <main className="container m-auto my-5 p-auto w-1/2">
-        <div className="m-auto bg-orange-300 text-center rounded-md">
-          <h1 className="m-auto py-12 text-2xl font-semibold text-purple-900">
-            There are no products in your cart
-          </h1>
-          <h2 className="m-auto py-12 text-2xl font-semibold text-purple-900">
-            Click the button below to check our catalogue
-          </h2>
-          <Link href="/products/all">
-            <Button>Check Catalogue</Button>
-          </Link>
-        </div>
-      </main>
-    );
-  }
-
   if (!user.loggedIn) {
 
     return (
@@ -58,6 +39,27 @@ const CartDetail = () => {
       </main>
     );
   }
+
+  if (cart.length === 0) {
+
+    return (
+      <main className="container m-auto my-5 p-auto w-1/2">
+        <div className="m-auto bg-orange-300 text-center rounded-md">
+          <h1 className="m-auto py-12 text-2xl font-semibold text-purple-900">
+            There are no products in your cart
+          </h1>
+          <h2 className="m-auto py-12 text-2xl font-semibold text-purple-900">
+            Click the button below to check our catalogue
+          </h2>
+          <Link href="/products/all" >
+            <Button className="mb-5">Check Catalogue</Button>
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
+
   
   
   return (
@@ -85,13 +87,13 @@ const CartDetail = () => {
             <p className="text-text-color-5 text-center font-semibold">
               Subtotal: ${cartProduct.price * cartProduct.quantity}
             </p>
-            <button onClick={() => removeProduct(cartProduct.title)} className="text-text-color-5 font-semibold w-1/2 justify-center bg-bg-color-2 rounded-md">
+            <button onClick={() => removeProduct(cartProduct.title)} className="text-text-color-5 font-semibold w-1/2 justify-center bg-bg-color-2 rounded-md my-2">
               Remove
             </button>
           </li>
         ))}
       </ul>
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row justify-center my-7">
       <Button 
                 onClick={clearCart}>Clear Cart
       </Button>

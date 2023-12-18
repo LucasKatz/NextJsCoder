@@ -24,7 +24,7 @@ const updateProduct = async (slug, values, file) => {
     await updateDoc(docRef, {
       title: values.title,
       description: values.description,
-      inStock: Number(values.inStock),
+      stock: Number(values.stock),
       price: Number(values.price),
       image: fileURL,
     });
@@ -50,7 +50,7 @@ const formReducer = (state, action) => {
 const EditForm = ({ product }) => {
   const { logout } = useAuthContext();
 
-  const { title, description, price, category, size, image, slug } = product;
+  const { title, description, price, category, size, image, slug,stock } = product;
 
   const initialState = {
     title,
@@ -60,6 +60,7 @@ const EditForm = ({ product }) => {
     category,
     size,
     image,
+    stock,
     file: null,
   };
 
@@ -162,7 +163,16 @@ const EditForm = ({ product }) => {
               placeholder="Category"
               className="w-2/3"
               required/>
-            <Button type="submit">Submit</Button>
+
+          <label className="font-bold">Stock</label>    
+            <input
+              value={state.stock}
+              onChange={handleChange}
+              type="number"
+              name="stock"
+              placeholder="Stock"
+              className="w-2/3 mb-4"/>
+            <Button type="submit" className="mt-5">Submit</Button>
           </div>
         </div>
       </form>

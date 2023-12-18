@@ -142,7 +142,7 @@ export const CartProvider = ({ children }) => {
 
   
   
-  const eraseCart = async (user) => {
+  {/*const eraseCart = async (user) => {
     try {
       const cartDocId = await fetchCartDocId(user);
       if (cartDocId) {
@@ -152,7 +152,7 @@ export const CartProvider = ({ children }) => {
     } catch (error) {
       console.error('Error deleting cart document:', error);
     }
-  };
+  };*/}
 
 
   const isInCart = (title) => {
@@ -245,7 +245,7 @@ export const CartProvider = ({ children }) => {
         total,
         cart,
         resetTotalQuantity,
-        eraseCart,
+        /*eraseCart,*/
         fetchCartDocId,
         readCart
       }}

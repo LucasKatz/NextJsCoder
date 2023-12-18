@@ -5,7 +5,8 @@ import { doc, setDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { dataBase, fireStorage} from "@/services/firebase";
 import Button from "../userint/button";
-import Swal from "sweetalert2";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
 
 const CreateProductForm = () => {
@@ -14,7 +15,6 @@ const CreateProductForm = () => {
     description: "",
     stock: 0,
     price: 0,
-    type: "",
     slug: "",
     size:"",
     category:""
@@ -48,37 +48,22 @@ const CreateProductForm = () => {
     const { title, slug, description, price, size, category, stock } = values;
 
     if (!title || !slug || !description || !price || !size || !category|| !stock) {
-      Swal.fire({
-        title: "Please complete the product`s data",
-        icon: "warning",
-        dangerMode: true,
-      });
+      toast.error(`Please fill all the blanks`, { position: toast.POSITION.TOP_RIGHT });
+
     } else {
       try {
         const response = await createProduct(values, file);
 
         if (response.ok) {
-          Swal.fire({
-            title: "Product Created",
-            icon: "success",
-
-          });
+          toast.success("Product Updated", { position: toast.POSITION.TOP_RIGHT });
         } else {
-          Swal.fire({
-            title: "Oops! There`s been a mistake",
-            icon: "error",
-
-          });
+          toast.error(`Oops! There's been a mistake. Error: ${response.error.message}`, { position: toast.POSITION.TOP_RIGHT });
         }
 
         return { ok: true };
       } catch (error) {
         console.error("Error:", error);
-        Swal.fire({
-          title: "Something happened. Please refresh and try again",
-          icon: "error",
-          buttons: true,
-        });
+        toast.error(`Oops! There's been a mistake. Error: ${response.error.message}`, { position: toast.POSITION.TOP_RIGHT });
       }
     }
   };
@@ -170,7 +155,7 @@ const CreateProductForm = () => {
               className="w-2/3"
               name="stock"
               onChange={handleChange}/>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" className="mt-5">Submit</Button>
           </div>
         </div>
       </form>

@@ -9,7 +9,7 @@ import Loader from "@/app/(shop)/products/detail/[slug]/loading";
 const AdminLayout = ({ children, unauthorized }) => {
   const { user } = useAuthContext();
   const router = useRouter();
-  const isAdminUser = user.loggedIn && user.email === process.env.NEXT_PUBLIC_ADMIN_CREDENTIALS;
+  const isAdminUser =  user.role === 'admin';
 
 
 const [loading, setLoading] = useState(true);

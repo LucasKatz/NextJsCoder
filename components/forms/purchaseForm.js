@@ -62,56 +62,70 @@ const generatePDF = (userData, cart) => {
 
     pdf.text(20, 160, `Total: $${cart.reduce((total, prod) => total + prod.price * prod.quantity, 0)}`);
 
-    Swal.fire({
+    return pdf;
+};
+
+const showDownloadPrompt = () => {
+    return Swal.fire({
         title: 'Do you want to download a copy of your ticket?',
         showCancelButton: true,
         confirmButtonText: 'Yes, download',
         cancelButtonText: 'No, thanks',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            pdf.save('ticket.pdf');
-            pdf.output('dataurlnewwindow');
-        }
-
     });
 };
 
 const PurchaseForm = () => {
-    const { cart, eraseCart, clearCart } = useCart()
+    const { cart, eraseCart, clearCart } = useCart();
     const { user } = useAuthContext();
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-
         if (user && user.email) {
-    
             const userDocRef = doc(collection(getFirestore(), "users"), user.email);
-    
+
             getDoc(userDocRef)
                 .then((docSnapshot) => {
-                if (docSnapshot.exists()) {
-    
-                setUserData(docSnapshot.data());
-            } else {
-                console.log("User data not found 'users'");
-            }
-            })
-            .catch((error) => {
-                console.error("User data not found:", error);
-            })
-            .finally(() => {
-            setLoading(false);
-            });
+                    if (docSnapshot.exists()) {
+                        setUserData(docSnapshot.data());
+                    } else {
+                        console.log("User data not found 'users'");
+                    }
+                })
+                .catch((error) => {
+                    console.error("User data not found:", error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
         }
     }, [user]);
 
-
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const result = await createOrder(userData, cart)
-        console.log(result)
-    }
+        e.preventDefault();
+        try {
+            const result = await createOrder(userData, cart);
+            console.log(result);
+
+            const swalResult = await showDownloadPrompt();
+
+            if (swalResult.isConfirmed) {
+                const pdf = generatePDF(userData, cart);
+                pdf.save('ticket.pdf');
+                pdf.output('dataurlnewwindow');
+                /*eraseCart(user);*/
+                clearCart();
+            } else {
+                /*eraseCart(user);*/
+                clearCart();
+                console.log('User chose not to download the ticket.');
+            }
+
+        } catch (error) {
+            console.error('Error creating order:', error);
+        }
+    };
+
 
     return (
 <main className="flex flex-col items-center justify-center m-auto">
@@ -162,7 +176,7 @@ const PurchaseForm = () => {
             </div>
     </div>
             <div className="flex flex-row justify-center my-5">
-                <Button onClick={() => { generatePDF(userData, cart); eraseCart(user); clearCart(); }}  type="submit">Submit Purchase</Button>
+                <Button onClick={() => { generatePDF(userData, cart);  }}  type="submit">Submit Purchase</Button>
             </div>
     </form>
     )}

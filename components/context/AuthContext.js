@@ -23,20 +23,21 @@ export const AuthProvider = ({ children }) => {
     uid: null,
     name: null,
     surname: null,
+    role: null,
   });
   
-  const { loggedIn, email } = user;
+  const { loggedIn, email, role } = user;
 
   useEffect(() => {
 
     if (loggedIn) {
-      if (email === process.env.NEXT_PUBLIC_ADMIN_CREDENTIALS) {
-        router.prefetch('/admin');
+      if (role === 'admin') {
+        router.push('/admin');
       } else {
-        router.prefetch('/products/all');
+        router.push('/products/all');
       }
     }
-  }, [loggedIn, email, router]);
+  }, [loggedIn, router, role]);
 
 
   const registerUser = async (values) => {
@@ -71,7 +72,8 @@ export const AuthProvider = ({ children }) => {
               email: values.email,
               name: values.name,
               surname: values.surname,
-              phone:values.phone
+              phone:values.phone,
+              role: 'user',
           });
   
       router.push('/products/all');
@@ -88,37 +90,93 @@ export const AuthProvider = ({ children }) => {
 
 const loginUser = async (values) => {
   try {
-  await signInWithEmailAndPassword(auth, values.email, values.password)
-  if (values.email === process.env.NEXT_PUBLIC_ADMIN_CREDENTIALS) {
-    router.push('/admin');
-  } else {
-    router.push('/products/all');
-  }
-  }catch (error) {
+
+    const userDocRef = doc(dataBase, 'users', values.email);
+    const userDocSnapshot = await getDoc(userDocRef);
+
+    if (!userDocSnapshot.exists()) {
+  
+      Swal.fire({
+        icon: 'error',
+        title: 'User Not Registered',
+        text: 'This email address is not registered. Please sign up.',
+      });
+    } else {
+
+      try {
+        await signInWithEmailAndPassword(auth, values.email, values.password);
+
+        const userWithRole = { ...user, role: userDocSnapshot.data().role }; 
+        setUser({
+          ...userWithRole,
+          loggedIn: true, 
+        });
+
+        if (userWithRole.role === 'admin') { 
+          router.push('/admin');
+        } else {
+          router.push('/products/all');
+        }
+      } catch (error) {
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Error',
+          text: `Login failed: ${error.message}`,
+        });
+      }
+    }
+  } catch (error) {
+
+    console.error('Error finding user:', error);
     Swal.fire({
       icon: 'error',
       title: 'Login Error',
       text: `Login failed: ${error.message}`,
     });
-    }
-}
+  }
+};
+  
 
 const googleLogin = async () => {
-  try{
-  await signInWithPopup(auth, googleAuth)
-  if (user.email === process.env.NEXT_PUBLIC_ADMIN_CREDENTIALS) {
-    router.push('/admin');
-  } else {
-    router.push('/products/all');
-  }
-  }catch (error){
+  try {
+    const result = await signInWithPopup(auth, googleAuth);
+    const userFromGoogle = result.user;
+
+    const userDocRef = doc(dataBase, 'users', userFromGoogle.email);
+    const userDocSnapshot = await getDoc(userDocRef);
+
+    let role = 'user'; 
+
+    if (userDocSnapshot.exists()) {
+      role = userDocSnapshot.data().role || 'user';
+    }
+
+    const userWithRole = { ...userFromGoogle, role };
+
+    setUser({
+      loggedIn: true,
+      email: userWithRole.email,
+      uid: userWithRole.uid,
+      name: userWithRole.name,
+      surname: userWithRole.surname,
+      role: userWithRole.role,
+    });
+
+    if (userWithRole.role === 'admin') {
+      router.push('/admin');
+    } else {
+      router.push('/products/all');
+    }
+  } catch (error) {
     Swal.fire({
       icon: 'error',
       title: 'Login Error',
       text: `Login failed: ${error.message}`,
     });
   }
-}
+};
+
 
 
 

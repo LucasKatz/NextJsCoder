@@ -71,7 +71,7 @@ const ProductDetail = ({ product }) => {
                 <p className="ml-4 text-xl font-semibold text-purple-900">Price: $ {product.price}</p>
             </div>
 
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-row items-center justify-center">
                 <p className="text-xl font-semibold  text-purple-900">Description:</p>
                 <p className="ml-4 font-semibold text-xl text-purple-900">{product.description}</p>
             </div>     
