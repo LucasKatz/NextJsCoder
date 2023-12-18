@@ -10,28 +10,30 @@ import { getProducts } from "@/app/(shop)/api/productsApi";
 import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from 'react';
 
+
 const AdminDetail = () => {
   const [items, setItems] = useState([]);
   const { logout } = useAuthContext();
 
+
+  const fetchProducts = async () => {
+    try {
+      const categories = 'all';
+      const products = await getProducts(categories);
+      setItems(products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-
-        const categories = 'all';
-
-        const products = await getProducts(categories);
-        setItems(products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
     fetchProducts();
-  }, []);
-  const handleDeleteSuccess = () => {
+  }, []); 
 
+
+  const handleDeleteSuccess = async () => {
     fetchProducts();
+    console.log("Funciona Refresh");
   };
 
 

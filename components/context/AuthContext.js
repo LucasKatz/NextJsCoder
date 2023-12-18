@@ -4,7 +4,7 @@ import { useState, createContext, useContext, useEffect } from 'react';
 import { auth, googleAuth, dataBase} from '@/services/firebase';
 import { useRouter } from "next/navigation";
 import Swal from 'sweetalert2';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup } from 'firebase/auth';
 
 
@@ -16,7 +16,7 @@ export const useAuthContext = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const router = useRouter();
 
-
+  
   const [user, setUser] = useState({
     loggedIn: false,
     email: null,
@@ -24,6 +24,20 @@ export const AuthProvider = ({ children }) => {
     name: null,
     surname: null,
   });
+  
+  const { loggedIn, email } = user;
+
+  useEffect(() => {
+
+    if (loggedIn) {
+      if (email === process.env.NEXT_PUBLIC_ADMIN_CREDENTIALS) {
+        router.prefetch('/admin');
+      } else {
+        router.prefetch('/products/all');
+      }
+    }
+  }, [loggedIn, email, router]);
+
 
   const registerUser = async (values) => {
     try {
@@ -38,11 +52,21 @@ export const AuthProvider = ({ children }) => {
         });
         return; 
       }
+
+      const userDocRef = doc(dataBase, 'users', values.email);
+      const userDocSnapshot = await getDoc(userDocRef);
   
+      if (userDocSnapshot.exists()) {
+        Swal.fire({
+          icon: 'error',
+          title: 'User Already Registered',
+          text: 'This email address is already registered. Please log in.',
+        });
+        return;
+      }
+
       await createUserWithEmailAndPassword(auth, values.email, values.password, values.repeatEmail, values.name, values.surname, values.phone);
 
-
-          const userDocRef = doc(dataBase, 'users', values.email);  
           await setDoc(userDocRef, {
               email: values.email,
               name: values.name,
@@ -71,7 +95,12 @@ const loginUser = async (values) => {
     router.push('/products/all');
   }
   }catch (error) {
-    throw new Error(`Login failed: ${error.message}`);  }
+    Swal.fire({
+      icon: 'error',
+      title: 'Login Error',
+      text: `Login failed: ${error.message}`,
+    });
+    }
 }
 
 const googleLogin = async () => {
@@ -83,7 +112,11 @@ const googleLogin = async () => {
     router.push('/products/all');
   }
   }catch (error){
-    console.error("Not possible to login", error)
+    Swal.fire({
+      icon: 'error',
+      title: 'Login Error',
+      text: `Login failed: ${error.message}`,
+    });
   }
 }
 

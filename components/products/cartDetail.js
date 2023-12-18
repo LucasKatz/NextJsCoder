@@ -37,7 +37,7 @@ const CartDetail = () => {
           <h2 className="m-auto py-12 text-2xl font-semibold text-purple-900">
             Click the button below to check our catalogue
           </h2>
-          <Link href="/products/todos">
+          <Link href="/products/all">
             <Button>Check Catalogue</Button>
           </Link>
         </div>

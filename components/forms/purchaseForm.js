@@ -172,4 +172,3 @@ const PurchaseForm = () => {
 };
 
 export default PurchaseForm
-

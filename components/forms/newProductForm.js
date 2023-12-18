@@ -16,6 +16,8 @@ const CreateProductForm = () => {
     price: 0,
     type: "",
     slug: "",
+    size:"",
+    category:""
   });
   const [file, setFile] = useState(null)
 
@@ -49,7 +51,6 @@ const CreateProductForm = () => {
       Swal.fire({
         title: "Please complete the product`s data",
         icon: "warning",
-        buttons: true,
         dangerMode: true,
       });
     } else {
@@ -60,13 +61,13 @@ const CreateProductForm = () => {
           Swal.fire({
             title: "Product Created",
             icon: "success",
-            button: true,
+
           });
         } else {
           Swal.fire({
             title: "Oops! There`s been a mistake",
             icon: "error",
-            button: true,
+
           });
         }
 

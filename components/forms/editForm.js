@@ -6,7 +6,8 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { dataBase, fireStorage } from "@/services/firebase";
 import { useAuthContext } from "../context/AuthContext";
 import Button from "@/components/userint/button";
-import Swal from "sweetalert2";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
 
 const updateProduct = async (slug, values, file) => {
@@ -79,26 +80,13 @@ const EditForm = ({ product }) => {
       const response = await updateProduct(slug, state, state.file);
 
       if (response.ok) {
-        Swal.fire({
-          title: "Product Updated",
-          icon: "success",
-          buttons: true,
-        });
+        toast.success("Product Updated", { position: toast.POSITION.TOP_RIGHT });
       } else {
-        Swal.fire({
-          title: "Oops! There's been a mistake",
-          text: `Error: ${response.error.message}`,
-          icon: "error",
-          buttons: true,
-        });
+        toast.error(`Oops! There's been a mistake. Error: ${response.error.message}`, { position: toast.POSITION.TOP_RIGHT });
       }
     } catch (error) {
       console.error("Error:", error);
-      Swal.fire({
-        title: "Something happened. Please refresh and try again",
-        icon: "error",
-        buttons: true,
-      });
+      toast.error("Something happened. Please refresh and try again", { position: toast.POSITION.TOP_RIGHT });
     }
   };
 
