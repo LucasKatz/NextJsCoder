@@ -1,11 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
 
-
-
-
-
-
 const ProductCard = ({item}) => {
 
   const {title,image,slug} = item
