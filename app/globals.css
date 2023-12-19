@@ -56,6 +56,9 @@ body {
 
 nav{
   background-color: #E7AB79;
+  width: 100%; /* Asegurar que ocupe el ancho completo */
+  box-sizing: border-box; /* Considerar el padding y el borde dentro del ancho total */
+  padding: 0.5rem; 
 }
 
 #Moon {
