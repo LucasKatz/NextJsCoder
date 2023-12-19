@@ -10,6 +10,7 @@ import { dataBase } from "@/services/firebase"
 import Loader from "@/app/(shop)/products/detail/[slug]/loading"
 import { writeBatch} from "firebase/firestore"
 import { setDoc, doc, getDoc, Timestamp, collection, getFirestore} from "firebase/firestore"
+import { useRouter } from "next/navigation";
 
 
 const createOrder = async (userData, cart) => {
@@ -79,6 +80,7 @@ const PurchaseForm = () => {
     const { user } = useAuthContext();
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const router = useRouter ();
 
     useEffect(() => {
         if (user && user.email) {
@@ -120,6 +122,7 @@ const PurchaseForm = () => {
                 clearCart();
                 console.log('User chose not to download the ticket.');
             }
+            router.push("/thanks")
 
         } catch (error) {
             console.error('Error creating order:', error);

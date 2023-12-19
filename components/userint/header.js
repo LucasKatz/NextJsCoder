@@ -31,7 +31,7 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const { user,logout } = useAuthContext(); 
-  const { resetTotalQuantity} = useCart();
+  const { resetTotalQuantity, clearCart} = useCart();
   
   
 
@@ -60,19 +60,19 @@ export default function Navbar() {
       </div>
 
     <div className="flex items-center justify-end space-x-4 p-4 w-1/4">
-      {user.loggedIn ? (
+  {user.loggedIn ? (
 
     <div className="relative">
       <button
-          className="text-sm text-gray-500 focus:outline-none"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {user.email}
+        className="text-sm text-gray-500 focus:outline-none"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {user.email}
       </button>
-      
       {isMenuOpen && (
         <div className="absolute top-8 left-0 bg-white border border-gray-300 p-2 rounded flex flex-col">
-          <Link href="/profile">Profile</Link>
-          <button onClick={() => { logout(); resetTotalQuantity(); }}> Logout</button>
+          <button onClick={() => console.log('Profile clicked')}>Profile</button>
+          <button onClick={() => { logout(); clearCart(); resetTotalQuantity();}}> Logout</button>
         </div>
       )}
     </div>
