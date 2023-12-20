@@ -105,7 +105,7 @@ const Navbar = () => {
 
       <div className='hidden md:flex row'>
       <Link href="/signup">
-        <FaUser className='text-3xl'/>
+        <FaUser className='text-3xl mr-5'/>
       </Link>
 
       <CartWidget/>

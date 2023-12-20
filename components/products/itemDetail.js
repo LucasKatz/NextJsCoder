@@ -23,7 +23,7 @@ const ProductDetail = ({ product }) => {
     const fetchProduct = async () => {
       try {
         if (!slug) {
-          // Si slug no está definido, manejar el caso aquí
+
           console.error("Slug is undefined");
           return;
         }
@@ -52,9 +52,9 @@ const ProductDetail = ({ product }) => {
 
 
   return (
-    <div className="max-w-4xl m-auto ">
-      <section className="flex gap-6 my-5  bg-bg-color-5 rounded-md">
-        <div className="p-5 productToAdds-center align-middle">
+    <div className="max-w-4xl m-auto">
+      <section className="flex flex-col md:flex-row  gap-6 my-5 bg-bg-color-5 rounded-md">
+        <div className="p-5 productToAdds-center align-middle md:w-1/2">
           <Image
             src={image}
             alt={productToAdd.title}
@@ -63,50 +63,48 @@ const ProductDetail = ({ product }) => {
             className="rounded-lg py-14 items-center"
           />
         </div>
-        <div className="basis-1/2 m-auto text-center p-5 flex flex-col">
-
-            <p className="text-2xl font-semibold  pb-4 mb-4  text-purple-900">{product.title}</p>
-
-            <div className="flex flex-row items-center justify-center">
-                <p className="ml-4 text-xl font-semibold text-purple-900">Price: $ {product.price}</p>
-            </div>
-
-            <div className="flex flex-row items-center justify-center">
-                <p className="text-xl font-semibold  text-purple-900">Description:</p>
-                <p className="ml-4 font-semibold text-xl text-purple-900">{product.description}</p>
-            </div>     
-
-            <div className="flex flex-row items-center justify-center">       
-                <p className="text-xl font-semibold    text-purple-900">Size:</p>
-                <p className="ml-4 text-xl font-semibold text-purple-900">{product.size}</p>
-            </div> 
-
+        <div className="basis-1/2 m-auto text-center p-5 flex flex-col md:w-1/2">
+  
+          <p className="text-2xl font-semibold pb-4 mb-4 text-purple-900">{product.title}</p>
+  
+          <div className="flex flex-row items-center justify-center">
+            <p className="ml-4 text-xl font-semibold text-purple-900">Price: $ {product.price}</p>
+          </div>
+  
+          <div className="flex flex-row items-center justify-center">
+            <p className="text-xl font-semibold text-purple-900">Description:</p>
+            <p className="ml-4 font-semibold text-xl text-purple-900">{product.description}</p>
+          </div>     
+  
+          <div className="flex flex-row items-center justify-center">       
+            <p className="text-xl font-semibold text-purple-900">Size:</p>
+            <p className="ml-4 text-xl font-semibold text-purple-900">{product.size}</p>
+          </div> 
+  
           <div className="my-5 text-center">
-                {!user.loggedIn && (
-                  <p className="text-red-500 font-semibold mb-4">
-                    You need to login to buy
-                  </p>
-                )}      
-              <Counter quantity={quantity} setQuantity={setQuantity}/>
-            <div className="flex productToAdds-center">
+            {!user.loggedIn && (
+              <p className="text-red-500 font-semibold mb-4">
+                You need to login to buy
+              </p>
+            )}
+            <Counter quantity={quantity} setQuantity={setQuantity}/>
+            <div className="flex productToAdds-center flex-col md:flex-row">
               <Button
-                className="p-auto ml-4 w-40 h-12"
+                className="p-auto mb-4 md:mr-4 w-full md:w-40 h-12"
                 onClick={handleAddToCart}
                 disabled={!user.loggedIn}>
                 Add to Cart
               </Button>
-
-              
-              <Button className="p-auto ml-4 w-40 h-12">
+              <Button className="p-auto w-full md:w-40 h-12 mb-4">
                 <Link href={"/cart"}>
-                Go to Cart
+                  Go to Cart
                 </Link>
               </Button>
             </div>
             <div className="my-8">
               <Button className="my-2 rounded-md p-5">
                 <Link href="/products/all">
-                Back to Catalogue
+                  Back to Catalogue
                 </Link>
               </Button>
             </div>
@@ -115,6 +113,8 @@ const ProductDetail = ({ product }) => {
       </section>
     </div>
   );
+  
+  
 };
 
 export default ProductDetail;

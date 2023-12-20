@@ -12,26 +12,33 @@ export async function generateMetadata({params, searchParams}, parent) {
 export default function Home() {
 
   return (
-  <main className="flex min-h-screen flex-row items-center justify-between  ">
+<main className="flex min-h-screen flex-row items-center justify-between flex-col md:flex-row">
 
-      {/*<section className="m-auto w-1/2 ml-5">   
-          <Image
-            src="/images/logo.jpeg"
-            alt="Logo"
-            width={450}
-            height={470}
-          />
-      </section>
+<section className="m-auto w-full md:w-1/2 md:ml-5">
+  <Image
+    src="/images/logo.jpeg"
+    alt="Logo"
+    width={450}
+    height={470}
+  />
+</section>
 
-      <div className="m-auto">
-        <section className="bg-bg-color-5 m-auto w-[300px] h-[300px] mr-5 font-semibold rounded-full flex   items-center justify-center">
-          <p className="text-text-color-1 text-center text-3xl font-lobster">
-            Night Owl Resources, making out of classrooms a more enjoyable place
-          </p>
-        </section>
-      </div>*/}
-  
+<div className="m-auto mt-5 md:mt-0">
+  <section className="bg-bg-color-5 m-auto mt-20 w-full md:w-[300px] md:h-[300px] md:mr-5 mb-5 font-semibold rounded-full flex items-center justify-center overflow-hidden">
+    <p className="text-text-color-1 text-center text-3xl font-lobster hidden md:block">
+      Night Owl Resources, making out of classrooms a more enjoyable place
+    </p>
+    <p className="text-text-color-1 text-center text-md font-lobster p-5 md:p-10 md:hidden">
+      Night Owl Resources, <br/>
+      making out of classrooms <br/> 
+      a more enjoyable place
+    </p>
+  </section>
+</div>
 
-  </main>
+
+
+</main>
+
   )
 }
