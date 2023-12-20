@@ -55,13 +55,28 @@ body {
 }
 
 nav{
-  background-color: #E7AB79;
-  width: 100%; /* Asegurar que ocupe el ancho completo */
-  box-sizing: border-box; /* Considerar el padding y el borde dentro del ancho total */
-  padding: 0.5rem; 
+  background-color: white;
+  width: 100%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 1rem; 
+  box-sizing: border-box; 
+  color: #6B46C1; 
 }
 
 #Moon {
   font-family: 'Great Vibes', cursive;
 }
 
+@media (max-width: 767px) {
+  .footer {
+    flex-direction: column; /* Cambia la alineación a columna en pantallas pequeñas */
+  }
+
+  /* Estilos específicos para pantallas pequeñas */
+  .footer > div {
+    width: 100%; /* O ajusta el ancho según tus necesidades en pantallas pequeñas */
+    margin-bottom: 20px; /* Añade espacio entre las secciones en pantallas pequeñas */
+  }
+}
