@@ -1,5 +1,4 @@
-// utils/auth.js
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+/*import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import Unauthorized from './@unauthorized/page';
 
 export const getServerSidePropsForLayout = async (context) => {
@@ -21,24 +20,18 @@ export const getServerSidePropsForLayout = async (context) => {
     };
   }
 
-  let redirectDestination = '/products/all';
-
-  if (user.role === 'admin') {
-    redirectDestination = context.resolvedUrl;
-  } else {
-    // Si el usuario no es admin, devolver Unauthorized
+  if (user.role !== 'admin') {
+    console.log("Usuario no es admin. Redirigiendo a Unauthorized");
     return {
-      props: {
-        unauthorized: true,
+      redirect: {
+        destination: '/unauthorized',  // Cambiar la ruta según tu estructura de archivos
+        permanent: false,
       },
     };
   }
 
+  // Si el usuario es admin, continuar con la carga de la página
   return {
-    redirect: {
-      destination: redirectDestination,
-      permanent: false,
-    },
+    props: {},
   };
-};
-
+};*/

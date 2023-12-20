@@ -26,19 +26,7 @@ export const AuthProvider = ({ children }) => {
     surname: null,
     role: null,
   });
-  
-  const { loggedIn, email, role } = user;
 
-  useEffect(() => {
-
-    if (loggedIn) {
-      if (role === 'admin') {
-        router.push('/admin');
-      } else {
-        router.push('/products/all');
-      }
-    }
-  }, [loggedIn, router, role]);
 
 
   const registerUser = async (values) => {

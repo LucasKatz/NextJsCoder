@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "@/app/(shop)/products/detail/[slug]/loading";
 
-const AdminLayout = ({ children, unauthorized }) => {
+const AdminLayout = ({ children}) => {
   const { user } = useAuthContext();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -28,8 +28,8 @@ const AdminLayout = ({ children, unauthorized }) => {
 
   if (user.role !== 'admin') {
     console.log("Usuario no autorizado");
- 
-    return unauthorized;
+    router.push("/unauthorized")
+    return null;
   }
 
   return children;
