@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
 import { useAuthContext } from "@/components/context/AuthContext";
-import "@/app/globals.css"
+import "@/app/globals.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "@/app/(shop)/products/detail/[slug]/loading";
@@ -9,37 +9,32 @@ import Loader from "@/app/(shop)/products/detail/[slug]/loading";
 const AdminLayout = ({ children, unauthorized }) => {
   const { user } = useAuthContext();
   const router = useRouter();
-  const isAdminUser =  user.role === 'admin';
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
 
-const [loading, setLoading] = useState(true);
+  if (loading) {
+    return <Loader />;
+  }
 
-useEffect(() => {
+  if (!user.loggedIn) {
+    router.push("/login");
+    return null;
+  }
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 3000);
-}, []);
+  if (user.role !== 'admin') {
+    console.log("Usuario no autorizado");
+ 
+    return unauthorized;
+  }
 
-
-if (loading) {
-  return <Loader />; 
-}
-
-
-if (!user.loggedIn) {
-  router.push("/login");
-  return null; 
-}
-
-
-if (!isAdminUser) {
-  return unauthorized;
-}
-
-return children;
+  return children;
 };
 
-
 export default AdminLayout;
+
 

@@ -15,6 +15,7 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   
   const [user, setUser] = useState({
@@ -186,15 +187,24 @@ const logout = async () => {
 }
 
 useEffect(() => {
-  onAuthStateChanged(auth, (user) => {
+  const unsubscribe = onAuthStateChanged(auth, async (user) => {
     if (user) {
+      const userDocRef = doc(dataBase, 'users', user.email);
+      const userDocSnapshot = await getDoc(userDocRef);
+
+      let role = 'user';
+
+      if (userDocSnapshot.exists()) {
+        role = userDocSnapshot.data().role || 'user';
+      }
+
       setUser({
         loggedIn: true,
         email: user.email,
         uid: user.uid,
         name: user.name,
         surname: user.surname,
-
+        role,
       });
     } else {
       setUser({
@@ -203,11 +213,15 @@ useEffect(() => {
         uid: null,
         name: null,
         surname: null,
-
+        role: null,
       });
     }
+    setLoading(false);
   });
+
+  return () => unsubscribe();
 }, []);
+
 
   return (
     <AuthContext.Provider value={{user,
