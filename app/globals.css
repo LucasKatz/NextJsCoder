@@ -68,15 +68,3 @@ nav{
 #Moon {
   font-family: 'Great Vibes', cursive;
 }
-
-@media (max-width: 767px) {
-  .footer {
-    flex-direction: column; /* Cambia la alineación a columna en pantallas pequeñas */
-  }
-
-  /* Estilos específicos para pantallas pequeñas */
-  .footer > div {
-    width: 100%; /* O ajusta el ancho según tus necesidades en pantallas pequeñas */
-    margin-bottom: 20px; /* Añade espacio entre las secciones en pantallas pequeñas */
-  }
-}

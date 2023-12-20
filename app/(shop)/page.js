@@ -12,9 +12,9 @@ export async function generateMetadata({params, searchParams}, parent) {
 export default function Home() {
 
   return (
-    <main className="flex min-h-screen flex-row items-center justify-between  ">
+  <main className="flex min-h-screen flex-row items-center justify-between  ">
 
-      <section className="m-auto w-1/2 ml-5">   
+      {/*<section className="m-auto w-1/2 ml-5">   
           <Image
             src="/images/logo.jpeg"
             alt="Logo"
@@ -29,9 +29,9 @@ export default function Home() {
             Night Owl Resources, making out of classrooms a more enjoyable place
           </p>
         </section>
-      </div>
+      </div>*/}
+  
 
-    </main>
-    
+  </main>
   )
 }
