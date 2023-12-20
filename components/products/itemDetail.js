@@ -53,7 +53,7 @@ const ProductDetail = ({ product }) => {
 
   return (
     <div className="max-w-4xl m-auto">
-      <section className="flex flex-col md:flex-row  gap-6 my-5 bg-bg-color-5 rounded-md">
+      <section className="flex flex-col md:flex-row gap-6 my-5 bg-bg-color-5 rounded-md w-full md:w-4/5 mx-auto">
         <div className="p-5 productToAdds-center align-middle md:w-1/2">
           <Image
             src={image}
@@ -113,6 +113,7 @@ const ProductDetail = ({ product }) => {
       </section>
     </div>
   );
+  
   
   
 };

@@ -112,7 +112,7 @@ const CreateProductForm = () => {
               type="file"
               onChange={(e) => setFile(e.target.files[0])}
               name="image"
-              className="form-input mb-4 w-2/3"
+              className="form-input mb-4 w-2/3 "
               placeholder="Image"
               required/> 
 

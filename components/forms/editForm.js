@@ -177,11 +177,12 @@ const EditForm = ({ product }) => {
         </div>
       </form>
 
-      <div className="flex flex-row items-center justify-center my-5">
-        <Button className="px-4 py-2 cursor-pointer rounded mr-2" onClick={logout}> 
+      <div className="flex flex-col items-center justify-center my-5">
+        <div className="w-full text-center">
+        <Button className="text-center px-4 py-2 cursor-pointer rounded mr-2" onClick={logout}> 
             Logout
         </Button>
-
+        </div>
         <Button> 
           <Link href={"/admin"}className="px-4 py-2 cursor-pointer rounded mr-2">
             Back to Panel

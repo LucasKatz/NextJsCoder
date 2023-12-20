@@ -79,6 +79,7 @@ const ContactForm = ({ completoDatos }) => {
 
     return (
 
+      <main className="overflow-hidden">
       <form onSubmit={submit}>
         <div className=" mx-auto mt-6 py-5 h-fit">
                   <h1 className="text-center py-5 text-2xl w-full text-text-color-5 font-extrabold">Get in touch with us!</h1>
@@ -138,14 +139,16 @@ const ContactForm = ({ completoDatos }) => {
               className="form-input w-2/3 h-24 mb-4"
               required
             />
-  
+
+            <div className="flex w-full text-center ">
             <Button>
               Submit
             </Button>
+            </div>
           </div>
         </div>
       </form>
-      
+      </main>
 )
 }
           

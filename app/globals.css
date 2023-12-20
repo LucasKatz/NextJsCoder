@@ -68,3 +68,7 @@ nav{
 #Moon {
   font-family: 'Great Vibes', cursive;
 }
+
+@media (max-width: 767px) {
+
+}
