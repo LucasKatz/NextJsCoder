@@ -54,10 +54,9 @@ export const CartProvider = ({ children }) => {
 
   const addProduct = async (productToAdd, quantity) => {
     try {
-      // Validar si hay suficiente stock
       if (productToAdd.stock < quantity) {
         toast.error('Product out of Stock', { position: toast.POSITION.TOP_RIGHT });
-        return; // Detener la ejecución si no hay suficiente stock
+        return; 
       }
   
       toast.success('Product added to cart', { position: toast.POSITION.TOP_RIGHT });
@@ -141,20 +140,6 @@ export const CartProvider = ({ children }) => {
     readCart();
   }, [user]);
   
-
-  
-  
-  {/*const eraseCart = async (user) => {
-    try {
-      const cartDocId = await fetchCartDocId(user);
-      if (cartDocId) {
-        await deleteDoc(doc(dataBase, 'carts', cartDocId));
-        console.log('Cart document deleted. Cart document ID:', cartDocId);
-      }
-    } catch (error) {
-      console.error('Error deleting cart document:', error);
-    }
-  };*/}
 
 
   const isInCart = (title) => {
@@ -247,7 +232,6 @@ export const CartProvider = ({ children }) => {
         total,
         cart,
         resetTotalQuantity,
-        /*eraseCart,*/
         fetchCartDocId,
         readCart
       }}

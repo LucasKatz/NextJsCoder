@@ -63,9 +63,9 @@ const LoginForm = () => {
                 </div>
             </div>
 
-            <div className="m-auto text-center">
+            <div className="flex flex-col m-auto text-center">
                 <Button   onClick={()=>loginUser(values)} >Login</Button>
-                <Button   onClick={googleLogin} className="ml-2">Google Login</Button>
+                <Button   onClick={googleLogin} >Google Login</Button>
             </div>
 
             <div className="form-row mb-4 flex items-center justify-center my-5">
