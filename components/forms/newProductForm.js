@@ -55,7 +55,7 @@ const CreateProductForm = () => {
         const response = await createProduct(values, file);
 
         if (response.ok) {
-          toast.success("Product Updated", { position: toast.POSITION.TOP_RIGHT });
+          toast.success("Product Created Succesfully", { position: toast.POSITION.TOP_RIGHT });
         } else {
           toast.error(`Oops! There's been a mistake. Error: ${response.error.message}`, { position: toast.POSITION.TOP_RIGHT });
         }
