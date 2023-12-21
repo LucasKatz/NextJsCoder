@@ -45,23 +45,25 @@ const AdminDetail = () => {
         <div className="flex flex-wrap">
           {items.map((product) => (
             <div key={product.slug} className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
-              <div className="border-white border-8 p-4 h-full">
-                <h3 className="text-text-color-5 text-xl font-semibold">{product.title}</h3>
-                <div className="text-center">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    className="w-20 h-20 mx-auto"
-                    width={40}
-                    height={40}
-                  />
+              <div className="border-white border-8 p-4 h-full flex flex-col justify-between">
+                <div>
+                  <h3 className="text-text-color-5 text-xl font-semibold">{product.title}</h3>
+                  <div className="text-center">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      className="w-20 h-20 mx-auto"
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                  <p className="text-text-color-5">
+                    <strong>Price:</strong> ${product.price}
+                  </p>
+                  <p className="text-white">
+                    <strong>Description:</strong> {product.description}
+                  </p>
                 </div>
-                <p className="text-text-color-5">
-                  <strong>Price:</strong> ${product.price}
-                </p>
-                <p className="text-white">
-                  <strong>Description:</strong> {product.description}
-                </p>
                 <div className="flex justify-center mt-4">
                   <button className="bg-blue-500 text-text-color-5 px-4 py-2 rounded-md">
                     <FaEdit />
@@ -85,7 +87,7 @@ const AdminDetail = () => {
     </>
   );
   
-              }  
+  }  
 
 export default AdminDetail;
 
