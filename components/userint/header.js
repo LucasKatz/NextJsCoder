@@ -97,6 +97,13 @@ const Navbar = () => {
             >
               {user.email}
             </button>
+
+            {isMenuOpen && (
+              <div className="absolute top-0 right-full bg-white border border-gray-300 p-2 rounded flex flex-col">
+                <Link href="/profile">Profile</Link>
+                <button onClick={() => { logout(); resetTotalQuantity(); }}>Logout</button>
+              </div>
+            )}
           </div>
         ) : (
           <></>
@@ -104,14 +111,14 @@ const Navbar = () => {
       </div>
 
       <div className='hidden md:flex row'>
-      <Link href="/signup">
-        <FaUser className='text-3xl mr-5'/>
-      </Link>
+        <Link href="/signup">
+          <FaUser className='text-3xl mr-5'/>
+        </Link>
 
-      <CartWidget/>
-    </div>
+        <CartWidget/>
+      </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default Navbar
