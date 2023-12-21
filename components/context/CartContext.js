@@ -54,9 +54,14 @@ export const CartProvider = ({ children }) => {
 
   const addProduct = async (productToAdd, quantity) => {
     try {
-      
+      // Validar si hay suficiente stock
+      if (productToAdd.stock < quantity) {
+        toast.error('Product out of Stock', { position: toast.POSITION.TOP_RIGHT });
+        return; // Detener la ejecución si no hay suficiente stock
+      }
+  
       toast.success('Product added to cart', { position: toast.POSITION.TOP_RIGHT });
-      
+  
       let cartDocId;
       if (user && user.uid) {
         const querySnapshot = await getDocs(
@@ -73,7 +78,6 @@ export const CartProvider = ({ children }) => {
           });
   
           cartDocId = cartDocRef.id;
-
         }
       }
   
@@ -105,13 +109,11 @@ export const CartProvider = ({ children }) => {
         await new Promise((resolve) => setTimeout(resolve, 0));
         await updateCartInFirestore(cartUpdated);
       }
-  
-    
-
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
   };
+  
 
   const readCart = async () => {
     try {

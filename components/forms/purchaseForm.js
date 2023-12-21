@@ -47,7 +47,7 @@ const createOrder = async (userData, cart) => {
     return docId;
 };
 
-const generatePDF = (userData, cart) => {
+const generatePDF = (userData, cart, orderId) => {
     const pdf = new jsPDF();
 
     pdf.text(20, 20, `Name: ${userData.name}`);
@@ -57,11 +57,14 @@ const generatePDF = (userData, cart) => {
 
     pdf.text(20, 60, 'Purchase Details:');
     cart.forEach((cartProduct, index) => {
-        const yPosition = 70 + index * 10;
+        const yPosition = 70 + index * 20;
         pdf.text(20, yPosition, `${cartProduct.title} - Quantity: ${cartProduct.quantity}`);
+        pdf.text(20, yPosition + 10, `Unit Price: $${cartProduct.price}`);
     });
 
     pdf.text(20, 160, `Total: $${cart.reduce((total, prod) => total + prod.price * prod.quantity, 0)}`);
+
+    pdf.text(20, 170, `Ticket ID: ${orderId}`);
 
     return pdf;
 };
@@ -108,22 +111,19 @@ const PurchaseForm = () => {
         try {
             const result = await createOrder(userData, cart);
             console.log(result);
-
+    
             const swalResult = await showDownloadPrompt();
-
+    
             if (swalResult.isConfirmed) {
-                const pdf = generatePDF(userData, cart);
+                const pdf = generatePDF(userData, cart, result); // Pasa el ID único del ticket
                 pdf.save('ticket.pdf');
                 pdf.output('dataurlnewwindow');
-                /*eraseCart(user);*/
                 clearCart();
             } else {
-                /*eraseCart(user);*/
                 clearCart();
                 console.log('User chose not to download the ticket.');
             }
-            router.push("/thanks")
-
+            router.push("/thanks");
         } catch (error) {
             console.error('Error creating order:', error);
         }
