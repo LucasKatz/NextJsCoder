@@ -40,60 +40,52 @@ const AdminDetail = () => {
 
   return (
     <>
-    <div className="p-5 ">
-      <h2 className="text-center text-text-color-5 text-3xl font-semibold py-5">Admin Panel</h2>
-      <table className="table-fixed w-full ">
-        <thead>
-          <tr>
-            <th className="w-1/6 text-text-color-5">TITLE</th>
-            <th className="w-1/6 text-text-color-5">PRICE</th>
-            <th className="w-1/6 text-text-color-5">IMAGE</th>
-            <th className="w-1/6 text-text-color-5">DESCRIPTION</th>
-            <th className="w-1/6 text-text-color-5">EDIT</th>
-            <th className="w-1/6 text-text-color-5">DELETE</th>
-          </tr>
-        </thead>
-        <tbody >
+      <div className="p-5 ">
+        <h2 className="text-center text-text-color-5 text-3xl font-semibold py-5">Admin Panel</h2>
+        <div className="flex flex-wrap">
           {items.map((product) => (
-            <tr key={product.slug} className="border-white border-8">
-              <td className="text-center text-text-color-5">{product.title}</td>
-              <td className="text-center text-text-color-5">${product.price}</td>
-              <td className="text-center">
-                <Image
+            <div key={product.slug} className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
+              <div className="border-white border-8 p-4 h-full">
+                <h3 className="text-text-color-5 text-xl font-semibold">{product.title}</h3>
+                <div className="text-center">
+                  <Image
                     src={product.image}
                     alt={product.title}
                     className="w-20 h-20 mx-auto"
                     width={40}
                     height={40}
-                />
-              </td>
-              <td className="text-center text-white">{product.description}</td>
-              <td className="text-center">
-                <button className="bg-blue-500 text-text-color-5 px-4 py-2 rounded-md">
-                  <FaEdit /> 
-                  <Link href={`/admin/edit/${product.slug}`}>Edit</Link>
-                </button>
-              </td>
-              <td className="text-center">
-                <DeleteButton slug={product.slug} onDeleteSuccess={handleDeleteSuccess} />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-                <div className="flex flex-row items-center justify-center my-5">
-                <Button onClick={logout}>Log Out</Button>
-
-                <Button className="ml-4">
-                <Link href={"/admin/create"}>
-                    Create New Product
-                </Link >
-                </Button>
+                  />
+                </div>
+                <p className="text-text-color-5">
+                  <strong>Price:</strong> ${product.price}
+                </p>
+                <p className="text-white">
+                  <strong>Description:</strong> {product.description}
+                </p>
+                <div className="flex justify-center mt-4">
+                  <button className="bg-blue-500 text-text-color-5 px-4 py-2 rounded-md">
+                    <FaEdit />
+                    <Link href={`/admin/edit/${product.slug}`}>Edit</Link>
+                  </button>
+                  <button className="bg-red-500 text-text-color-5 px-4 py-2 rounded-md ml-4">
+                    <DeleteButton slug={product.slug} onDeleteSuccess={handleDeleteSuccess} />
+                  </button>
+                </div>
+              </div>
             </div>
-            </>
+          ))}
+        </div>
+        <div className="flex flex-row items-center justify-center my-5">
+          <Button onClick={logout}>Log Out</Button>
+          <Button className="ml-4">
+            <Link href={"/admin/create"}>Create New Product</Link>
+          </Button>
+        </div>
+      </div>
+    </>
   );
-};
+  
+              }  
 
 export default AdminDetail;
 
