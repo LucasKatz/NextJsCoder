@@ -52,14 +52,14 @@ const ProductDetail = ({ product }) => {
 
 
   return (
-    <div className="max-w-4xl m-auto">
-      <section className="flex flex-col md:flex-row gap-6 my-5 bg-bg-color-5 rounded-md w-full md:w-4/5 mx-auto">
-        <div className="p-5 productToAdds-center align-middle md:w-1/2">
+    <div className="m-auto w-3/4">
+      <section className="flex flex-col md:flex-row gap-6 my-5 bg-bg-color-5 rounded-md m-auto">
+        <div className="p-5 productToAdds-center align-middle ">
           <Image
             src={image}
             alt={productToAdd.title}
-            width={560}
-            height={560}
+            width={500}
+            height={500}
             className="rounded-lg py-14 items-center"
           />
         </div>
