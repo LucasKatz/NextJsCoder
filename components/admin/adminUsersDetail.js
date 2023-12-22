@@ -29,23 +29,25 @@ const AdminUserDetail = () => {
 
     const handleRoleChange = async (email) => {
         try {
-          // Obtén la referencia del documento del usuario por su email
+
           const userRef = doc(dataBase, "users", email);
       
-          // Verifica si el usuario existe
+      
           const userSnapshot = await getDoc(userRef);
           if (userSnapshot.exists()) {
-            // Cambia el rol
+            
             const newRole = userSnapshot.data().role === "admin" ? "user" : "admin";
       
             await updateDoc(userRef, { role: newRole });
-            fetchUsers(); // Vuelve a cargar la lista de usuarios después de cambiar el rol
-            console.log("Role change successful. Refreshing user list.");
+            fetchUsers(); 
+            toast.success('Role change successful.')
+
           } else {
             console.error("User not found.");
+            toast.error('Error changing user role: User not found.');
           }
         } catch (error) {
-          console.error("Error changing user role:", error);
+          toast.error(`Error changing user role: ${error.message}`);
         }
       };
       
@@ -55,10 +57,11 @@ const AdminUserDetail = () => {
         try {
           const userRef = doc(dataBase, "users", email);
           await deleteDoc(userRef);
-          fetchUsers(); // Vuelve a cargar la lista de usuarios después de eliminar al usuario
-          console.log("User deleted successfully. Refreshing user list.");
+          fetchUsers(); 
+          toast.success('User deleted successfully.');
+
         } catch (error) {
-          console.error("Error deleting user:", error);
+          toast.error(`Error deleting user: ${error.message}`);
         }
       };
 
