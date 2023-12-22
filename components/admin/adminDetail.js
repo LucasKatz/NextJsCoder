@@ -77,11 +77,14 @@ const AdminDetail = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-row items-center justify-center my-5">
+        <div className="flex flex-col items-center justify-center my-5">
           <Button onClick={logout}>Log Out</Button>
-          <Button className="ml-4">
+          <Button className="">
             <Link href={"/admin/create"}>Create New Product</Link>
           </Button>
+          <Link className="buttonUI text-center" href={"/admin/adminUsers"}>
+            Users Panel
+          </Link>
         </div>
       </div>
     </>

@@ -32,3 +32,19 @@ export const getProductBySlug = async (slug) => {
     
     return product;
 };
+
+export const getUsers = async () => {
+    const usersCollection = collection(dataBase, "users");
+
+    try {
+        const usersQuerySnapshot = await getDocs(usersCollection);
+        const usersList = usersQuerySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+    }));
+        return usersList;
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        throw error;
+    }
+};
