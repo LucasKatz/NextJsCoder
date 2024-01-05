@@ -43,6 +43,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ success: false, error: 'Error al enviar el correo.' });
     }
   } else {
+    console.log ("Sale x aca, metodo no autorizado")
     res.status(405).json({ success: false, message: 'Método no permitido' });
   }
 }
