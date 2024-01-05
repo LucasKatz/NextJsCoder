@@ -1,18 +1,15 @@
-
 import { createTransporter } from "@/nodemailer";
-import Cors from "cors"
+import Cors from "cors";
 
 const cors = Cors({
   methods: ['POST'],
 });
 
+export async function sendEmail(req, res) {
+  cors(req, res);
 
-export default async function handler(req, res) {
-
-    cors(req, res);
-
-    if (req.method === 'POST') {
-        const { name, surname, phone, email, message } = req.body;
+  if (req.method === 'POST') {
+    const { name, surname, phone, email, message } = req.body;
 
     const emailContent = {
       name,
@@ -43,7 +40,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ success: false, error: 'Error al enviar el correo.' });
     }
   } else {
-    console.log ("Sale x aca, metodo no autorizado")
+    console.log("Sale por acá, método no autorizado");
     res.status(405).json({ success: false, message: 'Método no permitido' });
   }
 }
