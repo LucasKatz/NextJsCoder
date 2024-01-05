@@ -55,6 +55,7 @@ const ContactForm = ({ completoDatos }) => {
 
           completoDatos(name, surname,  phone, email);
         } else {
+          console.log("Sale por aca, no encuentra la ruta")
           Swal.fire({
             title: 'Your message was not sent, please try again',
             icon: 'error',
