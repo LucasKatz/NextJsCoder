@@ -2,7 +2,7 @@
 import Button from "@/components/userint/button";
 import Swal from "sweetalert2";
 import { useState } from "react"
-import { sendEmail } from "@/app/(shop)/api/contact/emails";
+
 
 
 const ContactForm = ({ completoDatos }) => {
@@ -32,7 +32,7 @@ const ContactForm = ({ completoDatos }) => {
     } else {
       try {
 
-        await sendEmail({
+        const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/contact/emails`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
