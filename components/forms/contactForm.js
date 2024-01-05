@@ -32,7 +32,7 @@ const ContactForm = ({ completoDatos }) => {
     } else {
       try {
 
-        const response = await fetch(`https://${process.env.VERCEL_URL}/components/userint/sendMail`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/contact/emails`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -71,11 +71,6 @@ const ContactForm = ({ completoDatos }) => {
       }
     }
   };
-
-
-    
-
-
 
     return (
 
