@@ -1,7 +1,15 @@
 
 import { createTransporter } from "@/nodemailer";
+import Cors from "cors"
+
+const cors = Cors({
+  methods: ['POST'],
+});
+
 
 export default async function handler(req, res) {
+
+    cors(req, res);
 
     if (req.method === 'POST') {
         const { name, surname, phone, email, message } = req.body;
