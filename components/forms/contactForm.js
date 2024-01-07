@@ -3,8 +3,6 @@ import Button from "@/components/userint/button";
 import Swal from "sweetalert2";
 import { useState } from "react"
 
-
-
 const ContactForm = ({ completoDatos }) => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -32,7 +30,7 @@ const ContactForm = ({ completoDatos }) => {
     } else {
       try {
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/contact/emails`, {
+        const response = await fetch(`/apiEmail/emails`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -45,21 +43,22 @@ const ContactForm = ({ completoDatos }) => {
             message,
           }),
         });
+        console.log("API Response:", response);
 
         if (response.ok) {
           Swal.fire({
             title: 'Message Sent!',
             icon: 'success',
-            buttons: true,
+
           });
 
-          completoDatos(name, surname,  phone, email);
+      
         } else {
           console.log("Sale por aca, no encuentra la ruta")
           Swal.fire({
             title: 'Your message was not sent, please try again',
             icon: 'error',
-            buttons: true,
+
           });
         }
       } catch (error) {
@@ -67,7 +66,7 @@ const ContactForm = ({ completoDatos }) => {
         Swal.fire({
           title: 'Your message was not sent, please try again',
           icon: 'error',
-          buttons: true,
+
         });
       }
     }
