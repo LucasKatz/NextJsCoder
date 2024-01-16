@@ -11,15 +11,17 @@ import Loader from "../../app/(shop)/products/detail/[slug]/loading"
 import { writeBatch} from "firebase/firestore"
 import { setDoc, doc, getDoc, Timestamp, collection, getFirestore} from "firebase/firestore"
 import { useRouter } from "next/navigation";
+import MercadoPago from "mercadopago";
 
 const loadMercadoPagoScript = () => {
     const script = document.createElement('script');
-    script.src = 'https://sdk.mercadopago.com/js/v2';
+    script.src = 'https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js';
     script.async = true;
     document.body.appendChild(script);
   };
 
 export const createOrder = async (userData, cart) => {
+  console.log("1. Creando orden en Firebase...");
     const order = {
         client: {
             name: userData.name,
@@ -49,6 +51,7 @@ export const createOrder = async (userData, cart) => {
   });
 
   await batch.commit();
+  console.log("2. Orden creada exitosamente en Firebase.");
 
     return docId;
 };
@@ -139,13 +142,13 @@ const PurchaseForm = () => {
       const handleMercadoPagoClick = async () => {
         try {
           const result = await createOrder(userData, cart);
-    
+      
           const orderData = {
             title: "Night Owl Resources Bill",
             quantity: 1,
             price: calculateTotal(cart),
           };
-    
+      
           const response = await fetch("http://localhost:4000/mercadoPago/route", {
             method: "POST",
             headers: {
@@ -153,9 +156,13 @@ const PurchaseForm = () => {
             },
             body: JSON.stringify(orderData),
           });
-    
+      
           const preference = await response.json();
-          createCheckoutButton(preference.id);
+          console.log("datos de preference", preference);
+      
+          // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
+          window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
+          console.log("esto es el point", preference.id);
         } catch (error) {
           console.error("Error creating MercadoPago order:", error);
           Swal.fire({
@@ -165,25 +172,25 @@ const PurchaseForm = () => {
           });
         }
       };
+      
+      
 
-      const createCheckoutButton = (preferenceId) => {
+      const createCheckoutButton = async (preferenceId) => {
         const mp = new MercadoPago("", {
           locale: "es-AR",
         });
       
-        const bricksBuilder = mp.bricks();
-      
         const renderComponent = async () => {
           const walletContainer = document.getElementById("wallet_container");
-        
+      
           if (walletContainer) {
             try {
-              const preference = await bricksBuilder.create("wallet", "wallet_container", {
-                initialization: {
-                  preferenceId: preferenceId,
+              await mp.render({
+                element: "wallet_container",
+                preference: {
+                  id: preferenceId,
                 },
               });
-
             } catch (error) {
               console.error("Error creating MercadoPago button:", error);
               Swal.fire({
@@ -197,7 +204,7 @@ const PurchaseForm = () => {
       
         renderComponent();
       };
-    
+      
 
     const handleSubmit = async (e) => {
         e.preventDefault();
