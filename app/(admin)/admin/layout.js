@@ -1,10 +1,10 @@
 "use client"
 
-import { useAuthContext } from "@/components/context/AuthContext";
-import "@/app/globals.css";
+import { useAuthContext } from "../../../components/context/AuthContext";
+import "../../../app/globals.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Loader from "@/app/(shop)/products/detail/[slug]/loading";
+import Loader from "../../../app/(shop)/products/detail/[slug]/loading";
 
 const AdminLayout = ({ children}) => {
   const { user } = useAuthContext();

@@ -1,7 +1,7 @@
 
 
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { dataBase } from '@/services/firebase';
+import { dataBase } from '../../../services/firebase/index';
 
 export const getProducts = async (categories) => {
     const productsFire = collection(dataBase, "products");

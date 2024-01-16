@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, createContext, useContext, useEffect } from 'react';
-import { auth, googleAuth, dataBase} from '@/services/firebase';
+import { googleAuth, auth, dataBase } from "../../services/firebase/index"
 import { useRouter } from "next/navigation";
 import Swal from 'sweetalert2';
 import { doc, setDoc, getDoc } from 'firebase/firestore';

@@ -1,5 +1,5 @@
 "use client"
-import Button from "@/components/userint/button";
+import Button from "../../components/userint/button";
 import Swal from "sweetalert2";
 import { useState } from "react"
 
@@ -43,7 +43,7 @@ const ContactForm = ({ completoDatos }) => {
             message,
           }),
         });
-        console.log("API Response:", response);
+
 
         if (response.ok) {
           Swal.fire({

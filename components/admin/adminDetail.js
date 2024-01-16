@@ -6,7 +6,7 @@ import Link from "next/link";
 import Button from "../userint/button";
 import DeleteButton from "./deleteButton";
 import { useAuthContext } from "../context/AuthContext";
-import { getProducts } from "@/app/(shop)/api/productsApi";
+import { getProducts } from "../../app/(shop)/api/productsApi";
 import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from 'react';
 

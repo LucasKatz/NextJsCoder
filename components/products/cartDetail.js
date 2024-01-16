@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../userint/button";
-import Loader from "@/app/(shop)/products/detail/[slug]/loading";
-import { useCart } from "@/components/context/CartContext";
+import Loader from "../../app/(shop)/products/detail/[slug]/loading";
+import { useCart } from "../../components/context/CartContext";
 import { useAuthContext } from "../context/AuthContext";
 import { useState, useEffect } from "react";
 

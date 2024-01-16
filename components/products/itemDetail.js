@@ -1,18 +1,18 @@
 "use client"
 
-import { getProductBySlug } from "@/app/(shop)/api/productsApi";
+import { getProductBySlug } from "../../app/(shop)/api/productsApi";
 import { useAuthContext } from "../context/AuthContext";
 import Image from "next/image";
 import Counter from "../userint/counter";
 import Link from "next/link";
 import Button from "../userint/button";
-import { useCart } from "@/components/context/CartContext";
+import { useCart } from "../context/CartContext";
 import { useState, useEffect } from "react";
-import Loader from "@/app/(shop)/products/detail/[slug]/loading";
+import Loader from "../../app/(shop)/products/detail/[slug]/loading";
 
 const ProductDetail = ({ product }) => {
   const {title,description,price,image,slug} = product 
-  console.log(product) 
+
   
   const { addProduct } = useCart();
   const [productToAdd, setProductToAdd] = useState(null);
@@ -30,6 +30,7 @@ const ProductDetail = ({ product }) => {
 
         const product = await getProductBySlug(slug);
         console.log("itemDetail", slug);
+        console.log("Fetched product:", product); 
         setProductToAdd(product);
       } catch (error) {
         console.error(`Error fetching product with slug ${slug}:`, error);

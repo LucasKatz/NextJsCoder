@@ -1,4 +1,4 @@
-import ProductsList from "@/components/products/itemList";
+import ProductsList from "../../../../components/products/itemList";
 import { getProducts } from "../../api/productsApi";
 export async function generateMetadata({ params, searchParams }, parent) {
   console.log(params);

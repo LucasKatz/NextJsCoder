@@ -1,5 +1,5 @@
 
-import CartDetail from "@/components/products/cartDetail";
+import CartDetail from "../../../components/products/cartDetail";
 
 export async function generateMetadata({params, searchParams}, parent) {
 

@@ -1,4 +1,3 @@
-import Button from "@/components/userint/button";
 import Link from "next/link";
 
 export default function NotFound() {

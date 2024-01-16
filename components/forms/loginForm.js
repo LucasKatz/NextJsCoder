@@ -2,7 +2,7 @@
 
 import Button from "../userint/button";
 import { useState } from "react"
-import { useAuthContext } from "@/components/context/AuthContext"
+import { useAuthContext } from "../../components/context/AuthContext";
 import Link from "next/link";
 
 

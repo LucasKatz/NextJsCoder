@@ -1,5 +1,5 @@
-import ProductDetail from "@/components/products/itemDetail";
-import { getProductBySlug } from "@/app/(shop)/api/productsApi";
+import ProductDetail from "../../../../../components/products/itemDetail";
+import { getProductBySlug } from "../../../api/productsApi";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   console.log(params);

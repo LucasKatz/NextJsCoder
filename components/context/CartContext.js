@@ -4,7 +4,7 @@ import { useState, useEffect, useContext, createContext } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuthContext } from './AuthContext';
-import { dataBase } from '@/services/firebase';
+import { dataBase } from '../../services/firebase/index';
 import { addDoc, collection, updateDoc, doc, getDocs, query, where, deleteDoc, getDoc } from 'firebase/firestore';
 
 export const CartContext = createContext({

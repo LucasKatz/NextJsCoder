@@ -6,14 +6,20 @@ import Swal from 'sweetalert2';
 import { useEffect, useState } from "react"
 import { useAuthContext } from "../context/AuthContext"
 import {  useCart } from "../context/CartContext"
-import { dataBase } from "@/services/firebase"
-import Loader from "@/app/(shop)/products/detail/[slug]/loading"
+import { dataBase } from "../../services/firebase/index"
+import Loader from "../../app/(shop)/products/detail/[slug]/loading"
 import { writeBatch} from "firebase/firestore"
 import { setDoc, doc, getDoc, Timestamp, collection, getFirestore} from "firebase/firestore"
 import { useRouter } from "next/navigation";
 
+const loadMercadoPagoScript = () => {
+    const script = document.createElement('script');
+    script.src = 'https://sdk.mercadopago.com/js/v2';
+    script.async = true;
+    document.body.appendChild(script);
+  };
 
-const createOrder = async (userData, cart) => {
+export const createOrder = async (userData, cart) => {
     const order = {
         client: {
             name: userData.name,
@@ -78,12 +84,20 @@ const showDownloadPrompt = () => {
     });
 };
 
+export const calculateTotal = (cart) => {
+    return cart.reduce((total, prod) => total + prod.price * prod.quantity, 0);
+  };
+
+
 const PurchaseForm = () => {
     const { cart, eraseCart, clearCart } = useCart();
     const { user } = useAuthContext();
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter ();
+
+
+    
 
     useEffect(() => {
         if (user && user.email) {
@@ -104,7 +118,86 @@ const PurchaseForm = () => {
                     setLoading(false);
                 });
         }
+        loadMercadoPagoScript();
     }, [user]);
+
+    useEffect(() => {
+        const mercadoPagoButton = document.getElementById("mercadopago-btn");
+    
+        if (mercadoPagoButton) {
+          mercadoPagoButton.addEventListener("click", handleMercadoPagoClick);
+        }
+    
+        return () => {
+          // Limpieza del evento al desmontar el componente
+          if (mercadoPagoButton) {
+            mercadoPagoButton.removeEventListener("click", handleMercadoPagoClick);
+          }
+        };
+      }, [cart, userData]);
+    
+      const handleMercadoPagoClick = async () => {
+        try {
+          const result = await createOrder(userData, cart);
+    
+          const orderData = {
+            title: "Night Owl Resources Bill",
+            quantity: 1,
+            price: calculateTotal(cart),
+          };
+    
+          const response = await fetch("http://localhost:4000/mercadoPago/route", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderData),
+          });
+    
+          const preference = await response.json();
+          createCheckoutButton(preference.id);
+        } catch (error) {
+          console.error("Error creating MercadoPago order:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+        }
+      };
+
+      const createCheckoutButton = (preferenceId) => {
+        const mp = new MercadoPago("", {
+          locale: "es-AR",
+        });
+      
+        const bricksBuilder = mp.bricks();
+      
+        const renderComponent = async () => {
+          const walletContainer = document.getElementById("wallet_container");
+        
+          if (walletContainer) {
+            try {
+              const preference = await bricksBuilder.create("wallet", "wallet_container", {
+                initialization: {
+                  preferenceId: preferenceId,
+                },
+              });
+
+            } catch (error) {
+              console.error("Error creating MercadoPago button:", error);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+              });
+            }
+          }
+        };
+      
+        renderComponent();
+      };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -128,6 +221,8 @@ const PurchaseForm = () => {
             console.error('Error creating order:', error);
         }
     };
+
+    
 
 
     return (
@@ -180,6 +275,11 @@ const PurchaseForm = () => {
     </div>
             <div className="flex flex-row justify-center my-5">
                 <Button onClick={() => { generatePDF(userData, cart);  }}  type="submit">Submit Purchase</Button>
+                <Button id="mercadopago-btn" type="button">
+  <div id="wallet_container"></div>
+  Pay with MercadoPago
+</Button>
+
             </div>
     </form>
     )}

@@ -2,7 +2,7 @@
 
 import { FaTrash } from 'react-icons/fa';
 import { deleteDoc, doc } from 'firebase/firestore';
-import { dataBase } from '@/services/firebase';
+import { dataBase } from "../../services/firebase/index";
 import { toast } from 'react-toastify';
 
 const DeleteButton = ({ slug, onDeleteSuccess }) => {

@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import { getProducts } from "@/app/(shop)/api/productsApi";
+import { getProducts } from "../../app/(shop)/api/productsApi";
 import ProductCard from "./itemCard";
-import Loader from '@/app/(shop)/products/detail/[slug]/loading';
+import Loader from '../../app/(shop)/products/detail/[slug]/loading';
 
 const ProductsList = ({ categories }) => {
     const [allProducts, setAllProducts] = useState([]);

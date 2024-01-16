@@ -1,4 +1,4 @@
-import PurchaseForm from "@/components/forms/purchaseForm";
+import PurchaseForm from "../../../components/forms/purchaseForm"
 
 export async function generateMetadata() {
 
