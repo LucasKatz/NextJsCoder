@@ -167,6 +167,12 @@ const PurchaseForm = () => {
           console.log("esto es el point", preference.id);
         } catch (error) {
           console.error("Error creating MercadoPago order:", error);
+      
+          if (error instanceof Response) {
+            const responseData = await error.json();
+            console.error("Error Response Data:", responseData);
+          }
+      
           Swal.fire({
             icon: "error",
             title: "Oops...",
