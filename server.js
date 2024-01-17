@@ -22,6 +22,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use("/", router);
 
 // Asignar el cliente de Mercado Pago a la variable de entorno para que esté disponible en todas partes
 app.set('mercadopagoClient', client);
