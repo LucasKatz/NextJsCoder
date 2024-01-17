@@ -142,7 +142,6 @@ const PurchaseForm = () => {
       const handleMercadoPagoClick = async () => {
         try {
           const result = await createOrder(userData, cart);
-      
           const orderData = {
             title: "Night Owl Resources Bill",
             quantity: 1,
@@ -158,11 +157,11 @@ const PurchaseForm = () => {
             mode: 'cors',
             body: JSON.stringify(orderData),
           });
-          
-          const responseData = await response.json();
-          const redirectUrl = responseData.redirectUrl;
-          
-          // Redirige al usuario directamente a la URL de MercadoPago
+      
+          const { redirectUrl } = await response.json();
+          console.log("URL de redirección:", redirectUrl);
+      
+          // Redirige al usuario a la URL de pago de MercadoPago
           window.location.href = redirectUrl;
         } catch (error) {
           console.error("Error creating MercadoPago order:", error);
@@ -179,6 +178,7 @@ const PurchaseForm = () => {
           });
         }
       };
+      
       
       
 
