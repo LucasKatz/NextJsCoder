@@ -41,26 +41,26 @@ router.post("/mercadoPago/route", async (req, res) => {
 
     console.log("6. Preferencia creada exitosamente en MercadoPago.", result);
 
+    // Construir la URL de redirección de MercadoPago
+    const redirectUrl = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${result.id}`;
 
     res.json({
-      id: result.id, 
-  });
+      redirectUrl,
+    });
 
-  console.log("9. resultado de id", result.id);
+    console.log("9. resultado de la URL de redirección", redirectUrl);
   } catch (error) {
-
     console.error("7. Error al crear la preferencia:", error);
 
-        // Asegúrate de que solo envías la respuesta en caso de error, y no en otros casos
-        if (!res.headersSent) {
-            res.status(500).json({
-                error: "Error al crear la preferencia :(",
-            });
-        }
+    // Asegúrate de que solo envías la respuesta en caso de error, y no en otros casos
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: "Error al crear la preferencia :(",
+      });
+    }
   }
 });
 
 console.log("8. Router inicializado exitosamente.");
 
 module.exports = router;
-

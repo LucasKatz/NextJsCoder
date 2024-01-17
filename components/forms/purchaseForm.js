@@ -158,13 +158,12 @@ const PurchaseForm = () => {
             mode: 'cors',
             body: JSON.stringify(orderData),
           });
-      
-          const preference = await response.json();
-          console.log("datos de preference", preference);
-      
-          // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
-          window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
-          console.log("esto es el point", preference.id);
+          
+          const responseData = await response.json();
+          const redirectUrl = responseData.redirectUrl;
+          
+          // Redirige al usuario directamente a la URL de MercadoPago
+          window.location.href = redirectUrl;
         } catch (error) {
           console.error("Error creating MercadoPago order:", error);
       
