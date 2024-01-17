@@ -31,9 +31,9 @@ router.post("/mercadoPago/route", async (req, res) => {
       notification_url: "https://tu-domino.com/webhook",
 
       back_urls: {
-        success: "https://www.youtube.com/@onthecode",
-        failure: "https://www.youtube.com/@onthecode",
-        pending: "https://www.youtube.com/@onthecode",
+        success: "https://nightowlresources.vercel.app/thanks",
+        failure: "https://nightowlresources.vercel.app/not-found",
+        pending: "https://nightowlresources.vercel.app",
       },
       auto_return: "approved",
     };

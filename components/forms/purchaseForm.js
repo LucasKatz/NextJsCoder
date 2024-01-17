@@ -161,7 +161,7 @@ const PurchaseForm = () => {
           console.log("datos de preference", preference);
       
           // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
-          window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
+          window.location.href = `http://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
           console.log("esto es el point", preference.id);
         } catch (error) {
           console.error("Error creating MercadoPago order:", error);
