@@ -6,7 +6,7 @@ const cors = require('cors');
 
 // Configuración de Mercado Pago
 const client = new MercadoPagoConfig({
-  accessToken: process.env.NEXT_ACCESS_TOKEN,
+  accessToken: NEXT_ACCESS_TOKEN,
   siteId: 'MLA',
 });
 
@@ -14,7 +14,13 @@ const app = express();
 const port = 4000;
 
 // Configuración de CORS
-app.use(cors());
+const corsOptions = {
+  origin: ['https://nightowlresources.vercel.app/', 'https://www.mercadopago.com.ar'],
+  methods: 'POST',
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Asignar el cliente de Mercado Pago a la variable de entorno para que esté disponible en todas partes

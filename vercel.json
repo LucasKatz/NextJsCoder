@@ -1,0 +1,24 @@
+{
+    "routes": [
+      {
+        "src": "/mercadoPago/route",
+        "dest": "/ruta-local-de-tu-app/mercadoPago/route.js"
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "/ruta-local-de-tu-app/$1"
+      },
+      {
+        "src": "(/static/|/favicon.ico)",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        },
+        "dest": "/ruta-local-de-tu-app$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/ruta-local-de-tu-app/$1"
+      }
+    ]
+  }
+  
