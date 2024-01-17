@@ -15,7 +15,7 @@ const port = 4000;
 
 // Configuración de CORS
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://nightowlresources.vercel.app/',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));app.use(express.json());
