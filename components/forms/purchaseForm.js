@@ -152,7 +152,7 @@ const PurchaseForm = () => {
             price: calculateTotal(cart),
           };
       
-          const response = await fetch("http://localhost:4000/mercadoPago/route", {
+          const response = await fetch("http://https://nightowlresources.vercel.app/mercadoPago/route", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -166,7 +166,7 @@ const PurchaseForm = () => {
           // Mueve la declaración de redirectToMercadoPago antes de su uso
           const redirectToMercadoPago = async (prefId) => {
             try {
-              const response = await fetch(`http://localhost:4000/redireccionar?pref_id=${prefId}`);
+              const response = await fetch(`http://https://nightowlresources.vercel.app/redireccionar?pref_id=${prefId}`);
               const data = await response.json();
           
               if (response.ok) {
