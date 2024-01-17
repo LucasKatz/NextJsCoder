@@ -13,8 +13,6 @@ import { setDoc, doc, getDoc, Timestamp, collection, getFirestore} from "firebas
 import { useRouter } from "next/navigation";
 import MercadoPago from "mercadopago";
 
-
-
 const loadMercadoPagoScript = () => {
     const script = document.createElement('script');
     script.src = 'https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js';
@@ -101,8 +99,6 @@ const PurchaseForm = () => {
     const [loading, setLoading] = useState(true);
     const router = useRouter ();
 
-    const mercadoPagoCheckoutUrl = process.env.MERCADOPAGO_CHECKOUT_URL;
-    console.log("MERCADOPAGO_CHECKOUT_URL:", process.env.MERCADOPAGO_CHECKOUT_URL);
 
     
 
@@ -146,13 +142,14 @@ const PurchaseForm = () => {
       const handleMercadoPagoClick = async () => {
         try {
           const result = await createOrder(userData, cart);
+      
           const orderData = {
             title: "Night Owl Resources Bill",
             quantity: 1,
             price: calculateTotal(cart),
           };
       
-          const response = await fetch("https://nightowlresources.vercel.app/mercadoPago/route", {
+          const response = await fetch("http://localhost:4000/mercadoPago/route", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -162,26 +159,10 @@ const PurchaseForm = () => {
       
           const preference = await response.json();
           console.log("datos de preference", preference);
-          
-          // Mueve la declaración de redirectToMercadoPago antes de su uso
-          const redirectToMercadoPago = async (prefId) => {
-            try {
-              const response = await fetch(`http://https://nightowlresources.vercel.app/redireccionar?pref_id=${prefId}`);
-              const data = await response.json();
-          
-              if (response.ok) {
-                window.location.href = data.url;
-              } else {
-                console.error('Error al obtener la URL de redirección:', data.message);
-                // Manejar el error de acuerdo a tus necesidades
-              }
-            } catch (error) {
-              console.error('Error de red:', error);
-              // Manejar el error de acuerdo a tus necesidades
-            }
-          };
       
-          redirectToMercadoPago(preference.id);
+          // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
+          window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
+          console.log("esto es el point", preference.id);
         } catch (error) {
           console.error("Error creating MercadoPago order:", error);
           Swal.fire({
@@ -191,6 +172,9 @@ const PurchaseForm = () => {
           });
         }
       };
+      
+      
+
       const createCheckoutButton = async (preferenceId) => {
         const mp = new MercadoPago("", {
           locale: "es-AR",
