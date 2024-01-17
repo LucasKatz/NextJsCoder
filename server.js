@@ -15,7 +15,7 @@ const port = 4000;
 
 // Configuración de CORS
 const corsOptions = {
-  origin: ['https://nightowlresources.vercel.app/', 'https://www.mercadopago.com.ar'],
+  origin: ['https://nightowlresources.vercel.app/', 'https://www.mercadopago.com.ar','mercadopago/route'],
   methods: 'POST',
   optionsSuccessStatus: 204,
 };
