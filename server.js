@@ -11,11 +11,11 @@ const client = new MercadoPagoConfig({
 });
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 // Configuración de CORS
 const corsOptions = {
-  origin: ['https://nightowlresources.vercel.app/', 'https://www.mercadopago.com.ar','mercadopago/route'],
+  origin:   '*',
   methods: 'POST',
   optionsSuccessStatus: 204,
 };
