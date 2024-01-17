@@ -10,9 +10,9 @@ console.log("Token de acceso de Mercado Pago:", process.env.NEXT_ACCESS_TOKEN);
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+/*router.get("/", (req, res) => {
   res.send("Soy el server :)");
-});
+});*/
 
 router.post("/", async (req, res) => {
   console.log("4. Recibida solicitud POST a /api/mercadoPago");
