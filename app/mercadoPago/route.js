@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
   res.send("Soy el server :)");
 });
 
-router.post("/mercadoPago/route", async (req, res) => {
+router.post("/", async (req, res) => {
   console.log("4. Recibida solicitud POST a /api/mercadoPago");
 
   try {
