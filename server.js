@@ -14,11 +14,21 @@ const app = express();
 const port = 4000;
 
 // Configuración de CORS
-app.use(cors());
-app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));app.use(express.json());
 
 // Asignar el cliente de Mercado Pago a la variable de entorno para que esté disponible en todas partes
 app.set('mercadopagoClient', client);
+
+app.get('/redireccionar', (req, res) => {
+  const prefId = req.query.pref_id;
+  // Validar y procesar prefId según tus necesidades
+  const url = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${prefId}`;
+  res.redirect(url);
+});
 
 
 app.listen(port, () => {
