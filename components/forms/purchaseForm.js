@@ -142,35 +142,29 @@ const PurchaseForm = () => {
       const handleMercadoPagoClick = async () => {
         try {
           const result = await createOrder(userData, cart);
+      
           const orderData = {
             title: "Night Owl Resources Bill",
             quantity: 1,
             price: calculateTotal(cart),
           };
       
-          const response = await fetch(`/mercadoPago/route`, {
+          const response = await fetch("http://localhost:4000/mercadoPago/route", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            credentials: 'include',
-            mode: 'cors',
             body: JSON.stringify(orderData),
           });
       
-          const { redirectUrl } = await response.json();
-          console.log("URL de redirección:", redirectUrl);
+          const preference = await response.json();
+          console.log("datos de preference", preference);
       
-          // Redirige al usuario a la URL de pago de MercadoPago
-          window.location.href = redirectUrl;
+          // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
+          window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
+          console.log("esto es el point", preference.id);
         } catch (error) {
           console.error("Error creating MercadoPago order:", error);
-      
-          if (error instanceof Response) {
-            const responseData = await error.json();
-            console.error("Error Response Data:", responseData);
-          }
-      
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -178,7 +172,6 @@ const PurchaseForm = () => {
           });
         }
       };
-      
       
       
 
