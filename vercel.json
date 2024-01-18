@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/mercadoPago/route",
-      "dest": "https://nightowlresources.vercel.app/mercadoPago/route.js"
+      "dest": "https://nightowlresources.vercel.app/mercadoPago/route"
     },
     {
       "src": "/api/(.*)",
