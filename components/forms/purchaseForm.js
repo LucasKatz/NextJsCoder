@@ -152,7 +152,7 @@ const PurchaseForm = () => {
           };
           console.log("3. Datos de la orden:", orderData);
       
-          const response = await fetch("https://nightowlresources.vercel.app/api/mercadoPago/route", {
+          const response = await fetch("https://nightowlresources.vercel.app/mercadoPago/route", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
