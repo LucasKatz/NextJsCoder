@@ -4,7 +4,7 @@ const mercadoPagoHandler = require('./mercadoPagohandler');
 
 
 const client = new MercadoPagoConfig({
-  accessToken: NEXT_ACCESS_TOKEN,
+  accessToken: process.env.NEXT_ACCESS_TOKEN,
   siteId: 'MLA',
 });
 
