@@ -148,7 +148,7 @@ const PurchaseForm = () => {
             price: calculateTotal(cart),
           };
       
-          const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/mercadoPago/route`, {
+          const response = await fetch("https://nightowlresources.vercel.app/api/mercadoPago/route", {
 
             method: "POST",
             headers: {
