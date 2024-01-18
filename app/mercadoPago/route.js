@@ -14,53 +14,39 @@ router.get("/", (req, res) => {
   res.send("Soy el server :)");
 });
 
-router.post("/mercadoPago/route", async (req, res) => {
-  console.log("A. Recibida solicitud POST a /api/mercadoPago/route");
-
+router.post("/forwardToMercadoPago", async (req, res) => {
   try {
-    console.log("B. Cuerpo de la solicitud:", req.body);
-    const body = {
-      items: [
-        {
-          title: req.body.title,
-          quantity: Number(req.body.quantity),
-          unit_price: Number(req.body.price),
-          currency_id: "ARS",
-        },
-      ],
-      notification_url: "https://tu-domino.com/webhook",
+    console.log("A. Recibida solicitud POST a /api/forwardToMercadoPago");
 
-      back_urls: {
-        success: "https://www.youtube.com/@onthecode",
-        failure: "https://www.youtube.com/@onthecode",
-        pending: "https://www.youtube.com/@onthecode",
+    const orderData = req.body;
+    console.log("B. Cuerpo de la solicitud:", orderData);
+
+    const response = await fetch("https://www.mercadopago.com.ar/checkout/v1/redirect", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      auto_return: "approved",
-    };
+      body: JSON.stringify(orderData),
+    });
+    console.log("C. Respuesta del servidor de MercadoPago:", response);
 
-    const preference = new Preference(client);
-    const result = await preference.create({ body });
-
-    console.log("C. Preferencia creada exitosamente en MercadoPago:", result);
+    const preference = await response.json();
+    console.log("D. Datos de la preferencia:", preference);
 
     res.json({
-      id: result.id, 
+      id: preference.id, 
     });
 
-    console.log("D. Resultado de id:", result.id);
+    console.log("E. Resultado de id:", preference.id);
   } catch (error) {
-    console.error("E. Error al crear la preferencia:", error);
+    console.error("F. Error al reenviar la solicitud a MercadoPago:", error);
 
-    // Asegúrate de que solo envías la respuesta en caso de error, y no en otros casos
     if (!res.headersSent) {
       res.status(500).json({
-        error: "Error al crear la preferencia :(",
+        error: "Error al reenviar la solicitud a MercadoPago :(",
       });
     }
   }
 });
-
-
-console.log("8. Router inicializado exitosamente.");
 
 module.exports = router;
