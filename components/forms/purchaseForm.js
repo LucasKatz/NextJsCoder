@@ -143,6 +143,7 @@ const PurchaseForm = () => {
       : 'http://localhost:4000';
     
     const endpointUrl = `${serverUrl}/mercadoPago/route`;
+    console.log("URL =", endpointUrl)
     
     const handleMercadoPagoClick = async () => {
       try {
