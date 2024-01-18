@@ -167,6 +167,7 @@ const PurchaseForm = () => {
         }
       };
       
+      
 
       const createCheckoutButton = async (preferenceId) => {
         const mp = new MercadoPago("", {

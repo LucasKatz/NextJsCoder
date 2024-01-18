@@ -1,17 +1,18 @@
 const express = require('express');
 const { MercadoPagoConfig} = require('mercadopago');
-import { createMercadoPagoPreference } from './mercadoPagohandler';
+const mercadoPagoHandler = require('./mercadoPagohandler');
+
 
 const client = new MercadoPagoConfig({
-  accessToken: process.env.NEXT_ACCESS_TOKEN,
+  accessToken: NEXT_ACCESS_TOKEN,
   siteId: 'MLA',
 });
 
-console.log("Token de acceso de Mercado Pago:", process.env.NEXT_ACCESS_TOKEN);
+console.log("Token de acceso de Mercado Pago:", NEXT_ACCESS_TOKEN);
 
 const router = express.Router();
 
-router.post("/mercadoPago/route", createMercadoPagoPreference);
+router.post("/mercadoPago/route", mercadoPagoHandler.createMercadoPagoPreference);
 
 console.log("8. Router inicializado exitosamente.");
 
