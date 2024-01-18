@@ -150,7 +150,7 @@ const PurchaseForm = () => {
           };
       
           // Utiliza la función directamente, en lugar de fetch
-          const response = await fetch('/api/mercadoPago', {
+          const response = await fetch('/mercadoPago/route', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
