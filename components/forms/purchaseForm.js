@@ -138,40 +138,51 @@ const PurchaseForm = () => {
         };
       }, [cart, userData]);
     
-      const handleMercadoPagoClick = async () => {
-        try {
-          const result = await createOrder(userData, cart);
-      
-          const orderData = {
-            title: "Night Owl Resources Bill",
-            quantity: 1,
-            price: calculateTotal(cart),
-          };
-      
-          const response = await fetch("/mercadoPago/route", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(orderData),
-          });
-      
+      const serverUrl = process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'http://localhost:4000';
+    
+    const endpointUrl = `${serverUrl}/mercadoPago/route`;
+    
+    const handleMercadoPagoClick = async () => {
+      try {
+        const result = await createOrder(userData, cart);
+        const orderData = {
+          title: "Night Owl Resources Bill",
+          quantity: 1,
+          price: calculateTotal(cart),
+        };
+    
+        // Utiliza fetch con la URL del endpoint adaptada
+        const response = await fetch(endpointUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(orderData),
+        });
+    
+        if (response.ok) {
           const preference = await response.json();
-          console.log("datos de preference", preference);
-      
+    
+          console.log("Datos de preference", preference);
+    
           // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
-          window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
-          console.log("esto es el point", preference.id);
-        } catch (error) {
-          console.error("Error creating MercadoPago order:", error);
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-          });
+          window.location.href = `http://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
+          console.log("Esto es el punto", preference.id);
+        } else {
+          throw new Error('Error en la solicitud al servidor de MercadoPago');
         }
-      };
-      
+      } catch (error) {
+        console.error("Error creating MercadoPago order:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+    };
+    
       
 
       const createCheckoutButton = async (preferenceId) => {
