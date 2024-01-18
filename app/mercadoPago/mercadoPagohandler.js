@@ -23,7 +23,7 @@ const createMercadoPagoPreference = async (orderData) => {
           currency_id: "ARS",
         },
       ],
-      notification_url: "https://tu-domino.com/webhook",
+      notification_url: "https://nightowlresources.vercel.app",
 
       back_urls: {
         success: "https://nightowlresources.vercel.app/thanks",
