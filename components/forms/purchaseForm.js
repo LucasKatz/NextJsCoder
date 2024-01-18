@@ -152,14 +152,14 @@ const PurchaseForm = () => {
           };
           console.log("3. Datos de la orden:", orderData);
       
-          const response = await fetch("https://nightowlresources.vercel.app/api/forwardToMercadoPago", {
+          const response = await fetch("https://nightowlresources.vercel.app/api/mercadoPago/route", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(orderData),
           });
-          console.log("4. Respuesta del servidor intermedio:", response);
+          console.log("4. Respuesta del servidor:", response);
       
           const preference = await response.json();
           console.log("5. Datos de la preferencia:", preference);
