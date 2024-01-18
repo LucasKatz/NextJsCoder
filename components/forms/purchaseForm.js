@@ -160,6 +160,7 @@ const PurchaseForm = () => {
       
           if (!response.ok) {
             // Manejar el error de la solicitud HTTP
+            console.log(response)
             throw new Error('Error en la solicitud HTTP');
           }
       
