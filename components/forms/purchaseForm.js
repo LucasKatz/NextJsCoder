@@ -142,22 +142,15 @@ const PurchaseForm = () => {
       const handleMercadoPagoClick = async () => {
         try {
           const result = await createOrder(userData, cart);
-      
           const orderData = {
             title: "Night Owl Resources Bill",
             quantity: 1,
             price: calculateTotal(cart),
           };
       
-          const response = await fetch("https://nightowlresources.vercel.app/mercadoPago/route", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(orderData),
-          });
+          // Utiliza la función directamente, en lugar de fetch
+          const preference = await createMercadoPagoPreference(orderData);
       
-          const preference = await response.json();
           console.log("datos de preference", preference);
       
           // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
@@ -172,7 +165,6 @@ const PurchaseForm = () => {
           });
         }
       };
-      
       
 
       const createCheckoutButton = async (preferenceId) => {
