@@ -1,9 +1,11 @@
 {
-    "routes": [
-      {
-        "src": "/mercadoPago/route",
-        "dest": "https://nightowlresources.vercel.app/mercadoPago/route.js"
-      }
-    ]
+  "routes": {
+    "/api/*": {
+      "methods": ["POST"],
+      "headers": ["Content-Type"],
+      "allow": ["https://nightowlresources.vercel.app"]
+    }
+  }
+
   }
   

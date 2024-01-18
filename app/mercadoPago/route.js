@@ -14,7 +14,7 @@ const router = express.Router();
   res.send("Soy el server :)");
 });*/
 
-router.post("/", async (req, res) => {
+router.post("/mercadoPago/route", async (req, res) => {
   console.log("4. Recibida solicitud POST a /api/mercadoPago");
 
   try {
