@@ -12,6 +12,7 @@ import { writeBatch} from "firebase/firestore"
 import { setDoc, doc, getDoc, Timestamp, collection, getFirestore} from "firebase/firestore"
 import { useRouter } from "next/navigation";
 import MercadoPago from "mercadopago";
+import { createMercadoPagoPreference } from "@/app/mercadoPago/mercadoPagohandler";
 
 const loadMercadoPagoScript = () => {
     const script = document.createElement('script');
@@ -103,45 +104,69 @@ const PurchaseForm = () => {
     
 
     useEffect(() => {
-      loadMercadoPagoScript();
-    }, [cart, userData]);
-  
-    const handleMercadoPagoClick = async () => {
-      try {
-        console.log("1. Iniciando handleMercadoPagoClick");
-  
-        const result = await createOrder(userData, cart);
-        console.log("2. Orden creada exitosamente:", result);
-  
-        const orderData = {
-          title: "Night Owl Resources Bill",
-          quantity: 1,
-          price: calculateTotal(cart),
+        if (user && user.email) {
+            const userDocRef = doc(collection(getFirestore(), "users"), user.email);
+
+            getDoc(userDocRef)
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists()) {
+                        setUserData(docSnapshot.data());
+                    } else {
+                        console.log("User data not found 'users'");
+                    }
+                })
+                .catch((error) => {
+                    console.error("User data not found:", error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+        loadMercadoPagoScript();
+    }, [user]);
+
+    useEffect(() => {
+        const mercadoPagoButton = document.getElementById("mercadopago-btn");
+    
+        if (mercadoPagoButton) {
+          mercadoPagoButton.addEventListener("click", handleMercadoPagoClick);
+        }
+    
+        return () => {
+          // Limpieza del evento al desmontar el componente
+          if (mercadoPagoButton) {
+            mercadoPagoButton.removeEventListener("click", handleMercadoPagoClick);
+          }
         };
-        console.log("3. Datos de la orden:", orderData);
-  
-        // Llama directamente a la función que maneja Mercado Pago
-        const mercadoPagoResponse = await createMercadoPagoPreference(orderData);
-        console.log("4. Respuesta del servidor:", mercadoPagoResponse);
-  
-        window.location.href = mercadoPagoResponse.init_point;
-        console.log("5. Redirigiendo a MercadoPago");
-      } catch (error) {
-        console.error("Error en handleMercadoPagoClick:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
-      }
-    };
-  
-    // Llama directamente a la función que maneja Mercado Pago
-    const createMercadoPagoPreference = async (orderData) => {
-      // Asegúrate de importar la función adecuada desde tu servidor Next.js
-      return await POSTFunction(orderData);
-    };
-  
+      }, [cart, userData]);
+    
+      const handleMercadoPagoClick = async () => {
+        try {
+          const result = await createOrder(userData, cart);
+          const orderData = {
+            title: "Night Owl Resources Bill",
+            quantity: 1,
+            price: calculateTotal(cart),
+          };
+      
+          // Utiliza la función directamente, en lugar de fetch
+          const preference = await createMercadoPagoPreference(orderData);
+      
+          console.log("datos de preference", preference);
+      
+          // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
+          window.location.href = `http://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
+          console.log("esto es el point", preference.id);
+        } catch (error) {
+          console.error("Error creating MercadoPago order:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+        }
+      };
+      
       
 
       const createCheckoutButton = async (preferenceId) => {
