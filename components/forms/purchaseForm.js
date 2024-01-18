@@ -138,50 +138,41 @@ const PurchaseForm = () => {
         };
       }, [cart, userData]);
     
-    
-    
-    const endpointUrl = `https://nightowlresources.vercel.app/mercadoPago/route`;
-    console.log("URL =", endpointUrl)
-    
-    const handleMercadoPagoClick = async () => {
-      try {
-        const result = await createOrder(userData, cart);
-        const orderData = {
-          title: "Night Owl Resources Bill",
-          quantity: 1,
-          price: calculateTotal(cart),
-        };
-    
-        // Utiliza fetch con la URL del endpoint adaptada
-        const response = await fetch(endpointUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(orderData),
-        });
-    
-        if (response.ok) {
+      const handleMercadoPagoClick = async () => {
+        try {
+          const result = await createOrder(userData, cart);
+      
+          const orderData = {
+            title: "Night Owl Resources Bill",
+            quantity: 1,
+            price: calculateTotal(cart),
+          };
+      
+          const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/mercadoPago/route`, {
+
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderData),
+          });
+      
           const preference = await response.json();
-    
-          console.log("Datos de preference", preference);
-    
+          console.log("datos de preference", preference);
+      
           // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
-          window.location.href = `http://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
-          console.log("Esto es el punto", preference.id);
-        } else {
-          throw new Error('Error en la solicitud al servidor de MercadoPago');
+          window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
+          console.log("esto es el point", preference.id);
+        } catch (error) {
+          console.error("Error creating MercadoPago order:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
         }
-      } catch (error) {
-        console.error("Error creating MercadoPago order:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
-      }
-    };
-    
+      };
+      
       
 
       const createCheckoutButton = async (preferenceId) => {
