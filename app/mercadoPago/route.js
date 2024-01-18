@@ -11,10 +11,10 @@ console.log("Token de acceso de Mercado Pago:", process.env.NEXT_ACCESS_TOKEN);
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("Soy el server :)");
+  res.send("Soy el servidor :)");
 });
 
-router.post("/mercadoPago/route", async (req, res) => {
+router.post("/route", async (req, res) => {
   console.log("A. Recibida solicitud POST a /api/mercadoPago/route");
 
   try {
@@ -44,7 +44,7 @@ router.post("/mercadoPago/route", async (req, res) => {
     console.log("C. Preferencia creada exitosamente en MercadoPago:", result);
 
     res.json({
-      id: result.id, 
+      id: result.id,
     });
 
     console.log("D. Resultado de id:", result.id);
@@ -59,7 +59,6 @@ router.post("/mercadoPago/route", async (req, res) => {
     }
   }
 });
-
 
 console.log("8. Router inicializado exitosamente.");
 
