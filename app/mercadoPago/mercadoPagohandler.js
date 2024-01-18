@@ -33,7 +33,11 @@ const createMercadoPagoPreference = async (orderData) => {
       auto_return: "approved",
     };
 
+    console.log("Request Body for MercadoPago API:", body);
+
     const preference = new Preference(client);
+
+    console.log("MercadoPago Preference Instance:", preference);
     const result = await preference.create({ body });
 
     console.log("Preferencia creada exitosamente en MercadoPago.", result);
