@@ -12,6 +12,7 @@ import { writeBatch} from "firebase/firestore"
 import { setDoc, doc, getDoc, Timestamp, collection, getFirestore} from "firebase/firestore"
 import { useRouter } from "next/navigation";
 import MercadoPago from "mercadopago";
+import { createMercadoPagoPreference } from "@/app/mercadoPago/mercadoPagohandler";
 
 const loadMercadoPagoScript = () => {
     const script = document.createElement('script');
