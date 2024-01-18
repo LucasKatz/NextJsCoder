@@ -14,22 +14,17 @@ const app = express();
 const port = 4000;
 
 // Configuración de CORS
-const corsOptions = {
-  origin: '*',
-  methods: 'POST',
-  optionsSuccessStatus: 204,
-};
-
-app.use(cors(corsOptions));
-app.use(express.json()); 
+app.use(cors());
+app.use(express.json());
 
 // Asignar el cliente de Mercado Pago a la variable de entorno para que esté disponible en todas partes
 app.set('mercadopagoClient', client);
+
 
 app.listen(port, () => {
   console.log(`El servidor está corriendo en el puerto ${port}`);
 });
 
-app.use("/mercadoPago/route", router);
+app.use("/", router);
 
 console.log("3. Servidor inicializado exitosamente.");
