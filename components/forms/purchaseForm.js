@@ -148,11 +148,22 @@ const PurchaseForm = () => {
             quantity: 1,
             price: calculateTotal(cart),
           };
-
-          
       
           // Utiliza la función directamente, en lugar de fetch
-          const preference = await createMercadoPagoPreference(orderData);
+          const response = await fetch('/api/mercadoPago', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),
+          });
+      
+          if (!response.ok) {
+            // Manejar el error de la solicitud HTTP
+            throw new Error('Error en la solicitud HTTP');
+          }
+      
+          const preference = await response.json();
       
           console.log("datos de preference", preference);
       
@@ -168,6 +179,7 @@ const PurchaseForm = () => {
           });
         }
       };
+      
       
       
 
