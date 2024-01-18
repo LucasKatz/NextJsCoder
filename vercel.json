@@ -1,19 +1,8 @@
 {
   "routes": [
     {
-      "src": "/mercadoPago/route",
-      "dest": "https://nightowlresources.vercel.app/mercadoPago/route"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "https://nightowlresources.vercel.app/$1"
-    },
-    {
-      "src": "(/static/|/favicon.ico)",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      },
-      "dest": "https://nightowlresources.vercel.app$1"
+      "src": "https://nightowlresources.vercel.app/mercadoPago/route",
+      "dest": "/app/mercadoPago/route"
     },
     {
       "src": "/(.*)",
