@@ -1,7 +1,6 @@
-require('dotenv').config();
 const express = require('express');
 const router = require('./app/mercadoPago/route.js');
-const { MercadoPagoConfig, Preference } = require('mercadopago');
+const { MercadoPagoConfig } = require('mercadopago');
 const cors = require('cors');
 
 // Configuración de Mercado Pago
@@ -21,7 +20,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Asignar el cliente de Mercado Pago a la variable de entorno para que esté disponible en todas partes
 app.set('mercadopagoClient', client);

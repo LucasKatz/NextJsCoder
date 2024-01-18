@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 
+
 const client = new MercadoPagoConfig({
   accessToken: "TEST-8977318554138840-010918-484d7256df3c0b7dba0ecd3c811a20bf-124181768",
   siteId: 'MLA',

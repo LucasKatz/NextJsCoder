@@ -148,6 +148,8 @@ const PurchaseForm = () => {
             quantity: 1,
             price: calculateTotal(cart),
           };
+
+          
       
           // Utiliza la función directamente, en lugar de fetch
           const preference = await createMercadoPagoPreference(orderData);
