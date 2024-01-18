@@ -15,10 +15,10 @@ router.get("/", (req, res) => {
 });
 
 router.post("/mercadoPago/route", async (req, res) => {
-  console.log("4. Recibida solicitud POST a /api/mercadoPago");
+  console.log("A. Recibida solicitud POST a /api/mercadoPago/route");
 
   try {
-    console.log("5. Cuerpo de la solicitud:", req.body);
+    console.log("B. Cuerpo de la solicitud:", req.body);
     const body = {
       items: [
         {
@@ -41,26 +41,25 @@ router.post("/mercadoPago/route", async (req, res) => {
     const preference = new Preference(client);
     const result = await preference.create({ body });
 
-    console.log("6. Preferencia creada exitosamente en MercadoPago.", result);
-
+    console.log("C. Preferencia creada exitosamente en MercadoPago:", result);
 
     res.json({
       id: result.id, 
-  });
+    });
 
-  console.log("9. resultado de id", result.id);
+    console.log("D. Resultado de id:", result.id);
   } catch (error) {
+    console.error("E. Error al crear la preferencia:", error);
 
-    console.error("7. Error al crear la preferencia:", error);
-
-        // Asegúrate de que solo envías la respuesta en caso de error, y no en otros casos
-        if (!res.headersSent) {
-            res.status(500).json({
-                error: "Error al crear la preferencia :(",
-            });
-        }
+    // Asegúrate de que solo envías la respuesta en caso de error, y no en otros casos
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: "Error al crear la preferencia :(",
+      });
+    }
   }
 });
+
 
 console.log("8. Router inicializado exitosamente.");
 
