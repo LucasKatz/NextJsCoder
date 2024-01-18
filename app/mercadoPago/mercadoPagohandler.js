@@ -1,14 +1,25 @@
-const createMercadoPagoPreference = async (req, res) => {
-  console.log("Recibida solicitud POST a /api/mercadoPago");
+require('dotenv').config();
+const { MercadoPagoConfig, Preference } = require('mercadopago');
+
+const client = new MercadoPagoConfig({
+  accessToken: "TEST-8977318554138840-010918-484d7256df3c0b7dba0ecd3c811a20bf-124181768",
+  siteId: 'MLA',
+});
+
+console.log("Token de acceso de Mercado Pago:", process.env.NEXT_ACCESS_TOKEN);
+
+
+const createMercadoPagoPreference = async (orderData) => {
+  console.log("Recibida solicitud para crear preferencia en MercadoPago");
 
   try {
-    console.log("Cuerpo de la solicitud:", req.body);
+    console.log("Cuerpo de la solicitud:", orderData);
     const body = {
       items: [
         {
-          title: req.body.title,
-          quantity: Number(req.body.quantity),
-          unit_price: Number(req.body.price),
+          title: orderData.title,
+          quantity: Number(orderData.quantity),
+          unit_price: Number(orderData.price),
           currency_id: "ARS",
         },
       ],
@@ -27,20 +38,12 @@ const createMercadoPagoPreference = async (req, res) => {
 
     console.log("Preferencia creada exitosamente en MercadoPago.", result);
 
-    res.json({
+    return {
       id: result.id,
-    });
-
-    console.log("Resultado de id", result.id);
+    };
   } catch (error) {
     console.error("Error al crear la preferencia:", error);
-
-    // Asegúrate de que solo envías la respuesta en caso de error, y no en otros casos
-    if (!res.headersSent) {
-      res.status(500).json({
-        error: "Error al crear la preferencia :(",
-      });
-    }
+    throw error; // Re-lanzamos el error para que sea manejado por el código que llama a esta función
   }
 };
 
