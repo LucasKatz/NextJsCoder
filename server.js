@@ -25,6 +25,6 @@ app.listen(port, () => {
   console.log(`El servidor está corriendo en el puerto ${port}`);
 });
 
-app.use("/", router);
+app.use("/mercadoPago", router);
 
 console.log("3. Servidor inicializado exitosamente.");
