@@ -148,7 +148,7 @@ const PurchaseForm = () => {
             quantity: 1,
             price: calculateTotal(cart),
           };
-          const response = await fetch(`${process.env.VERCEL_URL}/mercadoPago/route`, {
+          const response = await fetch(`/mercadoPago/route`, {
             
             method: "POST",
             headers: {
