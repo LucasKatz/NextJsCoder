@@ -138,11 +138,9 @@ const PurchaseForm = () => {
         };
       }, [cart, userData]);
     
-      const serverUrl = process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : 'http://localhost:4000';
     
-    const endpointUrl = `${serverUrl}/mercadoPago/route`;
+    
+    const endpointUrl = `https://nightowlresources.vercel.app/mercadoPago/route`;
     console.log("URL =", endpointUrl)
     
     const handleMercadoPagoClick = async () => {
