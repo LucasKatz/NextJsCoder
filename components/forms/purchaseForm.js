@@ -148,29 +148,35 @@ const PurchaseForm = () => {
             quantity: 1,
             price: calculateTotal(cart),
           };
-      console.log("This is orderData", orderData)
+      
+          console.log("This is orderData", orderData);
+      
+          const requestBody = {
+            items: [
+              {
+                title: orderData.title,
+                quantity: orderData.quantity,
+                unit_price: Number(orderData.price),
+                currency_id: "ARS",
+              },
+            ],
+            notification_url: "https://tu-domino.com/webhook",
+            back_urls: {
+              success: "https://www.youtube.com/@onthecode",
+              failure: "https://www.youtube.com/@onthecode",
+              pending: "https://www.youtube.com/@onthecode",
+            },
+            auto_return: "approved",
+          };
+      
+          console.log("This is requestBody", requestBody);
+      
           const response = await fetch("/apiMercadoPago/mercadoPago", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              items: [
-                {
-                  title: orderData.title,
-                  quantity: orderData.quantity,
-                  unit_price: Number(orderData.price),
-                  currency_id: "ARS",
-                },
-              ],
-              notification_url: "https://tu-domino.com/webhook",
-              back_urls: {
-                success: "https://www.youtube.com/@onthecode",
-                failure: "https://www.youtube.com/@onthecode",
-                pending: "https://www.youtube.com/@onthecode",
-              },
-              auto_return: "approved",
-            }),
+            body: JSON.stringify(requestBody),
           });
       
           const preference = await response.json();
@@ -188,6 +194,7 @@ const PurchaseForm = () => {
           });
         }
       };
+      
       
       
 

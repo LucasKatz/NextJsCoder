@@ -11,28 +11,21 @@ export async function POST(req, res) {
     if (req.method === 'POST') {
       console.log("Recibida solicitud POST a /apiMercadoPago/mercadoPago");
 
+      // Lee el cuerpo del flujo como JSON
+      const requestBody = await req.json();
+
+      // Desestructura los datos necesarios del cuerpo
+      const { items, notification_url, back_urls, auto_return } = requestBody;
+
       const body = {
-        items: [
-          {
-            title: req.body.title,
-            quantity: req.body.quantity,
-            unit_price: Number(req.body.price),
-            currency_id: "ARS",
-          },
-        ],
-        notification_url: "https://tu-domino.com/webhook",
-        
-        back_urls: {
-            success: "https://www.youtube.com/@onthecode",
-            failure: "https://www.youtube.com/@onthecode",
-            pending: "https://www.youtube.com/@onthecode",
-        },
-        auto_return: "approved",
-    };
-    
+        items,
+        notification_url,
+        back_urls,
+        auto_return,
+      };
 
       const preference = new Preference(client);
-      console.log("body",body)
+      console.log("body", body);
       const result = await preference.create({ body });
 
       console.log("Preferencia creada exitosamente en MercadoPago:", result);
@@ -43,7 +36,7 @@ export async function POST(req, res) {
 
       console.log("Resultado de ID:", result.id);
     } else {
-      // Si el método de la solicitud no es POST o GET, devuelve un error 405 (Method Not Allowed)
+      // Si el método de la solicitud no es POST, devuelve un error 405 (Method Not Allowed)
       res.status(405).json({ error: 'Method Not Allowed' });
     }
   } catch (error) {
@@ -51,11 +44,7 @@ export async function POST(req, res) {
 
     // Asegúrate de que solo envías la respuesta en caso de error, y no en otros casos
     if (!res.headersSent) {
-        NextResponse({ message: "Error al procesar la solicitud 2" })
+      NextResponse({ message: "Error al procesar la solicitud 2" });
     }
   }
-}
-
-export async function GET(req, res) {
-  return res.json({ message: "Hola Fer, este GET es la ruta correcta, vamos nene que es x acaaaa" });
 }

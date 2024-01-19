@@ -3,7 +3,7 @@ import PurchaseForm from "../../../components/forms/purchaseForm"
 export async function generateMetadata() {
 
     return {
-        title: `Night Owl - Contact`,
+        title: `Night Owl - Payment`,
     }
 }
 
