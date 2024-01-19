@@ -160,11 +160,11 @@ const PurchaseForm = () => {
                 currency_id: "ARS",
               },
             ],
-            notification_url: "https://tu-domino.com/webhook",
+            notification_url: "https://nightowlresources.vercel.app/",
             back_urls: {
-              success: "https://www.youtube.com/@onthecode",
-              failure: "https://www.youtube.com/@onthecode",
-              pending: "https://www.youtube.com/@onthecode",
+              success: "https://nightowlresources.vercel.app/thanks",
+              failure: "https://nightowlresources.vercel.app/not-found",
+              pending: "https://nightowlresources.vercel.app/not-found",
             },
             auto_return: "approved",
           };

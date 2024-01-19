@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 import { MercadoPagoConfig, Preference } from 'mercadopago';
+import { NextResponse } from 'next/server';
 
 const client = new MercadoPagoConfig({
   accessToken: process.env.NEXT_ACCESS_TOKEN,
@@ -30,10 +30,11 @@ export async function POST(req, res) {
 
       console.log("Preferencia creada exitosamente en MercadoPago:", result);
 
-      res.json({
+
+      return NextResponse.json({
         id: result.id,
       });
-
+      
       console.log("Resultado de ID:", result.id);
     } else {
       // Si el método de la solicitud no es POST, devuelve un error 405 (Method Not Allowed)
@@ -42,9 +43,8 @@ export async function POST(req, res) {
   } catch (error) {
     console.error("Error al procesar la solicitud:", error);
 
-    // Asegúrate de que solo envías la respuesta en caso de error, y no en otros casos
-    if (!res.headersSent) {
-      NextResponse({ message: "Error al procesar la solicitud 2" });
-    }
+    // Envía un código de estado 500 y la respuesta como JSON
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
