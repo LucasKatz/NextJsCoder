@@ -11,7 +11,6 @@ import Loader from "../../app/(shop)/products/detail/[slug]/loading"
 import { writeBatch} from "firebase/firestore"
 import { setDoc, doc, getDoc, Timestamp, collection, getFirestore} from "firebase/firestore"
 import { useRouter } from "next/navigation";
-import MercadoPago from "mercadopago";
 
 const loadMercadoPagoScript = () => {
     const script = document.createElement('script');
@@ -124,82 +123,79 @@ const PurchaseForm = () => {
         loadMercadoPagoScript();
     }, [user]);
 
-    useEffect(() => {
-        const mercadoPagoButton = document.getElementById("mercadopago-btn");
-    
-        if (mercadoPagoButton) {
-          mercadoPagoButton.addEventListener("click", handleMercadoPagoClick);
-        }
-    
-        return () => {
-          // Limpieza del evento al desmontar el componente
-          if (mercadoPagoButton) {
-            mercadoPagoButton.removeEventListener("click", handleMercadoPagoClick);
-          }
-        };
-      }, [cart, userData]);
-    
-      const handleMercadoPagoClick = async () => {
-        try {
-          const result = await createOrder(userData, cart);
-      
-          const orderData = {
-            title: "Night Owl Resources Bill",
-            quantity: 1,
-            price: calculateTotal(cart),
-          };
-      
-          console.log("This is orderData", orderData);
-      
-          const requestBody = {
-            items: [
-              {
-                title: orderData.title,
-                quantity: orderData.quantity,
-                unit_price: Number(orderData.price),
-                currency_id: "ARS",
-              },
-            ],
-            notification_url: "https://nightowlresources.vercel.app/",
-            back_urls: {
-              success: "https://nightowlresources.vercel.app/thanks",
-              failure: "https://nightowlresources.vercel.app/not-found",
-              pending: "https://nightowlresources.vercel.app/not-found",
-            },
-            auto_return: "approved",
-          };
-      
-          console.log("This is requestBody", requestBody);
-      
-          const response = await fetch("/apiMercadoPago/mercadoPago", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(requestBody),
-          });
-      
-          const preference = await response.json();
-          console.log("datos de preference", preference);
-      
-          // Redirige al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
-          window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
-          console.log("esto es el point", preference.id);
-        } catch (error) {
-          console.error("Error creating MercadoPago order:", error);
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-          });
-        }
-      };
-      
-      
-      
 
-      
-      
+    
+    const handleMercadoPagoClick = async () => {
+      try {
+        // Mostramos el prompt para descargar el ticket
+        const swalResult = await showDownloadPrompt();
+    
+        if (swalResult.isConfirmed) {
+          // Descargamos el PDF solo si el usuario elige descargar
+          const pdf = generatePDF(userData, cart);
+          pdf.save('ticket.pdf');
+          pdf.output('dataurlnewwindow');
+        }
+    
+        // Continuamos con el flujo de pago de MercadoPago
+        const result = await createOrder(userData, cart);
+    
+        const orderData = {
+          title: "Night Owl Resources Bill",
+          quantity: 1,
+          price: calculateTotal(cart),
+        };
+    
+        console.log("This is orderData", orderData);
+    
+        const requestBody = {
+          items: [
+            {
+              title: orderData.title,
+              quantity: orderData.quantity,
+              unit_price: Number(orderData.price),
+              currency_id: "ARS",
+            },
+          ],
+          notification_url: "https://nightowlresources.vercel.app/",
+          back_urls: {
+            success: "https://nightowlresources.vercel.app/thanks",
+            failure: "https://nightowlresources.vercel.app/not-found",
+            pending: "https://nightowlresources.vercel.app/not-found",
+          },
+          auto_return: "approved",
+        };
+    
+        console.log("This is requestBody", requestBody);
+    
+        const response = await fetch("/apiMercadoPago/mercadoPago", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        });
+    
+        const preference = await response.json();
+        console.log("datos de preference", preference);
+    
+        // Redirigimos al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
+        window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
+        console.log("esto es el point", preference.id);
+    
+        // Vaciamos el carrito después de completar la compra
+        clearCart();
+      } catch (error) {
+        console.error("Error handling MercadoPago click:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+    };
+    
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -277,9 +273,9 @@ const PurchaseForm = () => {
     </div>
             <div className="flex flex-row justify-center my-5">
                 <Button onClick={() => { generatePDF(userData, cart);  }}  type="submit">Submit Purchase</Button>
-                <Button id="mercadopago-btn" type="button">
-  Pay with MercadoPago
-</Button>
+                <Button onClick={handleMercadoPagoClick} type="button">
+              Pay with MercadoPago
+            </Button>
 
             </div>
     </form>
