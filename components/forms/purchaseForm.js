@@ -148,15 +148,30 @@ const PurchaseForm = () => {
             quantity: 1,
             price: calculateTotal(cart),
           };
-          const response = await fetch(`/mercadoPago/route`, {
-            
+      console.log("This is orderData", orderData)
+          const response = await fetch("/apiMercadoPago/mercadoPago", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(orderData),
+            body: JSON.stringify({
+              items: [
+                {
+                  title: orderData.title,
+                  quantity: orderData.quantity,
+                  unit_price: Number(orderData.price),
+                  currency_id: "ARS",
+                },
+              ],
+              notification_url: "https://tu-domino.com/webhook",
+              back_urls: {
+                success: "https://www.youtube.com/@onthecode",
+                failure: "https://www.youtube.com/@onthecode",
+                pending: "https://www.youtube.com/@onthecode",
+              },
+              auto_return: "approved",
+            }),
           });
-          console.log(response)
       
           const preference = await response.json();
           console.log("datos de preference", preference);
@@ -176,35 +191,7 @@ const PurchaseForm = () => {
       
       
 
-      const createCheckoutButton = async (preferenceId) => {
-        const mp = new MercadoPago("", {
-          locale: "es-AR",
-        });
       
-        const renderComponent = async () => {
-          const walletContainer = document.getElementById("wallet_container");
-      
-          if (walletContainer) {
-            try {
-              await mp.render({
-                element: "wallet_container",
-                preference: {
-                  id: preferenceId,
-                },
-              });
-            } catch (error) {
-              console.error("Error creating MercadoPago button:", error);
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-              });
-            }
-          }
-        };
-      
-        renderComponent();
-      };
       
 
     const handleSubmit = async (e) => {
@@ -284,7 +271,6 @@ const PurchaseForm = () => {
             <div className="flex flex-row justify-center my-5">
                 <Button onClick={() => { generatePDF(userData, cart);  }}  type="submit">Submit Purchase</Button>
                 <Button id="mercadopago-btn" type="button">
-  <div id="wallet_container"></div>
   Pay with MercadoPago
 </Button>
 
