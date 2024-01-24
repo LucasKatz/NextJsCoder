@@ -5,7 +5,6 @@ import { useAuthContext } from "../context/AuthContext";
 import Image from "next/image";
 import Counter from "../userint/counter";
 import Link from "next/link";
-import Button from "../userint/button";
 import { useCart } from "../context/CartContext";
 import { useState, useEffect } from "react";
 import Loader from "../../app/(shop)/products/detail/[slug]/loading";
@@ -88,24 +87,24 @@ const ProductDetail = ({ product }) => {
             )}
             <Counter quantity={quantity} setQuantity={setQuantity}/>
             <div className="flex productToAdds-center flex-col md:flex-row">
-              <Button
-                className="p-auto mb-4 md:mr-4 w-full md:w-40 h-12"
+              <button
+                className={`buttonUIDetail`}
                 onClick={handleAddToCart}
                 disabled={!user.loggedIn}>
                 Add to Cart
-              </Button>
-              <Button className="p-auto w-full md:w-40 h-12 mb-4">
+              </button>
+              <button className={`buttonUIDetail`}>
                 <Link href={"/cart"}>
                   Go to Cart
                 </Link>
-              </Button>
+              </button>
             </div>
             <div className="my-8">
-              <Button className="my-2 rounded-md p-5">
+              <button className={`buttonUIDetail`}>
                 <Link href="/products/all">
                   Back to Catalogue
                 </Link>
-              </Button>
+              </button>
             </div>
           </div>
         </div>
