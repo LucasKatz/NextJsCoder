@@ -25,17 +25,15 @@ export async function POST(req, res) {
       };
 
       const preference = new Preference(client);
-      console.log("body", body);
       const result = await preference.create({ body });
 
-      console.log("Preferencia creada exitosamente en MercadoPago:", result);
+
 
 
       return NextResponse.json({
         id: result.id,
       });
       
-      console.log("Resultado de ID:", result.id);
     } else {
       // Si el método de la solicitud no es POST, devuelve un error 405 (Method Not Allowed)
       res.status(405).json({ error: 'Method Not Allowed' });

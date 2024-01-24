@@ -20,7 +20,6 @@ const loadMercadoPagoScript = () => {
   };
 
 export const createOrder = async (userData, cart) => {
-  console.log("1. Creando orden en Firebase...");
     const order = {
         client: {
             name: userData.name,
@@ -50,8 +49,6 @@ export const createOrder = async (userData, cart) => {
   });
 
   await batch.commit();
-  console.log("2. Orden creada exitosamente en Firebase.");
-
     return docId;
 };
 
@@ -92,7 +89,7 @@ export const calculateTotal = (cart) => {
 
 
 const PurchaseForm = () => {
-    const { cart, eraseCart, clearCart } = useCart();
+    const { cart, clearCart } = useCart();
     const { user } = useAuthContext();
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -127,17 +124,14 @@ const PurchaseForm = () => {
     
     const handleMercadoPagoClick = async () => {
       try {
-        // Mostramos el prompt para descargar el ticket
         const swalResult = await showDownloadPrompt();
     
         if (swalResult.isConfirmed) {
-          // Descargamos el PDF solo si el usuario elige descargar
           const pdf = generatePDF(userData, cart);
           pdf.save('ticket.pdf');
           pdf.output('dataurlnewwindow');
         }
     
-        // Continuamos con el flujo de pago de MercadoPago
         const result = await createOrder(userData, cart);
     
         const orderData = {
@@ -146,7 +140,6 @@ const PurchaseForm = () => {
           price: calculateTotal(cart),
         };
     
-        console.log("This is orderData", orderData);
     
         const requestBody = {
           items: [
@@ -177,13 +170,9 @@ const PurchaseForm = () => {
         });
     
         const preference = await response.json();
-        console.log("datos de preference", preference);
     
-        // Redirigimos al usuario a la URL de pago de MercadoPago utilizando el ID de la preferencia
         window.location.href = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${preference.id}`;
-        console.log("esto es el point", preference.id);
     
-        // Vaciamos el carrito después de completar la compra
         clearCart();
       } catch (error) {
         console.error("Error handling MercadoPago click:", error);
@@ -200,9 +189,7 @@ const PurchaseForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const result = await createOrder(userData, cart);
-            console.log(result);
-    
+            const result = await createOrder(userData, cart);    
             const swalResult = await showDownloadPrompt();
     
             if (swalResult.isConfirmed) {
@@ -212,7 +199,6 @@ const PurchaseForm = () => {
                 clearCart();
             } else {
                 clearCart();
-                console.log('User chose not to download the ticket.');
             }
             router.push("/thanks");
         } catch (error) {
@@ -271,13 +257,23 @@ const PurchaseForm = () => {
                     {cart.reduce((total, prod) => total + prod.price * prod.quantity, 0)}
             </div>
     </div>
-            <div className="flex flex-row justify-center my-5">
-                <Button onClick={() => { generatePDF(userData, cart);  }}  type="submit">Submit Purchase</Button>
-                <Button onClick={handleMercadoPagoClick} type="button">
-              Pay with MercadoPago
-            </Button>
+    <div className="flex flex-col sm:flex-row justify-center my-5">
+  <button
+    className={`buttonUIPayment`}
+    onClick={() => { generatePDF(userData, cart); }}
+    type="submit"
+  >
+    Submit Purchase
+  </button>
+  <button
+    className={`buttonUIPayment mt-2 sm:mt-0 sm:ml-2`}
+    onClick={handleMercadoPagoClick}
+    type="button"
+  >
+    Pay with Mercado Pago
+  </button>
+</div>
 
-            </div>
     </form>
     )}
 </main>

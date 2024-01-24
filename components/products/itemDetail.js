@@ -29,8 +29,6 @@ const ProductDetail = ({ product }) => {
         }
 
         const product = await getProductBySlug(slug);
-        console.log("itemDetail", slug);
-        console.log("Fetched product:", product); 
         setProductToAdd(product);
       } catch (error) {
         console.error(`Error fetching product with slug ${slug}:`, error);

@@ -18,8 +18,8 @@ export const CartProvider = ({ children }) => {
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [total, setTotal] = useState(0);
   const { user } = useAuthContext();
-  const [cartQuantity, setCartQuantity] = useState(0);
-  const [cartDocId, setCartDocId] = useState(null);
+  //const [cartQuantity, setCartQuantity] = useState(0);
+  //const [cartDocId, setCartDocId] = useState(null);
 
   const fetchCartDocId = async (user) => {
     try {
@@ -54,10 +54,10 @@ export const CartProvider = ({ children }) => {
 
   const addProduct = async (productToAdd, quantity) => {
     try {
-      if (productToAdd.stock < quantity) {
+      /*if (productToAdd.stock < quantity) {
         toast.error('Product out of Stock', { position: toast.POSITION.TOP_RIGHT });
         return; 
-      }
+      }*/
   
       toast.success('Product added to cart', { position: toast.POSITION.TOP_RIGHT });
   

@@ -93,13 +93,13 @@ const CartDetail = () => {
           </li>
         ))}
       </ul>
-      <div className="flex flex-row justify-center my-7">
-      <Button 
+      <div className="flex flex-col sm:flex-row justify-center my-5">
+      <button className={`buttonUICart`}
                 onClick={clearCart}>Clear Cart
-      </Button>
-      <Button className="ml-5">
+      </button>
+      <button className={`buttonUICart`}>
                 <Link  href={"/payment"}>Proceed to Payment </Link>
-      </Button>
+      </button>
       </div>
     </div>
 
