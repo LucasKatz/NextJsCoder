@@ -41,7 +41,7 @@ const ProductsList = ({ categories }) => {
         <main>
             <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">
                 {paginatedProducts.map(item => (
-                    <ProductCard key={item.slug} item={item} />
+                    <ProductCard key={item.slug} item={item}/>
                 ))}
             </section>
 

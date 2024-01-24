@@ -12,7 +12,7 @@ export async function generateMetadata({params, searchParams}, parent) {
 export default function Home() {
 
   return (
-<main className="flex min-h-screen flex-row items-center justify-between flex-col md:flex-row">
+<main className="flex min-h-screen flex-row items-center justify-between my-6 md:flex-row">
 
 <section className="m-auto w-full md:w-1/2 md:ml-5">
   <Image

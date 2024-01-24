@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import Loader from "../../app/(shop)/products/detail/[slug]/loading";
 
 const ProductDetail = ({ product }) => {
-  const {title,description,price,image,slug} = product 
+  const {image,slug} = product 
 
   
   const { addProduct } = useCart();

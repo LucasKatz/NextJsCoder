@@ -4,7 +4,7 @@ import { FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="text-purple-900 bg-white">
+    <footer className="text-purple-900 bg-bg-color-5">
       <div className="container mx-auto py-3 w-full flex flex-col md:flex-row justify-between">
 
         {/* Left Section */}

@@ -13,7 +13,6 @@ const DetailPage = async ({ params }) => {
   const { slug } = params;
 
   const product = await getProductBySlug(slug);
-  console.log("ProductDetail",product)
 
   return (
     <main className="container m-auto mt-10">
