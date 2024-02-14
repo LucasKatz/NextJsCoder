@@ -16,7 +16,6 @@ const loadMercadoPagoScript = () => {
     const script = document.createElement('script');
     script.src = 'https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js';
     script.async = true;
-    document.body.appendChild(script);
   };
 
 export const createOrder = async (userData, cart) => {

@@ -36,7 +36,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="flex items-center justify-between p-4 w-full text-purple-900 bg-bg-color-5">
+    <nav className="flex items-center justify-between p-4 w-full text-purple-900 bg-color-white">
       <div className="flex items-center gap-2 p-2 w-1/4">
         <Link href="/">
           <Image src="/images/logo.jpeg" alt="Logo" width={90} height={90} />
