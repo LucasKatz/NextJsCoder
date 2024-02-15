@@ -43,19 +43,19 @@ return (
                 <label className="font-bold" htmlFor="name">
                     Name:
                 </label>
-                <h3 className="w-full border border-gray-300 rounded p-1">{userData.name}</h3>
+                <h3 className="w-full  rounded p-1">{userData.name}</h3>
             </div>
             <div className="mb-4">
                 <label className="font-bold" htmlFor="surname">
                     Surname:
                 </label>
-                <h3 className="w-full border border-gray-300 rounded p-1">{userData.surname}</h3>
+                <h3 className="w-full  rounded p-1">{userData.surname}</h3>
             </div>
             <div className="mb-4">
                 <label className="font-bold" htmlFor="phone">
                     Phone Number:
                 </label>
-                <h3 className="w-full border border-gray-300 rounded p-1">{userData.phone}</h3>
+                <h3 className="w-full  rounded p-1">{userData.phone}</h3>
             </div>
             <div className="mb-4">
                 <label className="font-bold" htmlFor="email">

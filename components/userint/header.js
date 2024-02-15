@@ -111,12 +111,17 @@ const Navbar = () => {
       </div>
 
       <div className='hidden md:flex row'>
-        <Link href="/signup">
-          <FaUser className='text-3xl mr-5'/>
-        </Link>
+  <Link href={user.loggedIn ? "/profile" : "/signup"}>
+    {user.loggedIn ? (
+      <FaUser className='text-3xl mr-5'/>
+    ) : (
+      <FaUser className='text-3xl mr-5' />
+    )}
+  </Link>
 
-        <CartWidget/>
-      </div>
+  <CartWidget/>
+</div>
+
     </nav>
   );
 };

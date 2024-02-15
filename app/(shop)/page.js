@@ -14,14 +14,14 @@ export default function Home() {
   return (
 <main className="flex min-h-screen flex-row items-center justify-between my-6 md:flex-row">
 
-<section className="m-auto w-full md:w-1/2 md:ml-5">
+<div className="m-auto w-full md:w-1/2 md:ml-5">
   <Image
     src="/images/logo.jpeg"
     alt="Logo"
     width={450}
     height={470}
   />
-</section>
+</div>
 
 <div className="m-auto mt-5 md:mt-0">
   <section className="bg-bg-color-5 m-auto mt-20 w-full md:w-[300px] md:h-[300px] md:mr-5 mb-5 font-semibold rounded-full flex items-center justify-center overflow-hidden">
