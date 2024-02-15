@@ -93,7 +93,7 @@ const CartDetail = () => {
           </li>
         ))}
       </ul>
-      <div className="flex flex-col sm:flex-row justify-center my-5">
+      <div className="flex flex-col  justify-center my-5">
       <button className={`buttonUICart`}
                 onClick={clearCart}>Clear Cart
       </button>

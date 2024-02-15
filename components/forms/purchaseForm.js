@@ -213,7 +213,7 @@ const PurchaseForm = () => {
     {loading ? (
         <Loader />
     ) : (
-    <form onSubmit={handleSubmit} className="my-12 w-1/2 bg-bg-color-5 rounded-md">
+    <form onSubmit={handleSubmit} className="my-12 w-1/2 bg-bg-color-5 rounded-md p-4">
     <div className="form-row mb-4 text-center">
             <div className="mb-4">
                 <label className="font-bold" htmlFor="name">
@@ -231,7 +231,7 @@ const PurchaseForm = () => {
                 <label className="font-bold" htmlFor="phone">
                     Phone Number:
                 </label>
-                <h3 className="w-full border p-1">{userData.phone}</h3>
+                <h3 className="w-full p-1">{userData.phone}</h3>
             </div>
             <div className="mb-4">
                 <label className="font-bold" htmlFor="email">
@@ -269,7 +269,7 @@ const PurchaseForm = () => {
     onClick={handleMercadoPagoClick}
     type="button"
   >
-    Pay with Mercado Pago
+Mercado Pago
   </button>
 </div>
 
