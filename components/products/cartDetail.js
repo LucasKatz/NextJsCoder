@@ -30,7 +30,7 @@ const CartDetail = () => {
 
     return (
       <main className="container m-auto my-5 p-auto w-1/2">
-        <div className="flex flex-col m-auto bg-orange-300 text-center rounded-md h-56">
+        <div className="flex flex-col m-auto bg-bg-color-5 text-center rounded-md h-56">
           <h1 className="m-auto py-1/2 text-2xl font-semibold text-purple-900 justify-center">
             You need to be logged in to access the cart.
           </h1>

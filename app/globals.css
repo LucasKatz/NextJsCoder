@@ -117,8 +117,20 @@ nav{
     margin-top: 10px;
   }
 
+ 
+
   .buttonUIPayment{
     width: 50%;
   }
 
 }
+
+@media (max-width: 970px) {
+
+  .buttonUI{
+    margin-bottom: 10px;
+  }
+
+
+}
+

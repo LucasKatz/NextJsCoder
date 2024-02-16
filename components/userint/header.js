@@ -84,6 +84,13 @@ const Navbar = () => {
             )}
 
             <CartWidget />
+
+            <button
+        className="btn-nav"
+        onClick={() => setIsMenuOpen(false)}
+      >
+        Close
+      </button>
           </div>
         )}
       </div>
@@ -120,6 +127,8 @@ const Navbar = () => {
   </Link>
 
   <CartWidget/>
+
+  
 </div>
 
     </nav>

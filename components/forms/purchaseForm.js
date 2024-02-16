@@ -50,43 +50,70 @@ export const createOrder = async (userData, cart) => {
 };
 
 const generatePDF = (userData, cart, orderId) => {
-    const pdf = new jsPDF();
+  const pdf = new jsPDF();
 
-    // Agrega la imagen de fondo con opacidad
-    const backgroundImage = "../../public/images/logo.jpeg"
-    pdf.addImage(backgroundImage, 'JPEG', 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height, null, 'FAST');
+  // Agrega la imagen de fondo con opacidad
+  const backgroundImage = "/images/logo.jpeg";
+  const transparencyLevel = 0.5; 
 
-    pdf.text(20, 20, `Name: ${userData.name}`);
-    pdf.text(20, 30, `Surname: ${userData.surname}`);
-    pdf.text(20, 40, `Phone Number: ${userData.phone}`);
-    pdf.text(20, 50, `Email: ${userData.email}`);
+  // Calcula el nuevo ancho y alto de la imagen con el 50% del ancho actual
+  const newWidth = pdf.internal.pageSize.width * 0.5;
+  const aspectRatio = pdf.internal.pageSize.width / newWidth;
+  const newHeight = pdf.internal.pageSize.height / aspectRatio;
 
-    pdf.text(20, 60, 'Purchase Details:');
-    cart.forEach((cartProduct, index) => {
-        const yPosition = 70 + index * 20;
-        pdf.text(20, yPosition, `${cartProduct.title} - Quantity: ${cartProduct.quantity}`);
-        pdf.text(20, yPosition + 10, `Unit Price: $${cartProduct.price}`);
-    });
+  // Calcula las posiciones para centrar la imagen
+  const xPosition = (pdf.internal.pageSize.width - newWidth) / 2;
+  const yPosition = (pdf.internal.pageSize.height - newHeight) / 2;
 
-    pdf.text(20, 160, `Total: $${cart.reduce((total, prod) => total + prod.price * prod.quantity, 0)}`);
-    pdf.text(20, 170, `Ticket ID: ${orderId}`);
+  pdf.addImage(
+      backgroundImage,
+      'JPEG',
+      xPosition,
+      yPosition,
+      newWidth,
+      newHeight,
+      null,
+      'FAST',
+      transparencyLevel
+  );
 
-    // Obtén las dimensiones del texto adicional
-    const text1 = 'Thank you for your purchase!';
-    const text2 = 'Visit our website for more information.';
-    const text1Dimensions = pdf.getTextDimensions(text1);
-    const text2Dimensions = pdf.getTextDimensions(text2);
+  // Resto del código permanece igual
+  pdf.text(20, 20, `Name: ${userData.name}`);
+  pdf.text(20, 30, `Surname: ${userData.surname}`);
+  pdf.text(20, 40, `Phone Number: ${userData.phone}`);
+  pdf.text(20, 50, `Email: ${userData.email}`);
 
-    // Calcula la posición central para las nuevas líneas de texto
-    const centerX = (pdf.internal.pageSize.width - text1Dimensions.w) / 2;
-    const centerX2 = (pdf.internal.pageSize.width - text2Dimensions.w) / 2;
+  pdf.text(20, 60, 'Purchase Details:');
+  cart.forEach((cartProduct, index) => {
+      const yPosition = 70 + index * 20;
+      pdf.text(20, yPosition, `${cartProduct.title} - Quantity: ${cartProduct.quantity}`);
+      pdf.text(20, yPosition + 10, `Unit Price: $${cartProduct.price}`);
+  });
 
-    // Agrega las nuevas líneas de texto centradas
-    pdf.text(centerX, 190, text1);
-    pdf.text(centerX2, 200, text2);
+  pdf.text(20, 160, `Total: $${cart.reduce((total, prod) => total + prod.price * prod.quantity, 0)}`);
+  pdf.text(20, 170, `Ticket ID: ${orderId}`);
 
-    return pdf;
+  // Obtén las dimensiones del texto adicional
+  const text1 = 'Thank you for your purchase!';
+  const text2 = 'Visit our website for more information.';
+  const text3 = "https://nightowlresources.vercel.app/";
+  const text1Dimensions = pdf.getTextDimensions(text1);
+  const text2Dimensions = pdf.getTextDimensions(text2);
+  const text3Dimensions = pdf.getTextDimensions(text3);
+
+  // Calcula la posición central para las nuevas líneas de texto
+  const centerX = (pdf.internal.pageSize.width - text1Dimensions.w) / 2;
+  const centerX2 = (pdf.internal.pageSize.width - text2Dimensions.w) / 2;
+  const centerX3 = (pdf.internal.pageSize.width - text3Dimensions.w) / 2;
+
+  // Agrega las nuevas líneas de texto centradas
+  pdf.text(centerX, 190, text1);
+  pdf.text(centerX2, 200, text2);
+  pdf.text(centerX3, 210, text3);
+
+  return pdf;
 };
+
 
 const showDownloadPrompt = () => {
     return Swal.fire({
