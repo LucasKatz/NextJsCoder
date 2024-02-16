@@ -66,7 +66,7 @@ const SignUp = () => {
 
   return (
       <main className="flex min-h-screen flex-row items-center justify-between">
-        <form onSubmit={handleSubmit} method="GET" className="speaker-form bg-gray-100 border border-gray-300 rounded-md w-1/3 mx-auto p-4">
+        <form onSubmit={handleSubmit} method="GET" className="speaker-form bg-gray-100 border border-gray-300 rounded-md md:w-1/3  mx-auto p-4">
           <div className="form-row mb-4">
             <h1 className="text-center py-5 text-purple-900 font-extrabold">Sign Up</h1>
                 <div className="mb-4">

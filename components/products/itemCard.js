@@ -29,7 +29,7 @@ const ProductCard = ({ item }) => {
           </button>
           <button
             className={`buttonUI`}
-            onClick={() => addProduct(item, 1)} // Añade el producto al carrito con la cantidad 1
+            onClick={() => addProduct(item, 1)} 
           >
             Add to Cart
           </button>

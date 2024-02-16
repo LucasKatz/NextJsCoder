@@ -66,7 +66,6 @@ footer{
   .buttonUIPayment{
     background-color: #6B46C1; 
     color: rgb(255, 248, 187); 
-
     font-weight: 600;
     border-radius: 0.375rem; 
     width: 20%;
@@ -116,6 +115,10 @@ nav{
     width: 50%;
     margin: auto;
     margin-top: 10px;
+  }
+
+  .buttonUIPayment{
+    width: 50%;
   }
 
 }
