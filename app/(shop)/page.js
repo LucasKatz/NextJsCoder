@@ -26,7 +26,7 @@ export default function Home() {
   </div>
 
   <div className="m-auto">
-    <section className="bg-bg-color-5 m-auto w-full md:w-[300px] md:h-[300px] font-semibold rounded-full flex items-center justify-center overflow-hidden relative">
+    <section className="bg-bg-color-5  w-full md:w-[300px] md:h-[300px] font-semibold rounded-full flex items-center justify-center overflow-hidden relative md:ml-[-70px]">
       <p className="text-text-color-1 text-center text-3xl font-lobster hidden md:block">
         Night Owl Resources, making out of classrooms a more enjoyable place
       </p>
