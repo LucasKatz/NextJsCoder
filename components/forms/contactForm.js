@@ -79,7 +79,7 @@ const ContactForm = ({ completoDatos }) => {
         <div className=" mx-auto mt-6 py-5 h-fit">
                   <h1 className="text-center py-5 text-2xl w-full text-text-color-5 font-extrabold">Get in touch with us!</h1>
           <div className="form flex flex-col items-center  bg-gray-100 border border-gray-300  w-1/2 m-auto pt-9 p-5 rounded-md text-start h-fit">
-            <label className="font-bold">Name</label>
+            <label className="font-bold">Nombre</label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -89,7 +89,7 @@ const ContactForm = ({ completoDatos }) => {
               placeholder="Name"
               required/>
 
-            <label className="font-bold">Surname</label>
+            <label className="font-bold">Apellido</label>
             <input
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
@@ -107,7 +107,7 @@ const ContactForm = ({ completoDatos }) => {
               placeholder="Email"
               required/>
             
-            <label className="font-bold">Repeat Email</label>
+            <label className="font-bold">Repetir Email</label>
             <input
               value={checkEmail}
               onChange={(e) => setCheckEmail(e.target.value)}
@@ -116,7 +116,7 @@ const ContactForm = ({ completoDatos }) => {
               placeholder="Repeat Email"
               required/>
             
-            <label className="font-bold">Phone Number</label>
+            <label className="font-bold">N° de Contacto</label>
             <input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -125,7 +125,7 @@ const ContactForm = ({ completoDatos }) => {
               placeholder="Phone Number"
               required/>
 
-            <label className="font-bold">Message</label>
+            <label className="font-bold">Consulta</label>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -137,7 +137,7 @@ const ContactForm = ({ completoDatos }) => {
 
             <div className="flex w-full text-center ">
             <Button>
-              Submit
+              Enviar
             </Button>
             </div>
           </div>

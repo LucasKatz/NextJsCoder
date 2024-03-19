@@ -4,7 +4,7 @@ import CartDetail from "../../../components/products/cartDetail";
 export async function generateMetadata({params, searchParams}, parent) {
 
     return {
-        title: `Night Owl - Cart`,
+        title: `Night Owl - Carrito`,
     }
 }
 

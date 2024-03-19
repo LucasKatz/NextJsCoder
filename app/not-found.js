@@ -35,7 +35,6 @@ const buttonStyle = {
 };
 
 const linkStyle ={
-    //color: "rgb(255, 248, 187)",
     textDecoration: "none", 
 }
 
@@ -43,13 +42,13 @@ return (
     <main style={containerStyle}>
         <div style={divStyle}>
             <h1 style={headingStyle}>
-                THE REQUESTED PAGE <br></br>HAS NOT BEEN FOUND
+                LA PAGINA A LA QUE INTENTA ACCEDER <br></br>NO HA SIDO ENCONTRADA
             </h1>
             <h3 style={headingStyle}>
-                You will soon be redirected to the home page of this website
+                Pronto será redirigido a la pagina principal
             </h3>
             <button style ={buttonStyle}>
-                <Link style = {linkStyle} href={"/products/all"}>Back to Catalogue</Link>
+                <Link style = {linkStyle} href={"/products/all"}>Ir al Catalogo</Link>
             </button>
         </div>
     </main>

@@ -4,14 +4,14 @@ export async function generateMetadata({params, searchParams}, parent) {
   console.log(params)
 
   return {
-      title: `Night Owl - About Us`,
+      title: `Night Owl - Instrucciones`,
   }
 }
 
 export default function About() {
   return (
     <main className="overflow-hidden">
-      <h1 className="text-center  my-7 text-text-color-5 font-extrabold text-2xl">About Night Owl Resources</h1>
+      <h1 className="text-center  my-7 text-text-color-5 font-extrabold text-2xl">Instrucciones de Compra</h1>
       <section className="flex flex-col md:flex-row items-center justify-between min-h-screen">
 
         <div className="flex w-full md:w-1/2 mb-5 md:mr-5 ">
