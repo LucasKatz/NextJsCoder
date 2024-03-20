@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import jsPDF from "jspdf";
 import Swal from 'sweetalert2';
@@ -10,6 +10,8 @@ import Loader from "../../app/(shop)/products/detail/[slug]/loading";
 import { writeBatch } from "firebase/firestore";
 import { setDoc, doc, getDoc, Timestamp, collection, getFirestore } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import nodemailer from 'nodemailer';
+import { NextResponse } from 'next/server';
 
 const loadMercadoPagoScript = () => {
     const script = document.createElement('script');
@@ -77,7 +79,6 @@ const generatePDF = (userData, cart, orderId) => {
       transparencyLevel
   );
 
-  // Resto del código permanece igual
   pdf.text(20, 20, `Name: ${userData.name}`);
   pdf.text(20, 30, `Surname: ${userData.surname}`);
   pdf.text(20, 40, `Phone Number: ${userData.phone}`);
@@ -167,7 +168,7 @@ const PurchaseForm = () => {
                 pdf.output('dataurlnewwindow');
             }
 
-            const result = await createOrder(userData, cart);
+            const orderId = await createOrder(userData, cart); // Llama directamente a la función createOrder
 
             const orderData = {
                 title: "Night Owl Resources Bill",
@@ -193,7 +194,6 @@ const PurchaseForm = () => {
                 auto_return: "approved",
             };
 
-            console.log("This is requestBody", requestBody);
 
             const response = await fetch("/apiMercadoPago/mercadoPago", {
                 method: "POST",
@@ -218,23 +218,58 @@ const PurchaseForm = () => {
         }
     };
 
+    const sendEmailWithAttachment = async (toEmail, attachmentPath) => {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.NODEMAILER_USER,
+                pass: process.env.NEXT_PUBLIC_NODEMAILER_PASSWORD,
+            },
+        });
+    
+        const mailOptions = {
+            from: 'careeros@tryporpra.com',
+            to: toEmail,
+            subject: 'Night Owl Resources: Ticket de compra adjunto',
+            html: '<p>Gracias por tu compra. Adjunto encontrarás tu ticket de compra.</p>',
+            attachments: [
+                {
+                    filename: 'ticket.pdf',
+                    path: attachmentPath,
+                },
+            ],
+        };
+    
+        try {
+            await transporter.sendMail(mailOptions);
+            console.log('Correo electrónico enviado con éxito');
+        } catch (error) {
+            console.error('Error al enviar el correo electrónico:', error);
+            throw new Error('Error al enviar el correo electrónico');
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const result = await createOrder(userData, cart);
             const swalResult = await showDownloadPrompt();
-
+    
             if (swalResult.isConfirmed) {
-                const pdf = generatePDF(userData, cart, result); // Pasa el ID único del ticket
-                pdf.save('ticket.pdf');
+                const pdf = generatePDF(userData, cart, result);
+                const attachmentPath = 'ticket.pdf';
+                pdf.save(attachmentPath);
                 pdf.output('dataurlnewwindow');
                 clearCart();
+    
+                const toEmail = 'l.katz92@gmail.com'; // Dirección de correo electrónico a la que se enviará el ticket
+                await sendEmailWithAttachment(toEmail, attachmentPath);
             } else {
                 clearCart();
             }
             router.push("/thanks");
         } catch (error) {
-            console.error('Error creating order:', error);
+            console.error('Error al crear la orden:', error);
         }
     };
 
@@ -309,3 +344,4 @@ const PurchaseForm = () => {
 };
 
 export default PurchaseForm;
+
