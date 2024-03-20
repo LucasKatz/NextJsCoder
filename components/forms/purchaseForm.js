@@ -242,10 +242,10 @@ const PurchaseForm = () => {
     
         try {
             await transporter.sendMail(mailOptions);
-            console.log('Correo electrónico enviado con éxito');
+            return NextResponse.json({ message: "Email Sent Successfully" }, { status: 200 });
         } catch (error) {
             console.error('Error al enviar el correo electrónico:', error);
-            throw new Error('Error al enviar el correo electrónico');
+            return NextResponse.json({ message: "Failed to Send Email" }, { status: 500 });
         }
     };
 
