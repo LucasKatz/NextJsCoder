@@ -242,10 +242,10 @@ const PurchaseForm = () => {
     
         try {
             await transporter.sendMail(mailOptions);
-            return NextResponse.json({ message: "Email Sent Successfully" }, { status: 200 });
+            console.log('Correo electrónico enviado con éxito');
         } catch (error) {
             console.error('Error al enviar el correo electrónico:', error);
-            return NextResponse.json({ message: "Failed to Send Email" }, { status: 500 });
+            throw new Error('Error al enviar el correo electrónico');
         }
     };
 
@@ -254,22 +254,18 @@ const PurchaseForm = () => {
         try {
             const result = await createOrder(userData, cart);
             const swalResult = await showDownloadPrompt();
-    
+
             if (swalResult.isConfirmed) {
-                const pdf = generatePDF(userData, cart, result);
-                const attachmentPath = 'ticket.pdf';
-                pdf.save(attachmentPath);
+                const pdf = generatePDF(userData, cart, result); // Pasa el ID único del ticket
+                pdf.save('ticket.pdf');
                 pdf.output('dataurlnewwindow');
                 clearCart();
-    
-                const toEmail = 'l.katz92@gmail.com'; // Dirección de correo electrónico a la que se enviará el ticket
-                await sendEmailWithAttachment(toEmail, attachmentPath);
             } else {
                 clearCart();
             }
             router.push("/thanks");
         } catch (error) {
-            console.error('Error al crear la orden:', error);
+            console.error('Error creating order:', error);
         }
     };
 
