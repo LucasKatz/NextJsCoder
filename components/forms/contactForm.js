@@ -30,7 +30,7 @@ const ContactForm = ({ completoDatos }) => {
     } else {
       try {
 
-        const response = await fetch(`/apiEmail/emails/route.js`, {
+        const response = await fetch(`/apiEmail/emails`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
