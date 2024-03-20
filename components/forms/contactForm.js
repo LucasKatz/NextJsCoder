@@ -2,7 +2,7 @@
 import Button from "../../components/userint/button";
 import Swal from "sweetalert2";
 import { useState } from "react"
-import "../../app/apiEmail/emails/route"
+
 
 const ContactForm = ({ completoDatos }) => {
   const [name, setName] = useState('');
