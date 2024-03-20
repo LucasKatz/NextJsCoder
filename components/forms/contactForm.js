@@ -3,7 +3,6 @@ import Button from "../../components/userint/button";
 import Swal from "sweetalert2";
 import { useState } from "react"
 
-
 const ContactForm = ({ completoDatos }) => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -31,7 +30,7 @@ const ContactForm = ({ completoDatos }) => {
     } else {
       try {
 
-        const response = await fetch(`../../app/apiEmail/emails/route`, {
+        const response = await fetch(`/apiEmail/emails/route.js`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
