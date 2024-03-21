@@ -24,14 +24,14 @@ const ProductCard = ({ item }) => {
         <div className="flex flex-row gap-2">
           <button className={`buttonUI`}> 
             <Link href={`/products/detail/${slug}`}>
-                Check It!
+                Ver Detalles!
             </Link>
           </button>
           <button
             className={`buttonUI`}
             onClick={() => addProduct(item, 1)} 
           >
-            Add to Cart
+            Agregar al Carrito
           </button>
         </div>
       </div>

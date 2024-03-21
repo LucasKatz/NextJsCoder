@@ -41,19 +41,19 @@ return (
         <div className="form-row mb-4 text-center">
             <div className="mb-4">
                 <label className="font-bold" htmlFor="name">
-                    Name:
+                    Nombre:
                 </label>
                 <h3 className="w-full  rounded p-1">{userData.name}</h3>
             </div>
             <div className="mb-4">
                 <label className="font-bold" htmlFor="surname">
-                    Surname:
+                    Apellido:
                 </label>
                 <h3 className="w-full  rounded p-1">{userData.surname}</h3>
             </div>
             <div className="mb-4">
                 <label className="font-bold" htmlFor="phone">
-                    Phone Number:
+                    N° de Contacto:
                 </label>
                 <h3 className="w-full  rounded p-1">{userData.phone}</h3>
             </div>
@@ -67,7 +67,7 @@ return (
 
         <div className="m-auto text-center">
             <Button className="w-full">
-                <Link href={"/products/all"}>Check our catalogue!</Link>
+                <Link href={"/products/all"}>Ver Catalogo!</Link>
             </Button>
         </div>
     </form>

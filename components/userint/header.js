@@ -11,19 +11,19 @@ import CartWidget from './CartWidget';
 
 const links = [
   {
-    label: 'Home',
+    label: 'Inicio',
     href: '/',
   },
   {
-    label: 'Products',
+    label: 'Productos',
     href: '/products/all',
   },
   {
-    label: 'About Us',
+    label: 'Instrucciones',
     href: '/about',
   },
   {
-    label: 'Contact',
+    label: 'Contacto',
     href: '/contact',
   },
 ];
@@ -89,7 +89,7 @@ const Navbar = () => {
         className="btn-nav"
         onClick={() => setIsMenuOpen(false)}
       >
-        Close
+        Cerrar
       </button>
           </div>
         )}

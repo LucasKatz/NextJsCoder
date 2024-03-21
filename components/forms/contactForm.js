@@ -15,15 +15,15 @@ const ContactForm = ({ completoDatos }) => {
     e.preventDefault();
     if (!name || !email || !phone) {
       Swal.fire({
-        title: 'Fill in the blanks',
+        title: 'Complete todos los campos',
         icon: 'warning',
         buttons: true,
         dangerMode: true,
       });
     } else if (email !== checkEmail && email && checkEmail) {
       Swal.fire({
-        title: 'Emails do not match',
-        html: 'Please try again',
+        title: 'Los Emails no coinciden',
+        html: 'Vuelva a intentar',
         buttons: true,
         dangerMode: true,
       });
@@ -47,7 +47,7 @@ const ContactForm = ({ completoDatos }) => {
 
         if (response.ok) {
           Swal.fire({
-            title: 'Message Sent!',
+            title: 'Mensaje Enviado!',
             icon: 'success',
 
           });
@@ -56,7 +56,7 @@ const ContactForm = ({ completoDatos }) => {
         } else {
           console.log("Sale por aca, no encuentra la ruta")
           Swal.fire({
-            title: 'Your message was not sent, please try again',
+            title: 'Error al enviar mensaje, por favor vuelva a intentarlo',
             icon: 'error',
 
           });
@@ -64,7 +64,7 @@ const ContactForm = ({ completoDatos }) => {
       } catch (error) {
         console.error('Error:', error);
         Swal.fire({
-          title: 'Your message was not sent, please try again',
+          title: 'Error al enviar mensaje, por favor vuelva a intentarlo',
           icon: 'error',
 
         });
