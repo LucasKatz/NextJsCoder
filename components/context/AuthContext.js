@@ -135,6 +135,11 @@ const googleLogin = async () => {
     const userDocRef = doc(dataBase, 'users', userFromGoogle.email);
     const userDocSnapshot = await getDoc(userDocRef);
 
+    if (!userDocSnapshot.exists()) {
+      // El usuario no está registrado en la base de datos
+      throw new Error('Usuario no registrado. Regístrate para acceder.');
+    }
+
     let role = 'user'; 
 
     if (userDocSnapshot.exists()) {
