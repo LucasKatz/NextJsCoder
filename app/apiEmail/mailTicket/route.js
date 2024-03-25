@@ -1,9 +1,13 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
+import { generateEmailContent } from './ruta/a/purchaseForm'; // Ajusta la ruta según tu estructura de archivos
 
 export async function POST(request) {
   try {
-    const { emailContent } = await request.json(); // Obtener el contenido del correo electrónico desde la solicitud
+    const { userData, cart, orderId } = await request.json(); // Obtener los datos del usuario, carrito y ID del pedido desde la solicitud
+
+    // Generar el contenido del correo electrónico
+    const emailContent = generateEmailContent(userData, cart, orderId);
 
     // Configurar el transportador de nodemailer
     const transporter = nodemailer.createTransport({
@@ -32,4 +36,3 @@ export async function POST(request) {
     return NextResponse.json({ message: "Failed to Send Email" }, { status: 500 });
   }
 }
-
