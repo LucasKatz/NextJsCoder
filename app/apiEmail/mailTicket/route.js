@@ -3,7 +3,12 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const { pdf } = request.files; // Obtener el PDF del cuerpo de la solicitud
+
+    if (!files || !files.pdf) {
+        throw new Error("PDF file not found in request");
+      }
+  
+      const { pdf } = files;
 
     console.log('PDF received:', pdf); // Registrar el PDF recibido
 
