@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    const { emailContent } = request.files; // Obtener el contenido del correo electrónico desde la solicitud
+    const { emailContent } = await request.json(); // Obtener el contenido del correo electrónico desde la solicitud
 
     // Configurar el transportador de nodemailer
     const transporter = nodemailer.createTransport({
