@@ -221,22 +221,35 @@ const PurchaseForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const result = await createOrder(userData, cart);
-            const swalResult = await showDownloadPrompt();
-
-            if (swalResult.isConfirmed) {
-                const pdf = generatePDF(userData, cart, result); // Pasa el ID único del ticket
-                pdf.save('ticket.pdf');
-                pdf.output('dataurlnewwindow');
-                clearCart();
+            const orderId = await createOrder(userData, cart); // Obtener el ID del pedido
+            const pdf = generatePDF(userData, cart, orderId); // Generar el PDF con el ID del pedido
+            pdf.save('ticket.pdf'); // Guardar el PDF localmente
+            pdf.output('dataurlnewwindow'); // Mostrar el PDF en una nueva ventana
+    
+            // Crear un objeto FormData para enviar el PDF a la API
+            const formData = new FormData();
+            formData.append('pdf', pdf.output('blob'), 'ticket.pdf');
+    
+            // Enviar el PDF a la API para enviar por correo electrónico
+            const response = await fetch('/apiEmail/mailTicket', {
+                method: 'POST',
+                body: formData,
+            });
+    
+            if (response.ok) {
+                console.log('Email sent successfully');
             } else {
-                clearCart();
+                console.error('Failed to send email');
             }
-            router.push("/thanks");
+    
+            // Limpiar el carrito y redirigir a la página de agradecimiento
+            clearCart();
+            router.push('/thanks');
         } catch (error) {
             console.error('Error creating order:', error);
         }
     };
+    
 
     return (
         <main className="flex flex-col items-center justify-center m-auto">
