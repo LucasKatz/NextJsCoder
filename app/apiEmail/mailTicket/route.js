@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
-import { generateEmailContent } from './ruta/a/purchaseForm'; // Ajusta la ruta según tu estructura de archivos
+import { generateEmailContent } from '@/components/forms/emailContent';// Ajusta la ruta según tu estructura de archivos
 
 export async function POST(request) {
   try {
