@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-import { sendPasswordResetEmail } from 'firebase/auth';
+import { sendPasswordResetEmail, getAuth } from 'firebase/auth';
+
 
 const PasswordResetPopup = ({ onClose }) => { // Recibe la función onClose como una prop
   const [email, setEmail] = useState('');
@@ -31,7 +32,7 @@ const PasswordResetPopup = ({ onClose }) => { // Recibe la función onClose como
     <div className='bg-white m-auto flex flex-col text-center'>
       <p>Ingrese su email para recuperar su contraseña</p>
       <input
-        className='bg-black w-1/2 '
+        className='bg-red w-1/2 '
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}

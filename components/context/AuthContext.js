@@ -75,7 +75,25 @@ export const AuthProvider = ({ children }) => {
     }
   };
   
-
+  const sendPasswordResetEmail = async (email) => {
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, email);
+      // Manejar el éxito (puede mostrar un mensaje de éxito)
+      Swal.fire({
+        icon: 'success',
+        title: 'Password Reset Email Sent',
+        text: 'Please check your email to reset your password.',
+      });
+    } catch (error) {
+      // Manejar errores (puede mostrar un mensaje de error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Password Reset Failed',
+        text: error.message,
+      });
+    }
+  };
 
 const loginUser = async (values) => {
   try {
@@ -221,6 +239,7 @@ useEffect(() => {
       registerUser,
       loginUser,
       googleLogin,
+      sendPasswordResetEmail,
       logout}}>
       {children}
     </AuthContext.Provider>
