@@ -1,10 +1,11 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
 
-
 export async function POST(request) {
   try {
     const { pdf } = request.files; // Obtener el PDF del cuerpo de la solicitud
+
+    console.log('PDF received:', pdf); // Registrar el PDF recibido
 
     // Configurar el transportador de nodemailer
     const transporter = nodemailer.createTransport({
@@ -29,8 +30,12 @@ export async function POST(request) {
       ],
     };
 
+    console.log('Mail options:', mailOptions); // Registrar las opciones de correo electrónico
+
     // Enviar el correo electrónico con el PDF adjunto
-    await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
+
+    console.log('Email sent:', info); // Registrar la información del correo electrónico enviado
 
     // Enviar una respuesta de éxito
     return NextResponse.json({ message: "Email Sent Successfully" }, { status: 200 });
