@@ -23,7 +23,7 @@ export async function POST(request) {
     const mailOption = {
       from: 'careeros@tryporpra.com',
       to: 'night.owl.resources@gmail.com',
-      subject: "Send Email Tutorial",
+      subject: "Consulta de Night Owl Website",
       html: `
         <h1>Night Owl Resources New Message </h1>
         <h3>User: ${name} ${surname}</h3>
