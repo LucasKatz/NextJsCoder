@@ -56,23 +56,23 @@ const ProductDetail = ({ product }) => {
       <p className="text-2xl font-semibold pb-4 mb-4 text-purple-900">{product.title}</p>
 
       <div className="flex flex-row items-center justify-center">
-        <p className="ml-4 text-xl font-semibold text-purple-900">Price: $ {product.price}</p>
+        <p className="ml-4 text-xl font-semibold text-purple-900">Precio: $ {product.price}</p>
       </div>
 
       <div className="flex flex-row items-center justify-center">
-        <p className="text-xl font-semibold text-purple-900">Description:</p>
+        <p className="text-xl font-semibold text-purple-900">Descripción:</p>
         <p className="ml-4 font-semibold text-xl text-purple-900">{product.description}</p>
       </div>
 
       <div className="flex flex-row items-center justify-center">
-        <p className="text-xl font-semibold text-purple-900">Size:</p>
+        <p className="text-xl font-semibold text-purple-900">Medidas:</p>
         <p className="ml-4 text-xl font-semibold text-purple-900">{product.size}</p>
       </div>
 
       <div className="my-5 text-center">
         {!user.loggedIn && (
           <p className="text-red-500 font-semibold mb-4">
-            You need to login to buy
+            Necesitas loguearte para comprar
           </p>
         )}
         <Counter quantity={quantity} setQuantity={setQuantity} />
@@ -81,18 +81,18 @@ const ProductDetail = ({ product }) => {
             className={`buttonUIDetail`}
             onClick={handleAddToCart}
             disabled={!user.loggedIn}>
-            Add to Cart
+            Agregar al Carrito
           </button>
           <button className={`buttonUIDetail`}>
             <Link href={"/cart"}>
-              Go to Cart
+              Finalizar compra
             </Link>
           </button>
         </div>
         <div className="my-8">
           <button className={`buttonUIDetail`}>
             <Link href="/products/all">
-              Back to Catalogue
+              Ver Catalogo
             </Link>
           </button>
         </div>

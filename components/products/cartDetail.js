@@ -32,7 +32,7 @@ const CartDetail = () => {
       <main className="container m-auto my-5 p-auto w-1/2">
         <div className="flex flex-col m-auto bg-bg-color-5 text-center rounded-md h-56">
           <h1 className="m-auto py-1/2 text-2xl font-semibold text-purple-900 justify-center">
-            You need to be logged in to access the cart.
+            Necesitas loguearte para acceder al carrito
           </h1>
           <Link href={"/login"} className="m-auto py-1/2 text-xl font-semibold text-purple-900 justify-center">Login</Link>
         </div>
@@ -46,13 +46,13 @@ const CartDetail = () => {
       <main className="container m-auto my-5 p-auto w-1/2">
         <div className="m-auto bg-orange-300 text-center rounded-md">
           <h1 className="m-auto py-12 text-2xl font-semibold text-purple-900">
-            There are no products in your cart
+            No hay productos en tu carrito
           </h1>
           <h2 className="m-auto py-12 text-2xl font-semibold text-purple-900">
-            Click the button below to check our catalogue
+            Clickea el boton para acceder a nuestro catalogo
           </h2>
           <Link href="/products/all" >
-            <Button className="mb-5">Check Catalogue</Button>
+            <Button className="mb-5">Ver Catalogo</Button>
           </Link>
         </div>
       </main>

@@ -213,7 +213,7 @@ const PurchaseForm = () => {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Something went wrong!",
+                text: "Algo salió mal! Por favor intente nuevamente",
             });
         }
     };
@@ -247,19 +247,19 @@ const PurchaseForm = () => {
                     <div className="form-row mb-4 text-center">
                         <div className="mb-4">
                             <label className="font-bold" htmlFor="name">
-                                Name:
+                                Nombre:
                             </label>
                             <h3 className="w-full p-1">{userData.name}</h3>
                         </div>
                         <div className="mb-4">
                             <label className="font-bold" htmlFor="surname">
-                                Surname:
+                                Apellido:
                             </label>
                             <h3 className="w-full ">{userData.surname}</h3>
                         </div>
                         <div className="mb-4">
                             <label className="font-bold" htmlFor="phone">
-                                Phone Number:
+                               N° de Contacto:
                             </label>
                             <h3 className="w-full p-1">{userData.phone}</h3>
                         </div>
@@ -271,7 +271,7 @@ const PurchaseForm = () => {
                         </div>
                         <div className="mb-4">
                             <label className="font-bold" htmlFor="email">
-                                Purchase Details
+                                Detalles de la Compra
                             </label>
                             {cart.map((cartProduct) => (
                                 <div key={cartProduct.id} className="mb-2">
@@ -292,7 +292,7 @@ const PurchaseForm = () => {
                             onClick={() => { generatePDF(userData, cart); }}
                             type="submit"
                         >
-                            Submit Purchase
+                            Realizar Compra
                         </button>
                         <button
                             className={`buttonUIPayment mt-2 sm:mt-0 sm:ml-2`}

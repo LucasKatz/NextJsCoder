@@ -26,9 +26,9 @@ const Footer = () => {
 
         {/* Right Section */}
         <div className="w-full md:w-1/3 p-4 "> {/* Añade la propiedad border */}
-          <h3 className="text-2xl font-semibold text-center font-lobster">Friendly Reminder</h3>
+          <h3 className="text-2xl font-semibold text-center font-lobster">¡No te olvides!</h3>
           <p className="mt-1 p-4">
-            Remember to follow us on Instagram so you can see how you can use all the material!
+           ¡Seguinos en redes para estar al tanto de todas las novedades!
           </p>
           <div className=" flex px-4">
             <Link href="https://www.instagram.com/night.owl.resources/" className="text-xl flex items-center">

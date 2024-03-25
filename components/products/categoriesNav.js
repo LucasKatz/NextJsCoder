@@ -6,19 +6,19 @@ import { usePathname } from 'next/navigation';
 
 const links = [
   {
-    label: 'All',
+    label: 'Todos',
     href: '/products/all',
   },
   {
-    label: 'Vocabulary',
+    label: 'Vocabulario',
     href: '/products/vocabulary',
   },
   {
-    label: 'Stories',
+    label: 'Historias',
     href: '/products/stories',
   },
   {
-    label: 'Routines',
+    label: 'Rutinas',
     href: '/products/routines',
   },
   {
