@@ -12,13 +12,13 @@ const PasswordResetPopup = ({ onClose }) => { // Recibe la función onClose como
       await sendPasswordResetEmail(auth, email);
       Swal.fire({
         icon: 'success',
-        title: 'Password Reset Email Sent',
-        text: 'Please check your email to reset your password.',
+        title: 'Email enviado',
+        text: 'Revise su casilla de mail',
       });
     } catch (error) {
       Swal.fire({
         icon: 'error',
-        title: 'Password Reset Failed',
+        title: 'Error al reestablecer contraseña',
         text: error.message,
       });
     }

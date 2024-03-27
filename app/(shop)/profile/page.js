@@ -14,7 +14,7 @@ if (!user) {
 
 return (
     <div>
-        <h1>Welcome {user.name} </h1>
+        <h1>Bienvenido {user.name} </h1>
         <UserForm />
     </div>
 );
