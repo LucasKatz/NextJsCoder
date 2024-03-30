@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -27,6 +27,17 @@ const links = [
   },
 ];
 
+const languageFilters = [
+  {
+    label: 'spanish',
+    value: 'spanish',
+  },
+  {
+    label: 'english',
+    value: 'english',
+  },
+];
+
 const CategoriesMenu = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -49,12 +60,22 @@ const CategoriesMenu = () => {
           <ul>
             {links.map((link) => (
               <li key={link.label}>
- <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "font-extrabold" : ""}`}>
-        {link.label}
-    </Link>
+                <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "font-extrabold" : ""}`}>
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
+
+          <div className="mt-4">
+            <p className="text-gray-700 font-semibold mb-2">Filter by language:</p>
+            {languageFilters.map((filter) => (
+              <Link key={filter.value} href={`/products/${filter.value}`} className={`btn-nav ${pathname === `/products/${filter.value}` ? "font-extrabold" : ""}`}>
+                {filter.label}
+              </Link>
+            ))}
+          </div>
+
           <button
             onClick={toggleMenu}
             className="btn-nav text-purple-900 mt-4"

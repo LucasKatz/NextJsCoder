@@ -3,7 +3,7 @@
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { dataBase } from '../../../services/firebase/index';
 
-export const getProducts = async (categories) => {
+export const getProducts = async (categories, language) => {
     const productsFire = collection(dataBase, "products");
 
     let items;
@@ -19,8 +19,18 @@ export const getProducts = async (categories) => {
     
     }
 
+    // Filtrar por idioma
+    if (language) {
+        const languageQuery = query(productsFire, where('language', '==', language));
+        const languageQuerySnapshot = await getDocs(languageQuery);
+        items = items.filter(item => {
+            return languageQuerySnapshot.docs.some(doc => doc.id === item.id);
+        });
+    }
+
     return items;
 };
+
 
 export const getProductBySlug = async (slug) => {
     const productsFire = collection(dataBase, "products");

@@ -14,6 +14,7 @@ const ProductsList = ({ categories }) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
+                console.log("Categories:", categories); // Aquí agregamos la impresión del valor de categories
                 const products = await getProducts(categories);
                 setAllProducts(products);
                 setLoading(false);  
@@ -30,7 +31,6 @@ const ProductsList = ({ categories }) => {
         return <Loader />; 
     }
     
-
     const paginatedProducts = allProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     const handlePageChange = (newPage) => {
@@ -46,34 +46,33 @@ const ProductsList = ({ categories }) => {
             </section>
 
             <div className="pagination flex items-center justify-center mt-8">
-    {currentPage > 1 && (
-        <span
-            onClick={() => handlePageChange(currentPage - 1)}
-            className="cursor-pointer ml-2 p-2 text-white"
-            style={{ fontSize: '1.5rem' }}
-        >
-            &#8592; {/* Left Arrow*/}
-        </span>
-    )}
+                {currentPage > 1 && (
+                    <span
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        className="cursor-pointer ml-2 p-2 text-white"
+                        style={{ fontSize: '1.5rem' }}
+                    >
+                        &#8592; {/* Left Arrow*/}
+                    </span>
+                )}
 
-    <span className="mx-2 p-2 border rounded-full bg-blue-500 text-white">
-        {currentPage}
-    </span>
+                <span className="mx-2 p-2 border rounded-full bg-blue-500 text-white">
+                    {currentPage}
+                </span>
 
-    {currentPage < Math.ceil(allProducts.length / pageSize) && (
-        <span
-            onClick={() => handlePageChange(currentPage + 1)}
-            className="cursor-pointer ml-2 p-2 text-white"
-            style={{ fontSize: '1.5rem' }}
-        >
-            &#8594; {/* Right Arrow*/}
-        </span>
-    )}
-</div>
-
-
+                {currentPage < Math.ceil(allProducts.length / pageSize) && (
+                    <span
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        className="cursor-pointer ml-2 p-2 text-white"
+                        style={{ fontSize: '1.5rem' }}
+                    >
+                        &#8594; {/* Right Arrow*/}
+                    </span>
+                )}
+            </div>
         </main>
     );
 };
 
 export default ProductsList;
+
