@@ -117,10 +117,10 @@ const generatePDF = (userData, cart, orderId) => {
 
 const showDownloadPrompt = () => {
     return Swal.fire({
-        title: 'Do you want to download a copy of your ticket?',
+        title: '¿Desea guardar una copia de su ticket?',
         showCancelButton: true,
-        confirmButtonText: 'Yes, download',
-        cancelButtonText: 'No, thanks',
+        confirmButtonText: 'Si, descargar',
+        cancelButtonText: 'No, gracias',
     });
 };
 
@@ -221,21 +221,22 @@ const PurchaseForm = () => {
     const generateEmailContent = (userData, cart, orderId) => {
         let emailContent = `
           Night Owl Resources New Purchase
-          User: ${userData.name} ${userData.surname}
+          Usuario: ${userData.name} ${userData.surname}
           Email: ${userData.email}
-          Phone: ${userData.phone}
-          Purchase Details:
+          N° de Contacto: ${userData.phone}
+          Detalles de la orden:
         `;
         cart.forEach((cartProduct) => {
           emailContent += `
-            ${cartProduct.title} - Quantity: ${cartProduct.quantity}
-            Unit Price: $${cartProduct.price}
+            ${cartProduct.title} - Cantidad: ${cartProduct.quantity}
+            Precio Unitario: $${cartProduct.price}
           `;
         });
         emailContent += `
           Total: $${cart.reduce((total, prod) => total + prod.price * prod.quantity, 0)}
           Ticket ID: ${orderId}
-          Thank you for your purchase!`;
+          Gracias por su compra!`;
+          console.log("this is emailContent" + emailContent)
         return emailContent;
       };
       
@@ -255,9 +256,14 @@ const PurchaseForm = () => {
       
           const response = await fetch('/apiEmail/mailTicket', {
             method: 'POST',
-            body: formData,
+            headers: {
+              'Content-Type': 'application/json', // Asegúrate de establecer el tipo de contenido como JSON
+            },
+            body: JSON.stringify({ emailContent }), // Envía solo el contenido del correo electrónico
+            
           });
-      
+          
+          console.log("emailContent en Purchase",emailContent)
           if (response.ok) {
             console.log('Email sent successfully');
           } else {

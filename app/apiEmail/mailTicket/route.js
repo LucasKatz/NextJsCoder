@@ -1,35 +1,31 @@
-import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
-import { generateEmailContent } from '@/components/forms/emailContent';// Ajusta la ruta según tu estructura de archivos
+import nodemailer from 'nodemailer';
 
 export async function POST(request) {
   try {
-    const { userData, cart, orderId } = await request.json(); // Obtener los datos del usuario, carrito y ID del pedido desde la solicitud
+    const { emailContent } = await request.json();
 
-    // Generar el contenido del correo electrónico
-    const emailContent = generateEmailContent(userData, cart, orderId);
-
-    // Configurar el transportador de nodemailer
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.NODEMAILER_USER,
         pass: process.env.NEXT_PUBLIC_NODEMAILER_PASSWORD,
       },
+      logger: true,
+      debug: true,
     });
 
-    // Configurar las opciones de correo electrónico
-    const mailOptions = {
+    const mailOption = {
       from: 'careeros@tryporpra.com',
-      to: 'night.owl.resources@gmail.com', // Correo del administrador (puedes cambiarlo)
-      subject: 'Ticket de compra', // Asunto del correo electrónico
-      html: emailContent, // Cuerpo del correo electrónico
+      to: 'night.owl.resources@gmail.com', // Cambiar al correo destinatario adecuado
+      subject: "Night Owl Resources Purchase Ticket",
+      text: emailContent, // Aquí se pasa el contenido del email generado como texto
     };
 
-    // Enviar el correo electrónico con el contenido proporcionado
-    await transporter.sendMail(mailOptions);
+    console.log(emailContent,"aca es route.js")
 
-    // Enviar una respuesta de éxito
+    await transporter.sendMail(mailOption);
+
     return NextResponse.json({ message: "Email Sent Successfully" }, { status: 200 });
   } catch (error) {
     console.error("Error:", error);
