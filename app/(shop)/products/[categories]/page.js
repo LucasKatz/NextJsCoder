@@ -1,30 +1,21 @@
+"use client"
+
+import { useState, useEffect } from 'react';
 import ProductsList from "../../../../components/products/itemList";
-import { getProducts } from "../../api/productsApi";
-export async function generateMetadata({ params }, parent) {
 
-
-  return {
-    title: `Night Owl - Products- ${params.categories}`,
-  };
-}
-
-export async function generateStaticParams() {
-  return [
-    { categories: "all" },
-    { categories: "vocabulary" },
-    { categories: "stories" },
-    { categories: "routines" },
-    { categories: "deco" },
-    { categories: "others" },
-  ];
-}
-
-export const revalidate = 3600;
-
-const Productos = async ({ params }) => {
+const Productos = ({ params }) => {
   const { categories } = params;
+  const [language, setLanguage] = useState(''); // Estado inicial para language
 
-  const items = await getProducts(categories);
+  // Verificar y establecer language basado en la URL
+  useEffect(() => {
+    const { language } = params;
+    if (language === 'spanish' || language === 'english') {
+      setLanguage(language);
+    }
+  }, [params]);
+
+  const [items, setItems] = useState([]);
 
   return (
     <main className="container m-auto">
@@ -33,7 +24,7 @@ const Productos = async ({ params }) => {
       </h2>
 
       <div className="flex gap-10">
-        <ProductsList categories={categories} page={1} pageSize={10} />
+        <ProductsList categories={categories} language={language} items={items} page={1} pageSize={10} />
       </div>
     </main>
   );

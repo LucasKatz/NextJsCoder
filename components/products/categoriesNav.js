@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -24,6 +24,15 @@ const links = [
   {
     label: 'Deco',
     href: '/products/deco',
+  },
+
+  {
+    label: 'spanish',
+    href: '/products/spanish',
+  },
+  {
+    label: 'english',
+    href: '/products/english',
   },
 ];
 
@@ -70,7 +79,7 @@ const CategoriesMenu = () => {
           <div className="mt-4">
             <p className="text-gray-700 font-semibold mb-2">Filter by language:</p>
             {languageFilters.map((filter) => (
-              <Link key={filter.value} href={`/products/${filter.value}`} className={`btn-nav ${pathname === `/products/${filter.value}` ? "font-extrabold" : ""}`}>
+              <Link key={filter.value} href={`/products/${pathname.split('/')[2]}/${filter.value}`} className={`btn-nav ${pathname === `/products/${pathname.split('/')[2]}/${filter.value}` ? "font-extrabold" : ""}`}>
                 {filter.label}
               </Link>
             ))}

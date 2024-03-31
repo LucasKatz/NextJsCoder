@@ -3,7 +3,7 @@
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { dataBase } from '../../../services/firebase/index';
 
-export const getProducts = async (categories, language) => {
+export const getProducts = async (categories) => {
     const productsFire = collection(dataBase, "products");
 
     let items;
@@ -19,17 +19,25 @@ export const getProducts = async (categories, language) => {
     
     }
 
-    // Filtrar por idioma
-    if (language) {
-        const languageQuery = query(productsFire, where('language', '==', language));
-        const languageQuerySnapshot = await getDocs(languageQuery);
-        items = items.filter(item => {
-            return languageQuerySnapshot.docs.some(doc => doc.id === item.id);
-        });
-    }
-
     return items;
 };
+
+export const getProductsByLanguage = async (language) => {
+    const productsFire = collection(dataBase, "products");
+
+    let items;
+
+    if (!language) {
+        const allProductsQuery = await getDocs(productsFire);
+        items = allProductsQuery.docs.map(doc => doc.data());
+    } else {
+    const languageQuery = query(productsFire, where('language', '==', language));
+    const languageQuerySnapshot = await getDocs(languageQuery);
+    items = languageQuerySnapshot.docs.map(doc => doc.data());
+}
+    return items;
+}
+
 
 
 export const getProductBySlug = async (slug) => {
@@ -42,6 +50,7 @@ export const getProductBySlug = async (slug) => {
     
     return product;
 };
+
 
 export const getUsers = async () => {
     const usersCollection = collection(dataBase, "users");
