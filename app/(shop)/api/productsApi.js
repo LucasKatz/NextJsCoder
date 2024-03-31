@@ -21,22 +21,22 @@ export const getProducts = async (categories) => {
 
     return items;
 };
-
 export const getProductsByLanguage = async (language) => {
     const productsFire = collection(dataBase, "products");
-
     let items;
 
-    if (!language) {
+    if (language) {
+        const languageQuery = query(productsFire, where('language', '==', language));
+        const languageQuerySnapshot = await getDocs(languageQuery);
+        items = languageQuerySnapshot.docs.map(doc => doc.data());
+    } else {
+        // Si no se proporciona un idioma, devuelve todos los productos
         const allProductsQuery = await getDocs(productsFire);
         items = allProductsQuery.docs.map(doc => doc.data());
-    } else {
-    const languageQuery = query(productsFire, where('language', '==', language));
-    const languageQuerySnapshot = await getDocs(languageQuery);
-    items = languageQuerySnapshot.docs.map(doc => doc.data());
-}
+    }
+
     return items;
-}
+};
 
 
 

@@ -9,6 +9,7 @@ const links = [
     label: 'Todos',
     href: '/products/all',
   },
+
   {
     label: 'Vocabulario',
     href: '/products/vocabulary',
@@ -27,12 +28,13 @@ const links = [
   },
 
   {
-    label: 'spanish',
-    href: '/products/spanish',
+    label: 'Spanish',
+    href: '/productos/spanish',
   },
+
   {
     label: 'english',
-    href: '/products/english',
+    href: '/productos/english',
   },
 ];
 
@@ -50,9 +52,14 @@ const languageFilters = [
 const CategoriesMenu = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+  
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handleLanguageChange = (language) => {
+    setSelectedLanguage(language);
   };
 
   return (
@@ -79,7 +86,7 @@ const CategoriesMenu = () => {
           <div className="mt-4">
             <p className="text-gray-700 font-semibold mb-2">Filter by language:</p>
             {languageFilters.map((filter) => (
-              <Link key={filter.value} href={`/products/${pathname.split('/')[2]}/${filter.value}`} className={`btn-nav ${pathname === `/products/${pathname.split('/')[2]}/${filter.value}` ? "font-extrabold" : ""}`}>
+              <Link key={filter.value} href={`/products/all/${filter.value}`} onClick={() => handleLanguageChange(filter.value)} className={`btn-nav ${selectedLanguage === filter.value ? "font-extrabold" : ""}`}>
                 {filter.label}
               </Link>
             ))}
