@@ -88,17 +88,17 @@ const CartDetail = () => {
               Subtotal: ${cartProduct.price * cartProduct.quantity}
             </p>
             <button onClick={() => removeProduct(cartProduct.title)} className="text-text-color-5 font-semibold w-1/2 justify-center bg-bg-color-2 rounded-md my-2">
-              Remove
+              Eliminar
             </button>
           </li>
         ))}
       </ul>
       <div className="flex flex-col  justify-center my-5">
       <button className={`buttonUICart`}
-                onClick={clearCart}>Clear Cart
+                onClick={clearCart}>Vaciar Carrito
       </button>
       <button className={`buttonUICart`}>
-                <Link  href={"/payment"}>Proceed to Payment </Link>
+                <Link  href={"/payment"}>Finalizar Compra</Link>
       </button>
       </div>
     </div>
