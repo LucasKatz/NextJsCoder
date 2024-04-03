@@ -16,6 +16,7 @@ export const generateEmailContent = (userData, cart, orderId) => {
       Total: $${cart.reduce((total, prod) => total + prod.price * prod.quantity, 0)}
       Ticket ID: ${orderId}
       Thank you for your purchase!`;
+      console.log("this is email content",emailContent)
     return emailContent;
   };
   

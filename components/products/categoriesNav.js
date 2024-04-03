@@ -9,6 +9,7 @@ const links = [
     label: 'Todos',
     href: '/products/all',
   },
+
   {
     label: 'Vocabulario',
     href: '/products/vocabulary',
@@ -25,14 +26,40 @@ const links = [
     label: 'Deco',
     href: '/products/deco',
   },
+
+  {
+    label: 'Spanish',
+    href: '/productos/spanish',
+  },
+
+  {
+    label: 'english',
+    href: '/productos/english',
+  },
+];
+
+const languageFilters = [
+  {
+    label: 'spanish',
+    value: 'spanish',
+  },
+  {
+    label: 'english',
+    value: 'english',
+  },
 ];
 
 const CategoriesMenu = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+  
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handleLanguageChange = (language) => {
+    setSelectedLanguage(language);
   };
 
   return (
@@ -49,12 +76,22 @@ const CategoriesMenu = () => {
           <ul>
             {links.map((link) => (
               <li key={link.label}>
- <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "font-extrabold" : ""}`}>
-        {link.label}
-    </Link>
+                <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "font-extrabold" : ""}`}>
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
+
+          <div className="mt-4">
+            <p className="text-gray-700 font-semibold mb-2">Filter by language:</p>
+            {languageFilters.map((filter) => (
+              <Link key={filter.value} href={`/products/all/${filter.value}`} onClick={() => handleLanguageChange(filter.value)} className={`btn-nav ${selectedLanguage === filter.value ? "font-extrabold" : ""}`}>
+                {filter.label}
+              </Link>
+            ))}
+          </div>
+
           <button
             onClick={toggleMenu}
             className="btn-nav text-purple-900 mt-4"

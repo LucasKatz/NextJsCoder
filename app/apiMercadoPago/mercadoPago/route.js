@@ -27,9 +27,6 @@ export async function POST(req, res) {
       const preference = new Preference(client);
       const result = await preference.create({ body });
 
-
-
-
       return NextResponse.json({
         id: result.id,
       });

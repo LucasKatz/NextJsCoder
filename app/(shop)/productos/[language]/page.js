@@ -4,7 +4,7 @@ import { useState } from 'react';
 import ProductsList from "../../../../components/products/itemList";
 
 const Productos = ({ params }) => {
-  const { categories, language } = params;
+  const { language } = params;
 
   const [items, setItems] = useState([]);
 
@@ -15,7 +15,7 @@ const Productos = ({ params }) => {
       </h2>
 
       <div className="flex gap-10">
-        <ProductsList categories={categories} items={items} page={1} pageSize={10} />
+        <ProductsList language={language} items={items} page={1} pageSize={10} />
       </div>
     </main>
   );

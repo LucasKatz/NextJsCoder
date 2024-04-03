@@ -21,6 +21,24 @@ export const getProducts = async (categories) => {
 
     return items;
 };
+export const getProductsByLanguage = async (language) => {
+    const productsFire = collection(dataBase, "products");
+    let items;
+
+    if (language) {
+        const languageQuery = query(productsFire, where('language', '==', language));
+        const languageQuerySnapshot = await getDocs(languageQuery);
+        items = languageQuerySnapshot.docs.map(doc => doc.data());
+    } else {
+        // Si no se proporciona un idioma, devuelve todos los productos
+        const allProductsQuery = await getDocs(productsFire);
+        items = allProductsQuery.docs.map(doc => doc.data());
+    }
+
+    return items;
+};
+
+
 
 export const getProductBySlug = async (slug) => {
     const productsFire = collection(dataBase, "products");
@@ -32,6 +50,7 @@ export const getProductBySlug = async (slug) => {
     
     return product;
 };
+
 
 export const getUsers = async () => {
     const usersCollection = collection(dataBase, "users");
