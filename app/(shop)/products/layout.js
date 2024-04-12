@@ -1,6 +1,7 @@
-import CategoriesMenu from "../../../../components/products/categoriesNav"
+//import CategoriesMenu from "../../../components/products/categoriesNav"
+import CategoriesMenu from "@/components/products/categoriesNav"
 import { Suspense } from "react"
-import Loader from "../detail/[slug]/loading"
+import Loader from "./detail/[slug]/loading"
 
 
 const ProductsLayout = ({children}) => {

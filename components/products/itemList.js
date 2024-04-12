@@ -15,18 +15,24 @@ const ProductsList = ({ categories, language }) => {
         const fetchProducts = async () => {
             try {
                 console.log("Categories:", categories);
-                console.log("language", language) // Aquí agregamos la impresión del valor de categories
+                console.log("Language:", language);
                 let products;
-
+    
                 if (language) {
                     // Si se proporciona un idioma, llamar a la función para obtener productos por idioma
-                    products = await getProductsByLanguage(language);
-
+                    let productsByLanguage = await getProductsByLanguage(language);
+    
+                    // Filtrar los productos por categoría si se proporciona una categoría
+                    if (categories && categories !== 'all') {
+                        productsByLanguage = productsByLanguage.filter(product => product.category === categories);
+                    }
+    
+                    products = productsByLanguage;
                 } else {
                     // Si no se proporciona un idioma, llamar a la función para obtener todos los productos
                     products = await getProducts(categories);
                 }
-
+    
                 setAllProducts(products);
                 setLoading(false);
             } catch (error) {
@@ -34,9 +40,11 @@ const ProductsList = ({ categories, language }) => {
                 setLoading(false);
             }
         };
-
+    
         fetchProducts();
     }, [categories, language]);
+    
+    
 
     if (loading) {
         return <Loader />;

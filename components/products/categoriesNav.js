@@ -2,64 +2,39 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 const links = [
   {
     label: 'Todos',
-    href: '/products/all',
+    href: '/all',
   },
-
   {
     label: 'Vocabulario',
-    href: '/products/vocabulary',
+    href: '/vocabulary',
   },
   {
     label: 'Historias',
-    href: '/products/stories',
+    href: '/stories',
   },
   {
     label: 'Rutinas',
-    href: '/products/routines',
+    href: '/routines',
   },
   {
     label: 'Deco',
-    href: '/products/deco',
-  },
-
-  {
-    label: 'Spanish',
-    href: '/productos/spanish',
-  },
-
-  {
-    label: 'english',
-    href: '/productos/english',
+    href: '/deco',
   },
 ];
 
-const languageFilters = [
-  {
-    label: 'spanish',
-    value: 'spanish',
-  },
-  {
-    label: 'english',
-    value: 'english',
-  },
-];
+const CategoriesMenu = ({ language }) => {
 
-const CategoriesMenu = () => {
-  const pathname = usePathname();
+
   const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('');
+
   
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-  };
-
-  const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
   };
 
   return (
@@ -76,21 +51,12 @@ const CategoriesMenu = () => {
           <ul>
             {links.map((link) => (
               <li key={link.label}>
-                <Link key={link.label} href={link.href} className={`btn-nav ${pathname === link.href ? "font-extrabold" : ""}`}>
+                <Link key={link.label} href={`/productos/${language}${link.href}`} className="btn-nav">
                   {link.label}
                 </Link>
               </li>
             ))}
           </ul>
-
-          <div className="mt-4">
-            <p className="text-gray-700 font-semibold mb-2">Filter by language:</p>
-            {languageFilters.map((filter) => (
-              <Link key={filter.value} href={`/products/all/${filter.value}`} onClick={() => handleLanguageChange(filter.value)} className={`btn-nav ${selectedLanguage === filter.value ? "font-extrabold" : ""}`}>
-                {filter.label}
-              </Link>
-            ))}
-          </div>
 
           <button
             onClick={toggleMenu}
@@ -105,3 +71,4 @@ const CategoriesMenu = () => {
 };
 
 export default CategoriesMenu;
+

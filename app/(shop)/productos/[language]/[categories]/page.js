@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from 'react';
-import ProductsList from "../../../../components/products/itemList";
+import ProductsList from "../../../../../components/products/itemList";
 import CategoriesMenu from '@/components/products/categoriesNav';
 
-const Productos = ({ params }) => {
-  const { language } = params;
+const ProductosFiltrados = ({ params }) => {
+  const { categories, language } = params;
 
   const [items, setItems] = useState([]);
 
@@ -17,10 +17,10 @@ const Productos = ({ params }) => {
 
       <div className="flex gap-10">
         <CategoriesMenu language={language} className="hidden" />
-        <ProductsList language={language} items={items} page={1} pageSize={10} />
+        <ProductsList categories={categories} language={language} items={items} page={1} pageSize={10} />
       </div>
     </main>
   );
 };
 
-export default Productos;
+export default ProductosFiltrados;
