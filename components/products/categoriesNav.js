@@ -24,6 +24,10 @@ const links = [
     label: 'Deco',
     href: '/deco',
   },
+  {
+    label: 'Personal',
+    href: '/personal',
+  },
 ];
 
 const CategoriesMenu = ({ language }) => {
