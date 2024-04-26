@@ -15,8 +15,8 @@ const ProductosFiltrados = ({ params }) => {
         Products
       </h2>
 
-      <div className="flex gap-10">
         <CategoriesMenu language={language} className="hidden" />
+      <div className="flex gap-10">
         <ProductsList categories={categories} language={language} items={items} page={1} pageSize={10} />
       </div>
     </main>
